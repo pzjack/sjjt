@@ -32,8 +32,8 @@ spring:
       javax.persistence.sharedCache.mode: ENABLE_SELECTIVE
     
 multipart:
-  max-file-size: 41943040
-  max-request-size: 125829120
+  max-file-size: 40Mb
+  max-request-size: 120Mb
 
 
 liquibase:

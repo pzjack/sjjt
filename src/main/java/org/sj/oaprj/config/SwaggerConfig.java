@@ -32,7 +32,7 @@ public class SwaggerConfig {
                 .forCodeGeneration(true)
                 .pathMapping("/")// base，最终调用接口后会和paths拼接在一起
                 .select()
-                .paths(or(regex("/api/.*")))//过滤的接口
+                .paths(or(regex("/.*")))//过滤的接口
                 .build()
                 .apiInfo(testApiInfo());
     }
