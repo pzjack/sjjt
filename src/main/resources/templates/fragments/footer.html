@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>页脚</title>
+    <title>footer</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../../static/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}" />
 </head>
 <body>
-	<footer id="footer"  th:fragment="copy">陕建集团&copy; 2016</footer>
+	<footer id="footer"  th:fragment="copy" th:text="#{page.footer}">Corp. Shanjian&copy; 2016</footer>
 </body>
 </html>

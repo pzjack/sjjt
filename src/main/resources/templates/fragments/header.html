@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>出错啦！！！</title>
+<title>header</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no" id="Viewport" name="viewport" />
 <!-- Bootstrap -->
@@ -26,7 +26,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<span class="navbar-brand" th:text="#{menu.top.text}">陕建集团</span>
+				<span class="navbar-brand" th:text="#{menu.top.text}">Corp. Shanjian</span>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
@@ -34,7 +34,7 @@
 					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#" onclick="logoutform.submit();">退出</a></li>
+					<li><a href="#" onclick="logoutform.submit();" th:text="#{menu.logout}">Logout</a></li>
 				</ul>
 			</div>
 		</div>
