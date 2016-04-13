@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="now" value="now()" dbms="mysql,h2" />
+	<property name="now" value="current_timestamp" dbms="postgresql" />
+	<property name="now" value="sysdate" dbms="oracle" />
+
+	<!-- 用户账号表 -->
+	<changeSet id="20160413092600" author="zhen.pan">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="T_ACCOUNT" />
+			</not>
+		</preConditions>
+		<createTable tableName="T_ACCOUNT">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="account" type="VARCHAR(60)">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(60)"/>
+			<column name="salt" type="VARCHAR(60)" />
+			<column name="password" type="VARCHAR(62)" />
+			<column name="role" type="INT" />
+			<column name="createtime" type="DATETIME" defaultValueDate="${now}" />
+		</createTable>
+		
+		<insert tableName="T_ACCOUNT">
+			<column name="account">admin</column>
+			<column name="name">管理员</column>
+			<column name="password">admin</column>
+			<column name="role">1</column>
+		</insert>
+	</changeSet>
+</databaseChangeLog>

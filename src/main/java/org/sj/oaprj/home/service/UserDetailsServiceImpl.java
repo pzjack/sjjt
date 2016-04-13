@@ -4,7 +4,11 @@
 package org.sj.oaprj.home.service;
 
 import java.util.Collection;
+import java.util.List;
 
+import org.sj.oaprj.entity.Account;
+import org.sj.oaprj.repository.AccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,10 +22,20 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+	@Autowired
+	private AccountRepository accountRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return new CustomUserDetails(username, "admin", 1, "管理员");
+		List<Account> list = accountRepository.findByAccount(username);
+		Account account = null;
+		if(null != list && list.size() > 0) {
+			account = list.get(0);
+		}
+		if(null == account) {
+			throw new UsernameNotFoundException("It's not found any user.");
+		}
+		return new CustomUserDetails(username, account.getPassword(), account.getRole(), account.getName());
 	}
 
 	private final static class CustomUserDetails implements UserDetails {

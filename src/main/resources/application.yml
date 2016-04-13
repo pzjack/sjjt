@@ -12,9 +12,9 @@ spring:
     cache-seconds: -1
   datasource:
     dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-    url: jdbc:mysql://127.0.0.1:3306/railway?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF8&useSSL=false
-    username: railway
-    password: railway
+    url: jdbc:mysql://127.0.0.1:3306/sjjt?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF8&useSSL=false
+    username: sjjt2016
+    password: SJJT_password@2016
   jpa:
     database-platform: org.hibernate.dialect.MySQLInnoDBDialect
     database: MYSQL
@@ -38,7 +38,7 @@ multipart:
 
 liquibase:
   change-log: classpath:config/liquibase/master.xml
-  default-schema: railway
+  default-schema: sjjt
 
 security:
   enable-csrf: false
