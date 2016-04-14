@@ -32,6 +32,8 @@ public class HikariCPConfig {
 		hc.setPassword(password);
 		hc.setAutoCommit(false);
 		hc.setMaximumPoolSize(10);
+		hc.addDataSourceProperty("databaseName", "sjjt");
+		hc.addDataSourceProperty("serverName", "localhost");
 		hc.addDataSourceProperty("cachePrepStmts", "true");
 		hc.addDataSourceProperty("prepStmtCacheSize", "250");
 		hc.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");

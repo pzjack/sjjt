@@ -10,6 +10,8 @@
 
 	<defaultCache maxElementsInMemory="1" timeToIdleSeconds="120"  timeToLiveSeconds="120" eternal="false" overflowToDisk="false" />
 
+    <cache name="org.sj.oaprj.entity.Account" timeToLiveSeconds="3600" maxElementsInMemory="5000"/>
+
 	<cache name="org.hibernate.cache.spi.UpdateTimestampsCache" maxElementsInMemory="5000" eternal="true"  overflowToDisk="true" />
 	<cache name="org.hibernate.cache.internal.StandardQueryCache"  maxElementsInMemory="10000" eternal="false" timeToLiveSeconds="120" overflowToDisk="true" />
 

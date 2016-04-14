@@ -56,9 +56,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		@Override
 		public Collection<? extends GrantedAuthority> getAuthorities() {
-//			if("admin".equals(username)) {
-//				return AuthorityUtils.createAuthorityList(Contants.ROLE_USER, Contants.ROLE_ADMIN);
-//			} else {
+			if("admin".equals(username)) {
+				return AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN");
+			} 
+//			else {
 //				switch(roleid) {
 //				case 0: return AuthorityUtils.createAuthorityList(Contants.ROLE_USER);
 //				case 10: return AuthorityUtils.createAuthorityList(Contants.ROLE_MEMBER);
@@ -68,6 +69,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //					return AuthorityUtils.createAuthorityList(Contants.ROLE_USER);
 //				}
 //			}
+			
 			return AuthorityUtils.createAuthorityList();
 		}
 		

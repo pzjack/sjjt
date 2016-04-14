@@ -1,10 +1,12 @@
 package org.sj.oaprj.entity;
 
-import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity(name="T_ACCOUNT")
-@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Account extends ID {
 	private static final long serialVersionUID = 4162869365157041576L;
 	private String account;

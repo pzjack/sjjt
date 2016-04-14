@@ -27,7 +27,7 @@ spring:
     properties:
       hibernate.cache.use_second_level_cache: true
       hibernate.cache.use_query_cache: true
-      hibernate.generate_statistics: true
+      hibernate.generate_statistics: false
       hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
       javax.persistence.sharedCache.mode: ENABLE_SELECTIVE
     
@@ -47,3 +47,7 @@ security:
   user:
     name: admin
     password: admin
+  oauth2:
+    client:
+      client-id: mytestoauth2resource1
+      client-secret: AB3456DCEF4590870076544334

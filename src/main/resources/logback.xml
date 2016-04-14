@@ -38,17 +38,17 @@
 	<logger name="de.codecentric.boot.admin" level="INFO" />
 	<logger name="com.netflix.servo" level="INFO" />
 	<logger name="sun.net.www.protocol" level="INFO" />
-	<logger name="org.hibernate" level="INFO" />
+	<logger name="org.hibernate" level="WARN" />
 	<logger name="net.sf.ehcache" level="INFO" />
 	<logger name="org.jboss" level="INFO" />
 	<logger name="com.netflix.zuul" level="INFO" />
 	<logger name="springfox.documentation" level="INFO" />
 	<logger name="javax.activation" level="INFO" />
 	<logger name="com.zaxxer.hikari" level="INFO" />
+	<logger name="javax.xml.bind" level="INFO" /> 
 	<logger name="sun" level="INFO" />
+	<logger name="com.sun.xml." level="INFO" /> 
 	<!-- <logger name="sun." level="INFO" />
-	<logger name="" level="INFO" /> 
-	<logger name="" level="INFO" /> 
 	<logger name="" level="INFO" /> 
 	<logger name="" level="INFO" /> 
 	<logger name="" level="INFO" /> 
