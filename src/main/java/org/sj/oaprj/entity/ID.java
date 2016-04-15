@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public abstract class ID implements java.io.Serializable {
 	private static final long serialVersionUID = 3455079795884379145L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

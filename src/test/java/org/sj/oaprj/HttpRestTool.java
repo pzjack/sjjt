@@ -160,7 +160,7 @@ public class HttpRestTool {
 	
 	public void mockLogin() throws IOException {
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("username", "cjxy1403200210");
+		params.put("username", "blzh110202071017");
 		params.put("password", "123456");
 		params.put("grant_type", "password");
 		params.put("scope", "read write");
