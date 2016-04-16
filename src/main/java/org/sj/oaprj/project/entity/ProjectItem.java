@@ -23,6 +23,8 @@ import org.sj.oaprj.entity.ID;
 @Cacheable
 public class ProjectItem extends ID {
 	private static final long serialVersionUID = -6462204707814166706L;
+	@Column(name = "PRJ_NO")
+	private String prjno;
 	@Column(name = "NAME")
 	private String name;
 	@Column(name = "ITEM_NO")
@@ -45,6 +47,12 @@ public class ProjectItem extends ID {
 	private BigDecimal sumofbusiness;
 	@Column(name = "STATE")
 	private Integer state;
+	public String getPrjno() {
+		return prjno;
+	}
+	public void setPrjno(String prjno) {
+		this.prjno = prjno;
+	}
 	public String getName() {
 		return name;
 	}
