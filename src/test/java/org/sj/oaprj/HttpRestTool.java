@@ -330,6 +330,14 @@ public class HttpRestTool {
 		excutePostForm("http://127.0.0.1:8080/api/web/v1/users/findandsetpwd", params, null);
 	}
 	
+	public void testRexEnter() {
+		String a = "a\nbbb\ncc";
+		String[] cc = a.split("\\\\n");
+		for(String str : cc) {
+			System.out.println(str);
+		}
+	}
+	
 
 	/**
 	 * @param args
@@ -338,8 +346,10 @@ public class HttpRestTool {
 	public static void main(String[] args) throws IOException {
 		HttpRestTool t = new HttpRestTool();
 		
+		t.testRexEnter();
+		
 //		t.mockLogin();
-		t.mockLogin2();
+//		t.mockLogin2();
 //		t.mockPutAssess();
 		
 //		t.mockPostAssess();

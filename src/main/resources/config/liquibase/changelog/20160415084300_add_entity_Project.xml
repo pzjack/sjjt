@@ -32,6 +32,8 @@
 			<column name="PRE_COST" type="DECIMAL(18,4)" />
 			<column name="COST" type="DECIMAL(18,4)" />
 			<column name="DEP_ID" type="BIGINT" />
+			<column name="PROJ_GRP_ID" type="BIGINT" />
+			<column name="STATE" type="INT(6)" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 		<createTable tableName="T_PROJECT_DEPART">

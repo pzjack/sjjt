@@ -9,6 +9,7 @@ import java.util.Date;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
@@ -44,11 +45,13 @@ public class Project extends ID {
 	private BigDecimal cost;
 //	@Column(name = "DEP_ID")
 //	private Org department;
+	@Column(name = "DEP_ID")
+	private Long depId;
 	@Column(name = "STATE")
 	private Integer state;
 	
     @NotNull
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJ_GRP_ID")
 	private ProjectGroup projectgroup;
 	public String getName() {
@@ -110,6 +113,12 @@ public class Project extends ID {
 	}
 	public void setProjectgroup(ProjectGroup projectgroup) {
 		this.projectgroup = projectgroup;
+	}
+	public Long getDepId() {
+		return depId;
+	}
+	public void setDepId(Long depId) {
+		this.depId = depId;
 	}
 	public Integer getState() {
 		return state;

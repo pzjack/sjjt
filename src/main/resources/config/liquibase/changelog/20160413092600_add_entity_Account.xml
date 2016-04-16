@@ -25,12 +25,13 @@
 			<column name="salt" type="VARCHAR(60)" />
 			<column name="password" type="VARCHAR(62)" />
 			<column name="role" type="INT" />
+			<column name="state" type="INT(6)"/>
 			<column name="createtime" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 		
 		<insert tableName="T_ACCOUNT">
 			<column name="account">admin</column>
-			<column name="name">管理员</column>
+			<column name="name">admin</column>
 			<column name="password">admin</column>
 			<column name="role">1</column>
 		</insert>

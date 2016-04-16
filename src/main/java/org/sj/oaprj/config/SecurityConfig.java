@@ -24,6 +24,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //	public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
 //		return new SecurityEvaluationContextExtension();
 //	}
+//	@Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring().antMatchers("/webjars/**", "/images/**", "/oauth/uncache_approvals", "/oauth/cache_approvals", "/login", "/css/**", "/js/**", "/img/**", "/api/**", "/error");
+//    }
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

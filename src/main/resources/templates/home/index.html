@@ -13,6 +13,13 @@
 <div class="container">
     <p>
         Welcome to the 陕建集团办公项目物资管理系统!<br/>
+        <div>
+		<form name="formupload" th:action="@{/api/v1/project/upload}" action="/api/v1/project/upload" method="POST" enctype="multipart/form-data">
+			<input name="file" type="file" size="80" /><input type="submit" name="submit" value="submit" />
+			<input name="projectId" type="hidden" value="1" />
+			
+		</form>
+		</div>
     </p>
     <div id="footer" th:substituteby="fragments/footer :: copy">页脚</div>
 </div>
