@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="now" value="now()" dbms="mysql,h2" />
+	<property name="now" value="current_timestamp" dbms="postgresql" />
+	<property name="now" value="sysdate" dbms="oracle" />
+
+	<!-- 项目相关的部分表 -->
+	<changeSet id="20160415084300" author="zhen.pan">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="T_PROJECT" />
+				<tableExists tableName="T_PROJECT_DEPART" />
+				<tableExists tableName="T_PROJECT_ITEM" />
+				<tableExists tableName="T_PROJECT_GROUP" />
+				<tableExists tableName="T_PROJECT_DEPT_GRP" />
+			</not>
+		</preConditions>
+		<createTable tableName="T_PROJECT">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="NAME" type="VARCHAR(120)"/>
+			<column name="PROJECT_NO" type="VARCHAR(30)" />
+			<column name="DESC" type="VARCHAR(300)" />
+			<column name="PRE_START_DATE" type="DATETIME" />
+			<column name="PRE_END_DATE" type="DATETIME" />
+			<column name="START_DATE" type="DATETIME" />
+			<column name="END_DATE" type="DATETIME" />
+			<column name="PRE_COST" type="DECIMAL(18,4)" />
+			<column name="COST" type="DECIMAL(18,4)" />
+			<column name="DEP_ID" type="BIGINT" />
+			<column name="PROJ_GRP_ID" type="BIGINT" />
+			<column name="STATE" type="INT(6)" />
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
+		</createTable>
+		<createTable tableName="T_PROJECT_DEPART">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="PROJECT_ID" type="BIGINT" />
+			<column name="NAME" type="VARCHAR(120)"/>
+			<column name="DEPART_NO" type="VARCHAR(30)" />
+			<column name="PROFESSION" type="VARCHAR(60)" />
+			<column name="TOTAL_PROJECT" type="DECIMAL(14,4)" />
+			<column name="UNIT" type="VARCHAR(10)" />
+			<column name="STANDARD" type="VARCHAR(300)" />
+			<column name="SUM_OF_BUSINESS" type="DECIMAL(18,4)" />
+			<column name="STATE" type="INT(6)" />
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
+		</createTable>
+		<createTable tableName="T_PROJECT_ITEM">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="PROJECT_DEPART_ID" type="BIGINT" />
+			<column name="NAME" type="VARCHAR(120)"/>
+			<column name="ITEM_NO" type="VARCHAR(30)" />
+			<column name="FEATURE" type="VARCHAR(1000)" />
+			<column name="CONTENT" type="VARCHAR(1000)" />
+			<column name="UNIT" type="VARCHAR(10)" />
+			<column name="TOTAL_PROJECT" type="DECIMAL(14,4)" />
+			<column name="UNIT_PRICE" type="DECIMAL(14,4)" />
+			<column name="SUM_OF_BUSINESS" type="DECIMAL(18,4)" />
+			<column name="STATE" type="INT(6)" />
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
+		</createTable>
+
+		<createTable tableName="T_PROJECT_DEPT_GRP">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="PROJECT_DEPART_ID" type="BIGINT" />
+			<column name="ROLE_NAME" type="VARCHAR(60)"/>
+			<column name="ROLE_SIGN" type="INT" />
+			<column name="ORG_TYPE" type="INT(4)" />
+			<column name="ORG_ID" type="BIGINT" />
+			<column name="USER_ID" type="BIGINT" />
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
+		</createTable>
+
+		<createTable tableName="T_PROJECT_GROUP">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="NAME" type="VARCHAR(120)"/>
+			<column name="DESC" type="VARCHAR(300)" />
+			<column name="DEP_ID" type="BIGINT" />
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
+		</createTable>
+
+		<createTable tableName="T_PROJECT_GROUP_USER">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="PROJECT_ID" type="BIGINT" />
+			<column name="PROJECT_GROUP_ID" type="BIGINT" />
+			<column name="NAME" type="VARCHAR(120)"/>
+			<column name="ROLE" type="VARCHAR(40)" />
+			<column name="POST" type="VARCHAR(40)" />
+			<column name="USER_ID" type="BIGINT" />
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
+		</createTable>
+	</changeSet>
+</databaseChangeLog>

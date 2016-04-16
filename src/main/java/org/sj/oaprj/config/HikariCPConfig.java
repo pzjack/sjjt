@@ -12,8 +12,10 @@ import com.zaxxer.hikari.HikariDataSource;
 @Configuration
 public class HikariCPConfig {
 	
-	@Value("${spring.datasource.dataSourceClassName}")
-	private String dataSourceClassName;
+//	@Value("${spring.datasource.dataSourceClassName}")
+//	private String dataSourceClassName;
+	@Value("${spring.datasource.driverClassName}")
+	private String driverClassName;
 	
 	@Value("${spring.datasource.username}")
 	private String username;
@@ -26,14 +28,14 @@ public class HikariCPConfig {
 	@Bean
 	public DataSource primaryDataSource() {
 		HikariConfig hc = new HikariConfig();
-		hc.setDataSourceClassName(dataSourceClassName);
+//		hc.setDataSourceClassName(dataSourceClassName);
 		hc.setJdbcUrl(url);
 		hc.setUsername(username);
 		hc.setPassword(password);
 		hc.setAutoCommit(false);
 		hc.setMaximumPoolSize(10);
-		hc.addDataSourceProperty("databaseName", "sjjt");
-		hc.addDataSourceProperty("serverName", "localhost");
+//		hc.addDataSourceProperty("databaseName", "sjjt");
+//		hc.addDataSourceProperty("serverName", "localhost");
 		hc.addDataSourceProperty("cachePrepStmts", "true");
 		hc.addDataSourceProperty("prepStmtCacheSize", "250");
 		hc.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");

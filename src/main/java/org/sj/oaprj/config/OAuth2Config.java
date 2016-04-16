@@ -28,33 +28,27 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class OAuth2Config {
-	@Configuration
+	/*@Configuration
 	@EnableResourceServer
 	protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 		@Override
 		public void configure(HttpSecurity http) throws Exception {
 			http
+			// Since we want the protected resources to be accessible in the UI as well we need 
+			// session creation to be allowed (it's disabled by default in 2.0.6)
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+			.and()
             .csrf()
             .requireCsrfProtectionMatcher(new AntPathRequestMatcher("/oauth/authorize"))
             .disable()
             .headers()
             .frameOptions().disable()
             .and()
-            .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
             .authorizeRequests()
             .antMatchers("/api/authenticate").permitAll()
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/logs/**").hasAnyAuthority("ROLE_ADMIN")
             .antMatchers( "/api/web/v1/users/register/email" ).permitAll()
-            .antMatchers( "/api/web/v1/users/register/phone" ).permitAll()
-            .antMatchers( "/api/web/v1/users/sendverificationemail").permitAll()
-            .antMatchers( "/api/web/v1/users/register/phone" ).permitAll()
-            .antMatchers( "/api/web/v1/handout/**").permitAll()
-            .antMatchers( "/api/web/v1/open/teachers/register" ).permitAll()
-            .antMatchers( "/api/web/v1/note/shared" ).permitAll()
-            .antMatchers( "/api/web/v1/courses" ).permitAll()
             .antMatchers("/api/**").authenticated()
             .antMatchers("/uploads/**").authenticated()
             .antMatchers("/metrics/**").hasAuthority("ROLE_ADMIN")
@@ -69,36 +63,7 @@ public class OAuth2Config {
             .antMatchers("/env/**").hasAuthority("ROLE_ADMIN")
             .antMatchers("/trace/**").hasAuthority("ROLE_ADMIN")
             .antMatchers("/api-docs/**").hasAuthority("ROLE_ADMIN")
-            .antMatchers("/protected/**").authenticated()
-            .antMatchers("/api/web/v1/open/activity/2015miniv/**").permitAll()
-            .antMatchers("/api/web/v1/msg/page").permitAll();
-//			// @formatter:off
-//			http
-//            .csrf()
-//            .requireCsrfProtectionMatcher(new AntPathRequestMatcher("/oauth/authorize"))
-//            .disable()
-//            .headers()
-//            .frameOptions().disable()
-//            .and()
-//				// Since we want the protected resources to be accessible in the UI as well we need 
-//				// session creation to be allowed (it's disabled by default in 2.0.6)
-//				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-//			.and()
-//				.requestMatchers().antMatchers("/photos/**", "/oauth/users/**", "/oauth/clients/**","/me")
-//			.and()
-//				.authorizeRequests()
-//					.antMatchers("/me").access("#oauth2.hasScope('read')")					
-//					.antMatchers("/photos").access("#oauth2.hasScope('read') or (!#oauth2.isOAuth() and hasRole('ROLE_USER'))")                                        
-//					.antMatchers("/photos/trusted/**").access("#oauth2.hasScope('trust')")
-//					.antMatchers("/photos/user/**").access("#oauth2.hasScope('trust')")					
-//					.antMatchers("/photos/**").access("#oauth2.hasScope('read') or (!#oauth2.isOAuth() and hasRole('ROLE_USER'))")
-//					.regexMatchers(HttpMethod.DELETE, "/oauth/users/([^/].*?)/tokens/.*")
-//						.access("#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('ROLE_USER') or #oauth2.isClient()) and #oauth2.hasScope('write')")
-//					.regexMatchers(HttpMethod.GET, "/oauth/clients/([^/].*?)/users/.*")
-//						.access("#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('ROLE_USER') or #oauth2.isClient()) and #oauth2.hasScope('read')")
-//					.regexMatchers(HttpMethod.GET, "/oauth/clients/.*")
-//						.access("#oauth2.clientHasRole('ROLE_CLIENT') and #oauth2.isClient() and #oauth2.hasScope('read')");
-//			// @formatter:on
+            .antMatchers("/protected/**").authenticated();
 		}
 
 	}
@@ -140,5 +105,5 @@ public class OAuth2Config {
 			endpoints.tokenStore(tokenStore)
 					.authenticationManager(authenticationManager);
 		}
-	}
+	}*/
 }

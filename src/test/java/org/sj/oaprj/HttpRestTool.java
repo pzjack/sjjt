@@ -160,7 +160,7 @@ public class HttpRestTool {
 	
 	public void mockLogin() throws IOException {
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("username", "cjxy1403200210");
+		params.put("username", "blzh110202071017");
 		params.put("password", "123456");
 		params.put("grant_type", "password");
 		params.put("scope", "read write");
@@ -330,6 +330,14 @@ public class HttpRestTool {
 		excutePostForm("http://127.0.0.1:8080/api/web/v1/users/findandsetpwd", params, null);
 	}
 	
+	public void testRexEnter() {
+		String a = "a\nbbb\ncc";
+		String[] cc = a.split("\\\\n");
+		for(String str : cc) {
+			System.out.println(str);
+		}
+	}
+	
 
 	/**
 	 * @param args
@@ -338,8 +346,10 @@ public class HttpRestTool {
 	public static void main(String[] args) throws IOException {
 		HttpRestTool t = new HttpRestTool();
 		
+		t.testRexEnter();
+		
 //		t.mockLogin();
-		t.mockLogin2();
+//		t.mockLogin2();
 //		t.mockPutAssess();
 		
 //		t.mockPostAssess();
