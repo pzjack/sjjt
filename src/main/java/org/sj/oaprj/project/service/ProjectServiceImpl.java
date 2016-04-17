@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,7 +38,9 @@ import org.springframework.util.StringUtils;
 @Component
 public class ProjectServiceImpl {
 	private final static Pattern p = Pattern.compile("^-?[0-9]+.[0-9]+");
-	
+
+	private final static char EXCEL_NO_VIEW_CHAR = 0X7F;
+	private final static String EXCEL_NO_VIEW_STR = EXCEL_NO_VIEW_CHAR + "";
 	private final static String EXCEL_ENTER_SIG = "\r\n";
 	private final static String JAVA_ENTER_SIG = "\n";
 	private final static String EXCEL_PRJ_FEATURE = "[项目特征]";
@@ -64,6 +67,19 @@ public class ProjectServiceImpl {
 		if(null == project) return;
 		LOG.info("Import excel.");
 		readHssfBook(in, project);
+	}
+	
+	/**
+	 * Out Item all Name for validate input data
+	 */
+	public void viewItemAllName() {
+		Iterable<ProjectItem> list = projectItemRepository.findAll();
+		Iterator<ProjectItem> it = list.iterator();
+		while(it.hasNext()) {
+			ProjectItem item = it.next();
+			System.out.println(item.getName() + (null == item.getFeature()? "" : "\n" + item.getFeature())  + (null == item.getContent()? "" : "\n" + item.getContent()));
+		}
+		
 	}
 	
 	/**
@@ -125,6 +141,7 @@ public class ProjectServiceImpl {
 							int p1=-1;
 							p1 = nameall.indexOf(EXCEL_ENTER_SIG);
 							if(p1 < 0) {
+								nameall = nameall.trim();
 								if(!StringUtils.isEmpty(item.getContent()) && !StringUtils.isEmpty(item.getFeature())) {
 									item.setContent(item.getContent() + JAVA_ENTER_SIG + nameall);
 								} else {
@@ -190,18 +207,36 @@ public class ProjectServiceImpl {
 	private void diliveItemNameNormal(ProjectItem item, String c2) {
 		int p1=-1,p2 = -1;
 		p1 = c2.indexOf(EXCEL_ENTER_SIG);
+		String tem = null;
 		if(p1 > 0) {
-			item.setName(c2.substring(0, p1).trim());
+			tem = c2.substring(0, p1);
 		} else {
-			item.setName(c2.trim());
+			tem = c2;
 		}
+		if(null != tem) {
+			tem = tem.trim();
+		} else {
+			return;
+		}
+
+		int t = tem.indexOf(EXCEL_NO_VIEW_STR);//DEL字符处理1
+		StringBuilder nstr = new StringBuilder();
+		if (t > 0) {
+			nstr.append(tem.substring(0, t));
+			if (t + 1 < tem.length() - 1) {
+				nstr.append(tem.substring(t + 1));
+			}
+			item.setName(nstr.toString());
+		} else {
+			item.setName(tem);
+		}
+		
 		p2 = p1;
 		StringBuilder xtsb = new StringBuilder();
 		StringBuilder gnsb = new StringBuilder();
 		boolean xt = false,gn = false;
 		while(p2 > 0) {
 			p1 = c2.indexOf(EXCEL_ENTER_SIG, p2 + 2);
-			String tem = null;
 			if(p1 > 0) {
 				tem = c2.substring(p2 + 2, p1);
 			} else {
@@ -209,6 +244,7 @@ public class ProjectServiceImpl {
 			}
 			p2 = p1;
 			if(null != tem) {
+				tem = tem.trim();
 				if(tem.indexOf(EXCEL_PRJ_FEATURE) >= 0) {
 					xt = true;
 					gn = false;
@@ -217,7 +253,6 @@ public class ProjectServiceImpl {
 					xt = false;
 					gn = true;
 				}
-				tem = tem.trim();
 				if(xt) {
 					xtsb.append(tem).append(JAVA_ENTER_SIG);
 				}
