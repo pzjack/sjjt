@@ -15,7 +15,7 @@ import org.sj.oaprj.entity.ID;
 
 /**
  * 分部分工程审批各单位人员及角色
- * @author zhen.pan
+ * @author Jack.Alexander
  *
  */
 @Entity(name="T_PROJECT_DEPT_GRP")
@@ -25,13 +25,13 @@ public class ProjectDeptGroup extends ID {
 	@NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_DEPART_ID")
-	private ProjectDepart projectDepart;
+	private ProjectDepart projectDepart;//分部分项工程
 	@Column(name = "ROLE_NAME")
-	private String rolename;
+	private String rolename;//角色名称
 	@Column(name = "ROLE_SIGN")
-	private Integer rolesign;
+	private Integer rolesign;//角色标识
 	@Column(name = "ORG_TYPE")
-	private Integer orgtype;
+	private Integer orgtype;//组织类型(施工单位、监理单位、建设单位)
 	public ProjectDepart getProjectDepart() {
 		return projectDepart;
 	}

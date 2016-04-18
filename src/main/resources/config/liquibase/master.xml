@@ -9,4 +9,6 @@
  	<include file="classpath:config/liquibase/changelog/20160413092600_add_entity_Account.xml" relativeToChangelogFile="false"/>
  	<include file="classpath:config/liquibase/changelog/20160415084300_add_entity_Project.xml" relativeToChangelogFile="false"/>
  	<include file="classpath:config/liquibase/changelog/20160417002221_modify_entity_ProjectItem.xml" relativeToChangelogFile="false"/>
+ 	<include file="classpath:config/liquibase/changelog/20160418224400_add_entity_ConstuctionUnitDaily.xml" relativeToChangelogFile="false"/>
+ 	
 </databaseChangeLog>

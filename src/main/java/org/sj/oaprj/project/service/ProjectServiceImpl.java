@@ -32,7 +32,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 /**
- * @author zhen.pan
+ * @author Jack.Alexander
  *
  */
 @Component

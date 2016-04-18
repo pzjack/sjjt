@@ -11,7 +11,7 @@ import org.sj.oaprj.entity.ID;
 
 /**
  * 项目组
- * @author zhen.pan
+ * @author Jack.Alexander
  *
  */
 @Entity(name="T_PROJECT_GROUP")
@@ -19,11 +19,11 @@ import org.sj.oaprj.entity.ID;
 public class ProjectGroup extends ID {
 	private static final long serialVersionUID = -7830552612931542872L;
 	@Column(name = "NAME")
-	private String name;
+	private String name;//项目组名称
 	@Column(name = "DESC")
-	private String desc;
+	private String desc;//项目组描述说明
 //	@Column(name = "DEP_ID")
-//	private Org department;
+//	private Org department;//部门
 	public String getName() {
 		return name;
 	}

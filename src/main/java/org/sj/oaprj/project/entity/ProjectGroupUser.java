@@ -15,7 +15,7 @@ import org.sj.oaprj.entity.ID;
 
 /**
  * 项目组人员
- * @author zhen.pan
+ * @author Jack.Alexander
  *
  */
 @Entity(name="T_PROJECT_GROUP_USER")
@@ -25,21 +25,21 @@ public class ProjectGroupUser extends ID {
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_GROUP_ID")
-	private ProjectGroup projectgroup;
+	private ProjectGroup projectgroup;//工程项目组
 	
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_ID")
-	private Project project;
+	private Project project;//工程项目
 
 	@Column(name = "NAME")
-	private String name;
+	private String name;//名称
 	
 	@Column(name = "ROLE")
-	private String role;
+	private String role;//角色
 	
 	@Column(name = "POST")
-	private String post;
+	private String post;//职位
 
 	public ProjectGroup getProjectgroup() {
 		return projectgroup;

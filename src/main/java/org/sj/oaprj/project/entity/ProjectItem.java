@@ -17,7 +17,7 @@ import org.sj.oaprj.entity.ID;
 
 /**
  * 清单子项
- * @author zhen.pan
+ * @author Jack.Alexander
  *
  */
 @Entity(name="T_PROJECT_ITEM")
@@ -25,29 +25,29 @@ import org.sj.oaprj.entity.ID;
 public class ProjectItem extends ID {
 	private static final long serialVersionUID = -6462204707814166706L;
 	@Column(name = "PRJ_NO")
-	private String prjno;
+	private String prjno;//序号
 	@Column(name = "NAME")
-	private String name;
+	private String name;//名称
 	@Column(name = "ITEM_NO")
-	private String itemno;
+	private String itemno;//编号
 	@Column(name = "FEATURE")
-	private String feature;
+	private String feature;//项目特征
 	@Column(name = "CONTENT")
-	private String content;
+	private String content;//工程内容
 	@NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_DEPART_ID")
-	private ProjectDepart projectDepart;
+	private ProjectDepart projectDepart;//分部分项工程
 	@Column(name = "UNIT")
-	private String unit;
+	private String unit;//计量单位
 	@Column(name = "TOTAL_PROJECT")
-	private BigDecimal totalproject;
+	private BigDecimal totalproject;//工程数量
 	@Column(name = "UNIT_PRICE")
-	private BigDecimal unitprice;
+	private BigDecimal unitprice;//综合单价
 	@Column(name = "SUM_OF_BUSINESS")
-	private BigDecimal sumofbusiness;
+	private BigDecimal sumofbusiness;//合价
 	@Column(name = "STATE")
-	private Integer state;
+	private Integer state;//状态
 	public String getPrjno() {
 		return prjno;
 	}

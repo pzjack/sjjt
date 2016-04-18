@@ -17,7 +17,7 @@ import org.sj.oaprj.entity.ID;
 
 /**
  * 分部分项工程
- * @author zhen.pan
+ * @author Jack.Alexander
  *
  */
 @Entity(name="T_PROJECT_DEPART")
@@ -25,25 +25,25 @@ import org.sj.oaprj.entity.ID;
 public class ProjectDepart extends ID {
 	private static final long serialVersionUID = -6462204707814166706L;
 	@Column(name = "NAME")
-	private String name;
+	private String name;//分部分项工程名称
 	@Column(name = "DEPART_NO")
-	private String departno;
+	private String departno;//编号
 	@NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_ID")
-	private Project project;
+	private Project project;//所属工程项目
 	@Column(name = "PROFESSION")
-	private String profession;
+	private String profession;//专业
 	@Column(name = "TOTAL_PROJECT")
-	private BigDecimal totalproject;
+	private BigDecimal totalproject;//工程总量
 	@Column(name = "UNIT")
-	private String unit;
+	private String unit;//计量单位
 	@Column(name = "STANDARD")
-	private String standard;
+	private String standard;//规格
 	@Column(name = "SUM_OF_BUSINESS")
-	private BigDecimal sumofbusiness;
+	private BigDecimal sumofbusiness;//累计完成营业额
 	@Column(name = "STATE")
-	private Integer state;
+	private Integer state;//状态
 	public String getName() {
 		return name;
 	}
