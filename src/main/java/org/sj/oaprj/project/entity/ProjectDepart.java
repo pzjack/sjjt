@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -28,7 +29,7 @@ public class ProjectDepart extends ID {
 	@Column(name = "DEPART_NO")
 	private String departno;
 	@NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_ID")
 	private Project project;
 	@Column(name = "PROFESSION")

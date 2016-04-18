@@ -6,6 +6,7 @@ package org.sj.oaprj.project.entity;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -22,7 +23,7 @@ import org.sj.oaprj.entity.ID;
 public class ProjectDeptGroup extends ID {
 	private static final long serialVersionUID = -671166582114778306L;
 	@NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_DEPART_ID")
 	private ProjectDepart projectDepart;
 	@Column(name = "ROLE_NAME")
