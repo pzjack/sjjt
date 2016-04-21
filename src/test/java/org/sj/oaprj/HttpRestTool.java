@@ -338,6 +338,13 @@ public class HttpRestTool {
 		}
 	}
 	
+	
+	public void mockFindStudent() throws IOException {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("wbzkzh", "0101150135");
+		params.put("wbsfzh", "610103199710141625");
+		excutePostForm("http://www.sneac.com/gklqcx/lqjgcx_jg.jsp?wbtreeid=3077", params, null);
+	}
 
 	/**
 	 * @param args
@@ -346,7 +353,9 @@ public class HttpRestTool {
 	public static void main(String[] args) throws IOException {
 		HttpRestTool t = new HttpRestTool();
 		
-		t.testRexEnter();
+		t.mockFindStudent();
+		
+//		t.testRexEnter();
 		
 //		t.mockLogin();
 //		t.mockLogin2();

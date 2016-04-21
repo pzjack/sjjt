@@ -10,5 +10,6 @@
  	<include file="classpath:config/liquibase/changelog/20160415084300_add_entity_Project.xml" relativeToChangelogFile="false"/>
  	<include file="classpath:config/liquibase/changelog/20160417002221_modify_entity_ProjectItem.xml" relativeToChangelogFile="false"/>
  	<include file="classpath:config/liquibase/changelog/20160418224400_add_entity_ConstuctionUnitDaily.xml" relativeToChangelogFile="false"/>
+ 	<include file="classpath:config/liquibase/changelog/20160424221900_add_entity_SupervisionDaily.xml" relativeToChangelogFile="false"/>
  	
 </databaseChangeLog>

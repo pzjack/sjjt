@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  *
  */
 @Entity(name="T_CONSTCT_MEM_DAILY")
- @Cacheable
+@Cacheable
 public class ConstructionMemberDaily extends ID {
 	private static final long serialVersionUID = 7104464272498289815L;
 	@NotNull
