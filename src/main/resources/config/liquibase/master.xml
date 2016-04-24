@@ -8,4 +8,8 @@
  -->
  	<include file="classpath:config/liquibase/changelog/20160413092600_add_entity_Account.xml" relativeToChangelogFile="false"/>
  	<include file="classpath:config/liquibase/changelog/20160415084300_add_entity_Project.xml" relativeToChangelogFile="false"/>
+ 	<include file="classpath:config/liquibase/changelog/20160421211400_add_entity_Menu.xml" relativeToChangelogFile="false"/>
+ 	<include file="classpath:config/liquibase/changelog/20160421224900_add_entity_Role.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/20160421232300_add_entity_AccountRole.xml" relativeToChangelogFile="false"/>
+ 	
 </databaseChangeLog>
