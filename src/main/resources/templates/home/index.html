@@ -63,13 +63,13 @@
       		</ul>
       
         
-          <ul class="nav navbar-nav navbar-left">
+         <!--  <ul class="nav navbar-nav navbar-left">
           	<li class="dropdown">
               <a href="#" class="dropdown-toggle menuUnit" data-toggle="dropdown">工作台 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="javascript:void(0);" onclick="setFrameSrc()">工作台</a></li>
               </ul>
-            </li>
+            </li> -->
  
             <!-- <li><a class="menuUnit" href="/test" target="mainFrame">公司OA系统"${menuList.size()}" </a></li>
 		    <li><a class="menuUnit" href="333.html">项目管理</a></li>
@@ -79,7 +79,7 @@
 		                <li><a href="sales.html">推送消息</a></li>
 		                <li><a href="history.html">推送历史</a></li>
 		              </ul></li> -->	
-          </ul>
+         <!--  </ul> -->
           <ul class="nav navbar-nav navbar-right">
 	      	<li class="dropdown">
 	          <a href="#" class="dropdown-toggle menuUnit" data-toggle="dropdown">b-cc fv Admin 
@@ -103,19 +103,19 @@
      <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
           <ul th:each="menu,iterationStatus : ${subList}" class="nav nav-pills nav-stacked" role="tablist">
-        		<li class="sub" style="padding-bottom:1px;"><a th:href="@{/(id=${menu.id})}" th:text="${menu.name}"></a></li>
+        		<li class="sub" style="padding-bottom:1px;"><a th:href="@{/list}" th:text="${menu.name}" target="mainFrame"></a></li>
       	  </ul>
-          <ul class="nav nav-pills nav-stacked" role="tablist">
+          <!-- <ul class="nav nav-pills nav-stacked" role="tablist">
             <li class="sub active"><a href="333.html">日报表 &gt;&gt;</a></li>
             <li class="sub"><a href="444.html">土方信息</a></li>
          	<li class="sub"><a href="444.html">土方信息</a></li>
            	<li class="sub"><a href="444.html">土方信息</a></li>
-		  </ul>
+		  </ul> -->
         </div>
         
       		
         <div id="mainPage" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">    
-			<iframe id="mainFrame" name="mainFrame" src="/test" width="100%" onload="iframeHeight()" style="overflow-y:hidden;overflow-x:auto;" frameborder="no" border="0" marginwidth="0" marginheight="0" allowtransparency="yes"></iframe>
+			<iframe id="mainFrame" name="mainFrame" src="/list" width="100%" onload="iframeHeight()" style="overflow-y:hidden;overflow-x:auto;" frameborder="no" border="0" marginwidth="0" marginheight="0" allowtransparency="yes"></iframe>
          </div>
       </div>
     </div>

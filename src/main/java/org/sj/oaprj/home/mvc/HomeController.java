@@ -55,7 +55,7 @@ public class HomeController {
 	}
 	
 	@ApiOperation(value = "首页", notes = "到欢迎页面<br/>@auther 潘震")
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list() {
 		return "home/list";
 	}
