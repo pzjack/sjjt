@@ -43,6 +43,12 @@
     		var ifm= document.getElementById("mainFrame"); 
     		ifm.width = $("#mainPage").width();
     	}); 
+    	$(function(){
+    		$(".sub").bind("click",function(){
+    			$(".sub").removeClass("active");
+        		$(this).addClass("active");
+    		});
+    	});
     </script>
 </head>
 <body style="overflow-x:hidden;padding-bottom:0px;">
