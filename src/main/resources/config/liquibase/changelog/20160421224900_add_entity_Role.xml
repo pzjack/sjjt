@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="now" value="now()" dbms="mysql,h2" />
+	<property name="now" value="current_timestamp" dbms="postgresql" />
+	<property name="now" value="sysdate" dbms="oracle" />
+
+	<!-- 项目相关的部分表 -->
+	<changeSet id="20160421224900" author="duan.zhifang">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="T_ROLE" />
+				<tableExists tableName="T_ROLE_MENU" />
+			</not>
+		</preConditions>
+		<createTable tableName="T_ROLE">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="NAME" type="VARCHAR(120)"/>
+			<column name="DESC" type="VARCHAR(300)" />
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
+		</createTable>
+		
+		<createTable tableName="T_ROEL_MENU">
+			<column name="ROLE_ID" type="BIGINT">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="MENU_ID" type="BIGINT">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+</databaseChangeLog>

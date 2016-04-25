@@ -2,26 +2,145 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>陕建集团办公项目物资管理系统</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Force latest IE rendering engine or ChromeFrame if installed -->
+	<!--[if IE]>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<![endif]-->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="U14Studio.com Product Prototype Template"/>
+    <meta name="author" content="service@u14studio.com"/>
+    <title>陕建集团办公项目物资管理系统</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"></link>
+    <!-- Bootstrap core CSS -->
     <link href="../../static/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>
     <link href="../../static/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}" />
+    <!-- Custom styles for this template -->
+    <link href="../../static/css/dashboard.css" rel="stylesheet" media="screen" th:href="@{/css/dashboard.css}" />
+    <link href="../../static/css/custom.css" rel="stylesheet" media="screen" th:href="@{/css/custom.css}" />
+    
     <script src="../../static/js/jquery-1.9.1.min.js" th:src="@{/js/jquery-1.9.1.min.js}"></script>
     <script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="../../static/js/html5shiv.min.js" th:src="@{/js/html5shiv.min.js}"></script>
+    <script src="../../static/js/respond.min.js" th:src="@{/js/respond.min.js}"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+
+    <![endif]-->
+    <script type="text/javascript">
+    	function iframeHeight() {   
+    		var ifm= document.getElementById("mainFrame");   
+    		var subWeb = document.frames ? document.frames["mainFrame"].document : ifm.contentDocument;   
+    		if(ifm != null ) {
+    			if (subWeb != null){
+    				ifm.height = $(window.frames["mainFrame"].document.body).height();
+    			}
+    		}
+    	} 
+    	
+    	$(window).resize(function() {
+    		var ifm= document.getElementById("mainFrame"); 
+    		ifm.width = $("#mainPage").width();
+    	}); 
+    	$(function(){
+    		$(".sub").bind("click",function(){
+    			$(".sub").removeClass("active");
+        		$(this).addClass("active");
+    		});
+    	});
+    </script>
 </head>
-<body>
-<div id="header" th:substituteby="fragments/header :: copy">菜单栏</div>
-<div class="container">
-    <p>
-        Welcome to the 陕建集团办公项目物资管理系统!<br/>
-        <div>
-		<form name="formupload" th:action="@{/api/v1/project/upload}" action="/api/v1/project/upload" method="POST" enctype="multipart/form-data">
-			<input name="file" type="file" size="80" /><input type="submit" name="submit" value="submit" />
-			<input name="projectId" type="hidden" value="1" />
-			
-		</form>
+<body style="overflow-x:hidden;padding-bottom:0px;">
+  	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="col-sm-3 col-md-2 navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="">陕建集团管理系统</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+        	<ul th:each="menu,iterationStatus : ${mainList}" class="nav navbar-nav navbar-left">
+        		<li><a class="menuUnit" th:href="@{/(id=${menu.id})}" th:text="${menu.name}"></a></li>
+      		</ul>
+      
+        
+         <!--  <ul class="nav navbar-nav navbar-left">
+          	<li class="dropdown">
+              <a href="#" class="dropdown-toggle menuUnit" data-toggle="dropdown">工作台 <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="javascript:void(0);" onclick="setFrameSrc()">工作台</a></li>
+              </ul>
+            </li> -->
+ 
+            <!-- <li><a class="menuUnit" href="/test" target="mainFrame">公司OA系统"${menuList.size()}" </a></li>
+		    <li><a class="menuUnit" href="333.html">项目管理</a></li>
+		    <li><a class="menuUnit" href="?id=2">系统设置</a></li>	
+			<li><a href="./sales.html" class="dropdown-toggle menuUnit" data-toggle="dropdown">推送管理 <span class="caret"></span></a>
+		              <ul class="dropdown-menu" role="menu">
+		                <li><a href="sales.html">推送消息</a></li>
+		                <li><a href="history.html">推送历史</a></li>
+		              </ul></li> -->	
+         <!--  </ul> -->
+          <ul class="nav navbar-nav navbar-right">
+	      	<li class="dropdown">
+	          <a href="#" class="dropdown-toggle menuUnit" data-toggle="dropdown">b-cc fv Admin 
+	          	<span class="glyphicon glyphicon-user"></span>
+	          	<span class="caret"></span>
+	          </a>
+	          <ul class="dropdown-menu" role="menu">
+	            <li><a href="#">我的信息</a></li>
+	            <li><a href="#">更改密码</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">切换账号</a></li>
+	            <li><a href="#">退出</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="container-fluid">
+     <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar">
+          <ul th:each="menu,iterationStatus : ${subList}" class="nav nav-pills nav-stacked" role="tablist">
+        		<li class="sub" style="padding-bottom:1px;"><a th:href="@{/list}" th:text="${menu.name}" target="mainFrame"></a></li>
+      	  </ul>
+          <!-- <ul class="nav nav-pills nav-stacked" role="tablist">
+            <li class="sub active"><a href="333.html">日报表 &gt;&gt;</a></li>
+            <li class="sub"><a href="444.html">土方信息</a></li>
+         	<li class="sub"><a href="444.html">土方信息</a></li>
+           	<li class="sub"><a href="444.html">土方信息</a></li>
+		  </ul> -->
+        </div>
+        
+      		
+        <div id="mainPage" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">    
+			<iframe id="mainFrame" name="mainFrame" src="/list" width="100%" onload="iframeHeight()" style="overflow-y:hidden;overflow-x:auto;" frameborder="no" border="0" marginwidth="0" marginheight="0" allowtransparency="yes"></iframe>
+         </div>
+      </div>
+    </div>
+    
+<!-- 	<div id="main">
+		<iframe id="mainFrame" name="mainFrame" src="/test" width="100%" onload="iframeHeight()" style="overflow:hidden;" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
+	</div> -->
+ 	 <!-- <div id="footer" style="position:relative">
+		<div class="container">
+			<div class="row">
+        		<ul class="list-inline footer text-center">
+					<li><a href="#">帮助文档</a></li>
+					<li>|</li>
+					<li><a href="#">关于我们</a></li>
+					<li>|</li>
+					<li class="corp"><a href="http://www.hashicorp.com">© 2014 西安东方乳业有限公司 <span class="icn"></span></a></li>
+		        </ul>
+		    </div>
 		</div>
-    </p>
-    <div id="footer" th:substituteby="fragments/footer :: copy">页脚</div>
-</div>
-</body>
+	</div>  -->
+  </body>
 </html>

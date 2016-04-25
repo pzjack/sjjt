@@ -1,0 +1,38 @@
+﻿Merge branch 'master' of https://github.com/dzfang/sjjt into dzfang-master
+
+Conflicts:
+	src/main/resources/config/liquibase/master.xml
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch dzfang-master
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	new file:   sjjt
+#	modified:   src/main/java/org/sj/oaprj/config/SecurityConfig.java
+#	modified:   src/main/java/org/sj/oaprj/entity/Account.java
+#	new file:   src/main/java/org/sj/oaprj/entity/Menu.java
+#	modified:   src/main/java/org/sj/oaprj/home/mvc/HomeController.java
+#	new file:   src/main/java/org/sj/oaprj/home/service/MenuServiceImpl.java
+#	new file:   src/main/java/org/sj/oaprj/repository/MenuRepository.java
+#	new file:   src/main/resources/config/liquibase/changelog/20160421224900_add_entity_Role.xml
+#	new file:   src/main/resources/config/liquibase/changelog/20160421232300_add_entity_AccountRole.xml
+#	new file:   src/main/resources/config/liquibase/changelog/20160424211400_add_entity_Menu.xml
+#	modified:   src/main/resources/config/liquibase/master.xml
+#	new file:   src/main/resources/static/css/custom.css
+#	new file:   src/main/resources/static/css/dashboard.css
+#	new file:   src/main/resources/static/js/html5shiv.min.js
+#	new file:   src/main/resources/static/js/respond.min.js
+#	new file:   src/main/resources/static/js/sjjt.core.js
+#	new file:   src/main/resources/templates/home/dialog.html
+#	modified:   src/main/resources/templates/home/index.html
+#	new file:   src/main/resources/templates/home/list.html
+#
+

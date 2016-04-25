@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="now" value="now()" dbms="mysql,h2" />
+	<property name="now" value="current_timestamp" dbms="postgresql" />
+	<property name="now" value="sysdate" dbms="oracle" />
+
+	<!-- 项目相关的部分表 -->
+	<changeSet id="20160424211400" author="duan.zhifang">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="T_MENU" />
+			</not>
+		</preConditions>
+		<createTable tableName="T_MENU">
+			<column name="id" type="BIGINT" autoIncrement="false">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="NAME" type="VARCHAR(60)">
+				<constraints nullable="false" />
+			</column>
+			<column name="URL" type="VARCHAR(60)"/>
+			<column name="PARENT_ID" type="INT" />
+			<column name="ICON" type="VARCHAR(60)" />
+			<column name="ORDER" type="INT" />
+			<column name="IS_LEAF" type="INT(6)"/>
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
+		</createTable>
+		<insert tableName="T_MENU">
+			<column name="id">1</column>
+			<column name="NAME">工作台</column>
+			<column name="URL"></column>
+			<column name="PARENT_ID"></column>
+			<column name="ICON"></column>
+			<column name="ORDER">1</column>
+			<column name="IS_LEAF">0</column>
+		</insert>
+		<insert tableName="T_MENU">
+			<column name="id">2</column>
+			<column name="NAME">公司OA系统</column>
+			<column name="URL"></column>
+			<column name="PARENT_ID"></column>
+			<column name="ICON"></column>
+			<column name="ORDER">2</column>
+			<column name="IS_LEAF">0</column>
+		</insert>
+		<insert tableName="T_MENU">
+			<column name="id">3</column>
+			<column name="NAME">项目管理</column>
+			<column name="URL"></column>
+			<column name="PARENT_ID"></column>
+			<column name="ICON"></column>
+			<column name="ORDER">3</column>
+			<column name="IS_LEAF">0</column>
+		</insert>
+		<insert tableName="T_MENU">
+			<column name="id">4</column>
+			<column name="NAME">系统设置</column>
+			<column name="URL"></column>
+			<column name="PARENT_ID"></column>
+			<column name="ICON"></column>
+			<column name="ORDER">4</column>
+			<column name="IS_LEAF">0</column>
+		</insert>
+		<insert tableName="T_MENU">
+			<column name="id">5</column>
+			<column name="NAME">推送管理</column>
+			<column name="URL"></column>
+			<column name="PARENT_ID"></column>
+			<column name="ICON"></column>
+			<column name="ORDER">5</column>
+			<column name="IS_LEAF">0</column>
+		</insert>
+		
+		<insert tableName="T_MENU">
+			<column name="id">10</column>
+			<column name="NAME">我的日报</column>
+			<column name="URL"></column>
+			<column name="PARENT_ID">1</column>
+			<column name="ICON"></column>
+			<column name="ORDER">1</column>
+			<column name="IS_LEAF">1</column>
+		</insert>
+		<insert tableName="T_MENU">
+			<column name="id">11</column>
+			<column name="NAME">日报查看</column>
+			<column name="URL"></column>
+			<column name="PARENT_ID">1</column>
+			<column name="ICON"></column>
+			<column name="ORDER">2</column>
+			<column name="IS_LEAF">1</column>
+		</insert>	
+		<insert tableName="T_MENU">
+			<column name="id">20</column>
+			<column name="NAME">请假</column>
+			<column name="URL"></column>
+			<column name="PARENT_ID">2</column>
+			<column name="ICON"></column>
+			<column name="ORDER">1</column>
+			<column name="IS_LEAF">1</column>
+		</insert>	
+		<insert tableName="T_MENU">
+			<column name="id">21</column>
+			<column name="NAME">请假记录</column>
+			<column name="URL"></column>
+			<column name="PARENT_ID">2</column>
+			<column name="ICON"></column>
+			<column name="ORDER">2</column>
+			<column name="IS_LEAF">1</column>
+		</insert>
+		<insert tableName="T_MENU">
+			<column name="id">30</column>
+			<column name="NAME">项目管理</column>
+			<column name="URL"></column>
+			<column name="PARENT_ID">3</column>
+			<column name="ICON"></column>
+			<column name="ORDER">1</column>
+			<column name="IS_LEAF">1</column>
+		</insert>
+		<insert tableName="T_MENU">
+			<column name="id">31</column>
+			<column name="NAME">项目人员</column>
+			<column name="URL"></column>
+			<column name="PARENT_ID">3</column>
+			<column name="ICON"></column>
+			<column name="ORDER">2</column>
+			<column name="IS_LEAF">1</column>
+		</insert>
+		<insert tableName="T_MENU">
+			<column name="id">40</column>
+			<column name="NAME">角色管理</column>
+			<column name="URL"></column>
+			<column name="PARENT_ID">4</column>
+			<column name="ICON"></column>
+			<column name="ORDER">1</column>
+			<column name="IS_LEAF">1</column>
+		</insert>
+		<insert tableName="T_MENU">
+			<column name="id">41</column>
+			<column name="NAME">员工管理</column>
+			<column name="URL"></column>
+			<column name="PARENT_ID">4</column>
+			<column name="ICON"></column>
+			<column name="ORDER">2</column>
+			<column name="IS_LEAF">1</column>
+		</insert>
+		<insert tableName="T_MENU">
+			<column name="id">50</column>
+			<column name="NAME">推送消息</column>
+			<column name="URL"></column>
+			<column name="PARENT_ID">5</column>
+			<column name="ICON"></column>
+			<column name="ORDER">1</column>
+			<column name="IS_LEAF">1</column>
+		</insert>	
+		<insert tableName="T_MENU">
+			<column name="id">51</column>
+			<column name="NAME">推送历史</column>
+			<column name="URL"></column>
+			<column name="PARENT_ID">5</column>
+			<column name="ICON"></column>
+			<column name="ORDER">2</column>
+			<column name="IS_LEAF">1</column>
+		</insert>				
+	</changeSet>
+</databaseChangeLog>

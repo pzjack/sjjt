@@ -13,8 +13,8 @@ public class Account extends ID {
 	private String password;
 	private Integer state;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id")
+//  @ManyToOne(fetch = FetchType.LAZY)
+//  @JoinColumn(name = "user_id")
 //	private User user;
 	private Integer role;
 	public String getAccount() {
