@@ -6,9 +6,7 @@
     <link href="../../static/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>
     <link href="../../static/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}" />
 </head>
-
 <body>
-
 <form class="form-narrow form-horizontal" action="/login" method="post" th:action="@{/login}">
     <th:block th:if="${param.error != null}">
         <div th:replace="fragments/alert :: alert (type='danger', message='登录不成功，请重试')" th:text="#{login.alert}">Alert</div>
@@ -18,13 +16,13 @@
         <div class="form-group">
             <label for="username" class="col-lg-2 control-label" th:text="#{login.account}">Phone</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="username" placeholder="电话号码" name="username" />
+                <input type="text" class="form-control" id="username" placeholder="phome number" name="username" th:placeholder="#{login.phone}" />
             </div>
         </div>
         <div class="form-group">
             <label for="inputPassword" class="col-lg-2 control-label" th:text="#{login.password}">password</label>
             <div class="col-lg-10">
-                <input type="password" class="form-control" id="password" placeholder="密码" name="password" />
+                <input type="password" class="form-control" id="password" placeholder="password" name="password" th:placeholder="#{login.password}" />
             </div>
         </div>
         <div class="form-group">

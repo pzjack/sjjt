@@ -345,6 +345,15 @@ public class HttpRestTool {
 		params.put("wbsfzh", "610103199710141625");
 		excutePostForm("http://www.sneac.com/gklqcx/lqjgcx_jg.jsp?wbtreeid=3077", params, null);
 	}
+	
+
+	public void mockSendStompMSG() throws IOException {
+		String json = "{" + 
+//					"\"_csrf\":\"36e4fdf7-6424-44f0-8a8a-8812d42f8e9e\"," + 
+				  "\"name\": \"5705c27cd780ba9c193676d0\"" +
+				  "}";
+		excutePostJSON("http://localhost:8080/app/hello", json, null);
+	}
 
 	/**
 	 * @param args
@@ -352,8 +361,9 @@ public class HttpRestTool {
 	 */
 	public static void main(String[] args) throws IOException {
 		HttpRestTool t = new HttpRestTool();
+//		t.mockSendStompMSG();
 		
-		t.mockFindStudent();
+//		t.mockFindStudent();
 		
 //		t.testRexEnter();
 		
