@@ -18,89 +18,117 @@
 				<tableExists tableName="T_PROJECT_DEPT_GRP" />
 			</not>
 		</preConditions>
-		<createTable tableName="T_PROJECT">
+		
+		<createTable tableName="T_PROJECT" remarks="工程项目表">
 			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
-			<column name="NAME" type="VARCHAR(120)"/>
-			<column name="PROJECT_NO" type="VARCHAR(30)" />
-			<column name="DESC" type="VARCHAR(300)" />
-			<column name="PRE_START_DATE" type="DATETIME" />
-			<column name="PRE_END_DATE" type="DATETIME" />
-			<column name="START_DATE" type="DATETIME" />
-			<column name="END_DATE" type="DATETIME" />
-			<column name="PRE_COST" type="DECIMAL(18,4)" />
-			<column name="COST" type="DECIMAL(18,4)" />
-			<column name="DEP_ID" type="BIGINT" />
-			<column name="PROJ_GRP_ID" type="BIGINT" />
-			<column name="STATE" type="INT(6)" />
+			<column name="NAME" type="VARCHAR(120)" remarks="工程项目名称" />
+			<column name="PROJECT_NO" type="VARCHAR(30)" remarks="工程项目编号" />
+			<column name="DESC" type="VARCHAR(300)" remarks="工程项目描述说明" />
+			<column name="PRE_START_DATE" type="DATETIME" remarks="计划启动日期" />
+			<column name="PRE_END_DATE" type="DATETIME" remarks="计划完工日期" />
+			<column name="START_DATE" type="DATETIME" remarks="实际启动日期" />
+			<column name="END_DATE" type="DATETIME" remarks="实际完工日期" />
+			<column name="PRE_COST" type="DECIMAL(18,4)" remarks="工程预算" />
+			<column name="COST" type="DECIMAL(18,4)" remarks="实际完成资金" />
+			<column name="DEP_ID" type="BIGINT" remarks="部门ID" />
+			<column name="PROJ_GRP_ID" type="BIGINT" remarks="项目组" />
+			<column name="STATE" type="INT(6)" remarks="状态" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
-		<createTable tableName="T_PROJECT_DEPART">
+		<createTable tableName="T_INDIVIDUAL_PROJECT" remarks="单项工程表">
 			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
-			<column name="PROJECT_ID" type="BIGINT" />
-			<column name="NAME" type="VARCHAR(120)"/>
-			<column name="DEPART_NO" type="VARCHAR(30)" />
-			<column name="PROFESSION" type="VARCHAR(60)" />
-			<column name="TOTAL_PROJECT" type="DECIMAL(14,4)" />
-			<column name="UNIT" type="VARCHAR(10)" />
-			<column name="STANDARD" type="VARCHAR(300)" />
-			<column name="SUM_OF_BUSINESS" type="DECIMAL(18,4)" />
-			<column name="STATE" type="INT(6)" />
+			<column name="PROJECT_ID" type="BIGINT" remarks="所属工程项目" />
+			<column name="NAME" type="VARCHAR(60)" remarks="单项工程名称（9#楼）" />
+			<column name="COMPLETE_NAME" type="VARCHAR(120)" remarks="单项工程完整名称（翠园锦绣9#楼）" />
+			<column name="DESC" type="VARCHAR(300)" remarks="描述说明" />
+			<column name="STATE" type="INT(6)" remarks="状态" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
-		<createTable tableName="T_PROJECT_ITEM">
+		<createTable tableName="T_UNIT_PROJECT" remarks="单位工程">
 			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
-			<column name="PROJECT_DEPART_ID" type="BIGINT" />
-			<column name="NAME" type="VARCHAR(120)"/>
-			<column name="ITEM_NO" type="VARCHAR(30)" />
-			<column name="FEATURE" type="VARCHAR(1000)" />
-			<column name="CONTENT" type="VARCHAR(1000)" />
-			<column name="UNIT" type="VARCHAR(10)" />
-			<column name="TOTAL_PROJECT" type="DECIMAL(14,4)" />
-			<column name="UNIT_PRICE" type="DECIMAL(14,4)" />
-			<column name="SUM_OF_BUSINESS" type="DECIMAL(18,4)" />
-			<column name="STATE" type="INT(6)" />
+			<column name="PROJECT_ID" type="BIGINT" remarks="所属工程项目" />
+			<column name="INDIVIDUAL_PROJECT_ID" type="BIGINT" remarks="所属单项工程" />
+			<column name="NAME" type="VARCHAR(60)" remarks="单位工程名称（一般土建工程）" />
+			<column name="COMPLETE_NAME" type="VARCHAR(150)" remarks="单位工程完整名称（翠园锦绣9#楼一般土建工程）" />
+			<column name="DESC" type="VARCHAR(300)" remarks="描述说明" />
+			<column name="STATE" type="INT(6)" remarks="状态" />
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
+		</createTable>
+		<createTable tableName="T_PROJECT_DEPART" remarks="分部分项工程">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="PROJECT_ID" type="BIGINT" remarks="所属工程项目" />
+			<column name="UNIT_PROJECT_ID" type="BIGINT" remarks="所属单位工程" />
+			<column name="NAME" type="VARCHAR(60)" remarks="分部分项工程名称" />
+			<column name="COMPLETE_NAME" type="VARCHAR(200)" remarks="完整名称" />
+			<column name="DEPART_SUPER" type="VARCHAR(60)" remarks="分部分项的上一级名称" />
+			<column name="DEPART_NO" type="VARCHAR(30)" remarks="编号" />
+			<column name="PROFESSION" type="VARCHAR(60)" remarks="专业" />
+			<column name="TOTAL_PROJECT" type="DECIMAL(14,4)" remarks="工程总量" />
+			<column name="UNIT" type="VARCHAR(10)" remarks="计量单位" />
+			<column name="STANDARD" type="VARCHAR(300)" remarks="规格" />
+			<column name="SUM_OF_BUSINESS" type="DECIMAL(18,4)" remarks="累计完成营业额" />
+			<column name="STATE" type="INT(6)" remarks="状态" />
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
+		</createTable>
+		<createTable tableName="T_PROJECT_ITEM" remarks="清单子项">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="PROJECT_DEPART_ID" type="BIGINT" remarks="分部分项工程" />
+			<column name="NAME" type="VARCHAR(30)" remarks="名称" />
+			<column name="PRJ_NO" type="varchar(10)" remarks="序号"/>
+			<column name="ITEM_NO" type="VARCHAR(30)" remarks="编号" />
+			<column name="FEATURE" type="VARCHAR(1000)" remarks="项目特征" />
+			<column name="CONTENT" type="VARCHAR(1000)" remarks="工程内容" />
+			<column name="UNIT" type="VARCHAR(10)" remarks="计量单位" />
+			<column name="TOTAL_PROJECT" type="DECIMAL(14,4)" remarks="工程数量" />
+			<column name="UNIT_PRICE" type="DECIMAL(14,4)" remarks="综合单价" />
+			<column name="SUM_OF_BUSINESS" type="DECIMAL(18,4)" remarks="合价" />
+			<column name="STATE" type="INT(6)" remarks="状态" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 
-		<createTable tableName="T_PROJECT_DEPT_GRP">
+		<createTable tableName="T_UNIT_PROJECT_GROUP" remarks="单位工程审批环节单位人员及角色">
 			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
-			<column name="PROJECT_DEPART_ID" type="BIGINT" />
-			<column name="ROLE_NAME" type="VARCHAR(60)"/>
-			<column name="ROLE_SIGN" type="INT" />
-			<column name="ORG_TYPE" type="INT(4)" />
-			<column name="ORG_ID" type="BIGINT" />
-			<column name="USER_ID" type="BIGINT" />
+			<column name="UNIT_PROJECT_ID" type="BIGINT" remarks="单位工程" />
+			<column name="ROLE_NAME" type="VARCHAR(60)" remarks="角色名称"/>
+			<column name="ROLE_SIGN" type="INT" remarks="角色标识" />
+			<column name="ORG_TYPE" type="INT(4)" remarks="单位类型(施工单位、监理单位、建设单位)" />
+			<column name="ORG_ID" type="BIGINT" remarks="单位ID" />
+			<column name="USER_ID" type="BIGINT" remarks="状态" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 
-		<createTable tableName="T_PROJECT_GROUP">
+		<createTable tableName="T_PROJECT_GROUP" remarks="项目组">
 			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
-			<column name="NAME" type="VARCHAR(120)"/>
-			<column name="DESC" type="VARCHAR(300)" />
-			<column name="DEP_ID" type="BIGINT" />
+			<column name="NAME" type="VARCHAR(120)" remarks="项目组名称"/>
+			<column name="DESC" type="VARCHAR(300)" remarks="项目组描述说明" />
+			<column name="DEP_ID" type="BIGINT" remarks="项目所属部门" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 
-		<createTable tableName="T_PROJECT_GROUP_USER">
+		<createTable tableName="T_PROJECT_GROUP_USER" remarks="项目组人员">
 			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
-			<column name="PROJECT_ID" type="BIGINT" />
-			<column name="PROJECT_GROUP_ID" type="BIGINT" />
-			<column name="NAME" type="VARCHAR(120)"/>
-			<column name="ROLE" type="VARCHAR(40)" />
-			<column name="POST" type="VARCHAR(40)" />
-			<column name="USER_ID" type="BIGINT" />
+			<column name="PROJECT_ID" type="BIGINT" remarks="工程项目" />
+			<column name="PROJECT_GROUP_ID" type="BIGINT" remarks="工程项目组" />
+			<column name="NAME" type="VARCHAR(120)" remarks="名称"/>
+			<column name="ROLE" type="VARCHAR(40)" remarks="角色" />
+			<column name="POST" type="VARCHAR(40)" remarks="职位" />
+			<column name="USER_ID" type="BIGINT" remarks="用户ID" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 	</changeSet>

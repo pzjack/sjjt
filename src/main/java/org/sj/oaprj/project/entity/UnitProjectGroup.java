@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import org.sj.oaprj.entity.ID;
 
 /**
- * 单位工程审批各单位人员及角色
+ * 单位工程审批环节单位人员及角色
  * @author Jack.Alexander
  *
  */
@@ -25,13 +25,13 @@ public class UnitProjectGroup extends ID {
 	@NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UNIT_PROJECT_ID")
-	private UnitProject UnitProject;//分部分项工程
+	private UnitProject UnitProject;//单位工程
 	@Column(name = "ROLE_NAME")
 	private String rolename;//角色名称
 	@Column(name = "ROLE_SIGN")
 	private Integer rolesign;//角色标识
 	@Column(name = "ORG_TYPE")
-	private Integer orgtype;//组织类型(施工单位、监理单位、建设单位)
+	private Integer orgtype;//单位类型(施工单位、监理单位、建设单位)
 	
 	public UnitProject getUnitProject() {
 		return UnitProject;

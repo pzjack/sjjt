@@ -15,7 +15,7 @@
 				<tableExists tableName="T_CONSTCT_MEM_DAILY" />
 			</not>
 		</preConditions>
-		<createTable tableName="T_CONSTCT_UNIT_DAILY">
+		<createTable tableName="T_CONSTCT_UNIT_DAILY" remarks="施工单位日报表 ">
 			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
@@ -41,7 +41,7 @@
 			<column name="STATE" type="INT(6)" remarks="状态(10保存，50提交)" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
-		<createTable tableName="T_CONSTCT_MEM_DAILY">
+		<createTable tableName="T_CONSTCT_MEM_DAILY" remarks="施工单位现场人员名称日报 ">
 			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>

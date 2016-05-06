@@ -14,7 +14,7 @@
 				<tableExists tableName="T_BUILDER_DAILY" />
 			</not>
 		</preConditions>
-		<createTable tableName="T_BUILDER_DAILY">
+		<createTable tableName="T_BUILDER_DAILY" remarks="建设单位日报表 ">
 			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>

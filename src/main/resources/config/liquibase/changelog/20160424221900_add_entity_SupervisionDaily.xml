@@ -15,7 +15,7 @@
 				<tableExists tableName="T_IMAGE_PROGRESS_FILE" />
 			</not>
 		</preConditions>
-		<createTable tableName="T_SUPERVISION_DAILY">
+		<createTable tableName="T_SUPERVISION_DAILY" remarks="监理单位日报表 ">
 			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
@@ -45,7 +45,7 @@
 			<column name="STATE" type="INT(6)" remarks="状态(10保存，50提交)" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
-		<createTable tableName="T_IMAGE_PROGRESS_FILE">
+		<createTable tableName="T_IMAGE_PROGRESS_FILE" remarks="形象进度附件表 ">
 			<column name="id" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>

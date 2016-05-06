@@ -53,7 +53,7 @@ public class Project extends ID {
     @NotNull
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJ_GRP_ID")
-	private ProjectGroup projectgroup;
+	private ProjectGroup projectgroup;//项目组
 	public String getName() {
 		return name;
 	}
