@@ -44,7 +44,7 @@ public class SupervisionDaily extends ID {
 	@NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_DEPT_GROUP_ID")
-	private ProjectDeptGroup projectDeptGroup;//分部分项目组
+	private UnitProjectGroup projectDeptGroup;//分部分项目组
 	@NotNull
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CONSTRUCTION_UNIT_DAILY_ID")
@@ -107,10 +107,10 @@ public class SupervisionDaily extends ID {
 	public void setProjectGroup(ProjectGroup projectGroup) {
 		this.projectGroup = projectGroup;
 	}
-	public ProjectDeptGroup getProjectDeptGroup() {
+	public UnitProjectGroup getProjectDeptGroup() {
 		return projectDeptGroup;
 	}
-	public void setProjectDeptGroup(ProjectDeptGroup projectDeptGroup) {
+	public void setProjectDeptGroup(UnitProjectGroup projectDeptGroup) {
 		this.projectDeptGroup = projectDeptGroup;
 	}
 	public ConstructionUnitDaily getConstructionUnitDaily() {
