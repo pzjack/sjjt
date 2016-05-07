@@ -35,7 +35,8 @@ function departmentSaveInit() {
 function loadData(pageIndex, pageSize) {
 	$.ajax({
 		type : "POST",
-		url : '/department/list?pageIndex=' + pageIndex + '&pageSize=' + pageSize,
+		url : '/department/list?pageIndex=' + pageIndex + '&pageSize='
+				+ pageSize + '&_csrf=' + csrf,
 		data : $("#queryForm").serialize(),
 		beforeSend : onBeforeSend,
 		success : onSuccess,
@@ -50,9 +51,11 @@ function loadData(pageIndex, pageSize) {
  * @param pageSize
  */
 function reloadData(pageIndex, pageSize) {
+
 	$.ajax({
 		type : "POST",
-		url : '/department/list?pageIndex=' + pageIndex + '&pageSize=' + pageSize,
+		url : '/department/list?pageIndex=' + pageIndex + '&pageSize='
+				+ pageSize + '&_csrf=' + csrf,
 		data : $("#queryForm").serialize(),
 		success : onSuccess,
 		error : onError
@@ -81,8 +84,8 @@ function operateFormatter(value, row, index) {
 	var result = "";
 	result += "<a href='javascript:void(0);' onclick='openEditWindow(\""
 			+ row.id + "\")'>编辑</a>&nbsp;&nbsp;";
-	result += "<a href='javascript:void(0);' onclick='deletedepartment(\"" + row.id
-			+ "\")'>删除</a>&nbsp;&nbsp;";
+	result += "<a href='javascript:void(0);' onclick='deletedepartment(\""
+			+ row.id + "\")'>删除</a>&nbsp;&nbsp;";
 	if (result == "") {
 		$("#dataList").datagrid('hideColumn', 'operate');
 	}
