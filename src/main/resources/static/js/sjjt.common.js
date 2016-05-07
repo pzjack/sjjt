@@ -1,8 +1,10 @@
 var uploadDir = "/resources/upload/";
+var csrf="";
 /**
  * 调节宽度
  */
 $(function() {
+	csrf=$(window.parent.document).find("input[name='_csrf']").val();
 //	$("div[class='datagrid-wrap panel-body panel-body-noheader']").css("width",
 //			"auto");
 //	// 去掉所有checkbox的边框
