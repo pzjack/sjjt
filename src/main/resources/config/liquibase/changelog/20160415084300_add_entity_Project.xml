@@ -35,6 +35,7 @@
 			<column name="DEP_ID" type="BIGINT" remarks="部门ID" />
 			<column name="PROJ_GRP_ID" type="BIGINT" remarks="项目组" />
 			<column name="STATE" type="INT(6)" remarks="状态" />
+			<column name="DELETE_FLAG" type="INT(6)" remarks="删除标志(0:未删除，1：已删除)" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 		<createTable tableName="T_INDIVIDUAL_PROJECT" remarks="单项工程表">
@@ -46,6 +47,7 @@
 			<column name="COMPLETE_NAME" type="VARCHAR(120)" remarks="单项工程完整名称（翠园锦绣9#楼）" />
 			<column name="DESC" type="VARCHAR(300)" remarks="描述说明" />
 			<column name="STATE" type="INT(6)" remarks="状态" />
+			<column name="DELETE_FLAG" type="INT(6)" remarks="删除标志(0:未删除，1：已删除)" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 		<createTable tableName="T_UNIT_PROJECT" remarks="单位工程">
@@ -58,6 +60,7 @@
 			<column name="COMPLETE_NAME" type="VARCHAR(150)" remarks="单位工程完整名称（翠园锦绣9#楼一般土建工程）" />
 			<column name="DESC" type="VARCHAR(300)" remarks="描述说明" />
 			<column name="STATE" type="INT(6)" remarks="状态" />
+			<column name="DELETE_FLAG" type="INT(6)" remarks="删除标志(0:未删除，1：已删除)" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 		<createTable tableName="T_PROJECT_DEPART" remarks="分部分项工程">
@@ -76,6 +79,7 @@
 			<column name="STANDARD" type="VARCHAR(300)" remarks="规格" />
 			<column name="SUM_OF_BUSINESS" type="DECIMAL(18,4)" remarks="累计完成营业额" />
 			<column name="STATE" type="INT(6)" remarks="状态" />
+			<column name="DELETE_FLAG" type="INT(6)" remarks="删除标志(0:未删除，1：已删除)" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 		<createTable tableName="T_PROJECT_ITEM" remarks="清单子项">
@@ -93,6 +97,7 @@
 			<column name="UNIT_PRICE" type="DECIMAL(14,4)" remarks="综合单价" />
 			<column name="SUM_OF_BUSINESS" type="DECIMAL(18,4)" remarks="合价" />
 			<column name="STATE" type="INT(6)" remarks="状态" />
+			<column name="DELETE_FLAG" type="INT(6)" remarks="删除标志(0:未删除，1：已删除)" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 
@@ -106,6 +111,7 @@
 			<column name="ORG_TYPE" type="INT(4)" remarks="单位类型(施工单位、监理单位、建设单位)" />
 			<column name="ORG_ID" type="BIGINT" remarks="单位ID" />
 			<column name="USER_ID" type="BIGINT" remarks="状态" />
+			<column name="DELETE_FLAG" type="INT(6)" remarks="删除标志(0:未删除，1：已删除)" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 
@@ -116,6 +122,7 @@
 			<column name="NAME" type="VARCHAR(120)" remarks="项目组名称"/>
 			<column name="DESC" type="VARCHAR(300)" remarks="项目组描述说明" />
 			<column name="DEP_ID" type="BIGINT" remarks="项目所属部门" />
+			<column name="DELETE_FLAG" type="INT(6)" remarks="删除标志(0:未删除，1：已删除)" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 
@@ -129,6 +136,7 @@
 			<column name="ROLE" type="VARCHAR(40)" remarks="角色" />
 			<column name="POST" type="VARCHAR(40)" remarks="职位" />
 			<column name="USER_ID" type="BIGINT" remarks="用户ID" />
+			<column name="DELETE_FLAG" type="INT(6)" remarks="删除标志(0:未删除，1：已删除)" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 	</changeSet>

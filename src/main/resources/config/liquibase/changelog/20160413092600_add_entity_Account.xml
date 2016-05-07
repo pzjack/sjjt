@@ -26,6 +26,7 @@
 			<column name="password" type="VARCHAR(62)" />
 			<column name="role" type="INT" />
 			<column name="state" type="INT(6)"/>
+			<column name="delete_flag" type="INT(6)" />
 			<column name="createtime" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 		

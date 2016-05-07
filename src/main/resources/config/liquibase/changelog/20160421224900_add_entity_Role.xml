@@ -16,21 +16,36 @@
 			</not>
 		</preConditions>
 		<createTable tableName="T_ROLE">
-			<column name="id" type="BIGINT" autoIncrement="true">
+			<column name="ID" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 			<column name="NAME" type="VARCHAR(120)"/>
 			<column name="DESC" type="VARCHAR(300)" />
+			<column name="DELETE_FLAG" type="INT(6)" remarks="删除标志(0:未删除，1：已删除)" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 		
-		<createTable tableName="T_ROEL_MENU">
-			<column name="ROLE_ID" type="BIGINT">
+		<createTable tableName="T_ROLE_MENU">
+			<column name="ID" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
-			<column name="MENU_ID" type="BIGINT">
-				<constraints primaryKey="true" nullable="false" />
-			</column>
+			<column name="ROLE_ID" type="BIGINT"/>
+			<column name="MENU_ID" type="BIGINT" />
+			<column name="DELETE_FLAG" type="INT(6)" remarks="删除标志(0:未删除，1：已删除)" />
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
+		
+		<insert tableName="T_ROLE">
+			<column name="ID">1</column>
+			<column name="NAME">Admin</column>
+			<column name="DESC">管理员</column>
+			<column name="DELETE_FLAG">0</column>
+		</insert>
+		
+		<loadData encoding="UTF-8"
+                  file="config/liquibase/changelog/t_role_menu.txt"
+                  separator=";"
+                  tableName="T_ROLE_MENU">      
+        </loadData>
 	</changeSet>
 </databaseChangeLog>

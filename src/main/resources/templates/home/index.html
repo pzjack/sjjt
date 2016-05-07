@@ -2,145 +2,78 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>陕建集团办公项目物资管理系统</title>
-    <!-- Force latest IE rendering engine or ChromeFrame if installed -->
-	<!--[if IE]>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-	<![endif]-->
+ 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="U14Studio.com Product Prototype Template"/>
     <meta name="author" content="service@u14studio.com"/>
     <title>陕建集团办公项目物资管理系统</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"></link>
-    <!-- Bootstrap core CSS -->
-    <link href="../../static/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>
-    <link href="../../static/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}" />
+    <!-- easyui core CSS -->
+    <link href="../../static/js/easyui/themes/gray/easyui.css" rel="stylesheet" media="screen" th:href="@{/js/easyui/themes/default/easyui.css}"/>
+    <link href="../../static/js/easyui/themes/color.css" rel="stylesheet" media="screen" th:href="@{/js/easyui/themes/color.css}" />
+    <link href="../../static/js/easyui/themes/icon.css" rel="stylesheet" media="screen" th:href="@{/js/easyui/themes/icon.css}" />
     <!-- Custom styles for this template -->
-    <link href="../../static/css/dashboard.css" rel="stylesheet" media="screen" th:href="@{/css/dashboard.css}" />
-    <link href="../../static/css/custom.css" rel="stylesheet" media="screen" th:href="@{/css/custom.css}" />
-    
+    <link href="../../static/css/default.css" rel="stylesheet" media="screen" th:href="@{/css/default.css}"/>
     <script src="../../static/js/jquery-1.9.1.min.js" th:src="@{/js/jquery-1.9.1.min.js}"></script>
-    <script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-    <script src="../../static/js/html5shiv.min.js" th:src="@{/js/html5shiv.min.js}"></script>
-    <script src="../../static/js/respond.min.js" th:src="@{/js/respond.min.js}"></script>
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-
-    <![endif]-->
-    <script type="text/javascript">
-    	function iframeHeight() {   
-    		var ifm= document.getElementById("mainFrame");   
-    		var subWeb = document.frames ? document.frames["mainFrame"].document : ifm.contentDocument;   
-    		if(ifm != null ) {
-    			if (subWeb != null){
-    				ifm.height = $(window.frames["mainFrame"].document.body).height();
-    			}
-    		}
-    	} 
-    	
-    	$(window).resize(function() {
-    		var ifm= document.getElementById("mainFrame"); 
-    		ifm.width = $("#mainPage").width();
-    	}); 
-    	$(function(){
-    		$(".sub").bind("click",function(){
-    			$(".sub").removeClass("active");
-        		$(this).addClass("active");
-    		});
-    	});
-    </script>
+    <script src="../../static/js/easyui/jquery.easyui.min.js" th:src="@{/js/easyui/jquery.easyui.min.js}"></script>
+    <script src="../../static/js/sjjt.index.js" th:src="@{/js/sjjt.index.js}"></script>
 </head>
-<body style="overflow-x:hidden;padding-bottom:0px;">
-  	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="col-sm-3 col-md-2 navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="">陕建集团管理系统</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-        	<ul th:each="menu,iterationStatus : ${mainList}" class="nav navbar-nav navbar-left">
-        		<li><a class="menuUnit" th:href="@{/(id=${menu.id})}" th:text="${menu.name}"></a></li>
-      		</ul>
-      
-        
-         <!--  <ul class="nav navbar-nav navbar-left">
-          	<li class="dropdown">
-              <a href="#" class="dropdown-toggle menuUnit" data-toggle="dropdown">工作台 <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="javascript:void(0);" onclick="setFrameSrc()">工作台</a></li>
-              </ul>
-            </li> -->
- 
-            <!-- <li><a class="menuUnit" href="/test" target="mainFrame">公司OA系统"${menuList.size()}" </a></li>
-		    <li><a class="menuUnit" href="333.html">项目管理</a></li>
-		    <li><a class="menuUnit" href="?id=2">系统设置</a></li>	
-			<li><a href="./sales.html" class="dropdown-toggle menuUnit" data-toggle="dropdown">推送管理 <span class="caret"></span></a>
-		              <ul class="dropdown-menu" role="menu">
-		                <li><a href="sales.html">推送消息</a></li>
-		                <li><a href="history.html">推送历史</a></li>
-		              </ul></li> -->	
-         <!--  </ul> -->
-          <ul class="nav navbar-nav navbar-right">
-	      	<li class="dropdown">
-	          <a href="#" class="dropdown-toggle menuUnit" data-toggle="dropdown">b-cc fv Admin 
-	          	<span class="glyphicon glyphicon-user"></span>
-	          	<span class="caret"></span>
-	          </a>
-	          <ul class="dropdown-menu" role="menu">
-	            <li><a href="#">我的信息</a></li>
-	            <li><a href="#">更改密码</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">切换账号</a></li>
-	            <li><a href="#">退出</a></li>
-	          </ul>
-	        </li>
-	      </ul>
-        </div>
-      </div>
-    </nav>
-    
-    <div class="container-fluid">
-     <div class="row">
-      <div class="col-sm-3 col-md-2 sidebar">
-          <ul th:each="menu,iterationStatus : ${subList}" class="nav nav-pills nav-stacked" role="tablist">
-        		<li class="sub" style="padding-bottom:1px;"><a th:href="@{/list}" th:text="${menu.name}" target="mainFrame"></a></li>
-      	  </ul>
-          <!-- <ul class="nav nav-pills nav-stacked" role="tablist">
-            <li class="sub active"><a href="333.html">日报表 &gt;&gt;</a></li>
-            <li class="sub"><a href="444.html">土方信息</a></li>
-         	<li class="sub"><a href="444.html">土方信息</a></li>
-           	<li class="sub"><a href="444.html">土方信息</a></li>
-		  </ul> -->
-        </div>
-        
-      		
-        <div id="mainPage" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">    
-			<iframe id="mainFrame" name="mainFrame" src="/list" width="100%" onload="iframeHeight()" style="overflow-y:hidden;overflow-x:auto;" frameborder="no" border="0" marginwidth="0" marginheight="0" allowtransparency="yes"></iframe>
-         </div>
-      </div>
-    </div>
-    
-<!-- 	<div id="main">
-		<iframe id="mainFrame" name="mainFrame" src="/test" width="100%" onload="iframeHeight()" style="overflow:hidden;" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
-	</div> -->
- 	 <!-- <div id="footer" style="position:relative">
-		<div class="container">
-			<div class="row">
-        		<ul class="list-inline footer text-center">
-					<li><a href="#">帮助文档</a></li>
-					<li>|</li>
-					<li><a href="#">关于我们</a></li>
-					<li>|</li>
-					<li class="corp"><a href="http://www.hashicorp.com">© 2014 西安东方乳业有限公司 <span class="icn"></span></a></li>
-		        </ul>
-		    </div>
+<body class="easyui-layout">
+	<noscript>
+		<div
+			style="position: absolute; z-index: 100000; height: 2046px; top: 0px; left: 0px; width: 100%; background: white; text-align: center;">
+			<img src="images/noscript.gif" alt='抱歉，请开启脚本支持！' />
 		</div>
-	</div>  -->
-  </body>
+	</noscript>
+	<div data-options="region:'north',border:false"
+		style="overflow: hidden; height: 50px; background: url(/resources/images/top.jpg) #7f99be repeat-x center 50%; line-height: 20px; color: #fff; font-family: Verdana, 微软雅黑, 黑体">
+		<span style="float: right; padding-right: 20px; margin-top: 10px;"
+			class="head">欢迎 <font style="color: #FFA700;" th:text="${#httpServletRequest.remoteUser}"></font>
+			<a href="javascript:void(0)"
+			id="loginOut" onclick="logout()">安全退出</a></span> <span
+			style="padding-left: 10px; margin-top: 5px; font-size: 16px; float: left;"><img
+			src="/resources/images/logo.png" width="158px" height="45px" align="absmiddle" />
+			X系统</span>
+
+	</div>
+	<div data-options="region:'south'" style="height: 30px; background: #F8F8F8 ;">
+		<div class="footer">CopyRight © 2016 陕建集团有限责任公司</div>
+	</div>
+	<div data-options="region:'west',hide:true" title="导航菜单" style="width: 170px;"
+		id="west">
+		<div id='wnav' class="easyui-accordion" data-options="fit:true,border:false">
+			<div th:each="parentMenu,iterationStatus : ${menu.children}" style="width: 163px;" class="panel">
+				<div style="width: 153px; height: 15px;" class="panel-header accordion-header accordion-header-selected">
+					<div class="panel-title panel-with-icon" th:text="${parentMenu.name}"></div>
+					<div class="panel-icon icon icon-sys"></div>
+					<div class="panel-tool">
+						<div class="panel-tool-collapse"></div>
+					</div>
+				</div>
+				<div style="width: 100%; height: 100%; display: block;"	class="accordion-body" title="">
+					<ul>
+						<li th:each="childMenu,iterationStatus : ${parentMenu.children}">
+							<div>
+								<a href="javascript:void(0)"
+									th:rel='${childMenu.url}'
+									th:title='${childMenu.name}'><span class="icon icon-nav">&nbsp;</span><span
+									class="nav" th:text="${childMenu.name}"></span></a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="mainPanle" data-options="region:'center'"
+		style="background: #eee; overflow-y: hidden">
+		<div id="tabs" class="easyui-tabs" data-options="fit:true"  border="false">
+			<div id="home" title="欢迎使用" data-options="fit:true" style="overflow: hidden; background-color: rgb(242, 242, 242);">
+				<iframe id="defaultFrame" data-options="fit:true"  width="100%" frameborder="0" scrolling="auto"></iframe>
+			</div>
+		</div>
+	</div>
+</body>
 </html>
