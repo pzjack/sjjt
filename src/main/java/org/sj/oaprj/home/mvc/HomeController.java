@@ -78,6 +78,7 @@ public class HomeController {
 		Menu menu = new Menu();
 		menu.setId(1L);
 		menu.setName("测试");
+		menu.setUrl("url");
 		return menu;
 	}
 }
