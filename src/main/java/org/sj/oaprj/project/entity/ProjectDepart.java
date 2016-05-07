@@ -36,7 +36,7 @@ public class ProjectDepart extends ID {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_ID")
 	private Project project;//所属工程项目
-	@NotNull
+//	@NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UNIT_PROJECT_ID")
 	private UnitProject unitProject;//所属单位工程项目

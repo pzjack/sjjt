@@ -108,6 +108,12 @@
 					<span class="glyphicon glyphicon-search">查询</span>
 				</button>
 			</form>
+			<form name="formupload" th:action="@{/api/v1/project/upload}" action="/api/v1/project/upload" method="POST" enctype="multipart/form-data">
+			<input name="file" type="file" size="80" /><input type="submit" name="submit" value="submit" />
+			<input name="projectId" type="hidden" value="1" />
+			
+		</form>
+			
 		</div>
 		<div class="row content">
 			<h4 class="page-header" style="margin-top: 0;">查询结果</h4>

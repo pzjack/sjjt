@@ -42,6 +42,8 @@ public class ProjectServiceImpl {
 	private final static char EXCEL_NO_VIEW_CHAR = 0X7F;
 	private final static String EXCEL_NO_VIEW_STR = EXCEL_NO_VIEW_CHAR + "";
 	private final static String EXCEL_ENTER_SIG = "\r\n";
+	private final static char NEW_LINE = 0x0A;
+	private final static String EXCEL_NEWLINE_SIG = "" + NEW_LINE;
 	private final static String JAVA_ENTER_SIG = "\n";
 	private final static String EXCEL_PRJ_FEATURE = "[项目特征]";
 	private final static String EXCEL_PRJ_CONTENT = "[工程内容]";
@@ -90,7 +92,7 @@ public class ProjectServiceImpl {
 	 */
 	private void readHssfBook(InputStream in, Project project) throws IOException {
 		HSSFWorkbook hssfWorkbook = new HSSFWorkbook(in);
-		HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(0);
+		HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(3);
 		if(null == hssfSheet) {
 			if(null != hssfWorkbook) {
 				hssfWorkbook.close();
@@ -110,13 +112,13 @@ public class ProjectServiceImpl {
 				String itemno = getCellValue(cell);//清单子项编号
 				cell = hssfRow.getCell(2);
 				String nameall = getCellValue(cell);//名称合体
-				cell = hssfRow.getCell(4);
+				cell = hssfRow.getCell(3);
 				String unit = getCellValue(cell);//计量单位
-				cell = hssfRow.getCell(5);
+				cell = hssfRow.getCell(4);
 				String projNum = getCellValue(cell);//工程数量
-				cell = hssfRow.getCell(6);
+				cell = hssfRow.getCell(5);
 				String unitPrice = getCellValue(cell);//综合单价
-				cell = hssfRow.getCell(8);
+				cell = hssfRow.getCell(6);
 				String totalPrice = getCellValue(cell);//合价
 				if(StringUtils.isEmpty(no) && !StringUtils.isEmpty(itemno) && !StringUtils.isEmpty(nameall)) {
 					dep = new ProjectDepart();
@@ -194,8 +196,9 @@ public class ProjectServiceImpl {
 		}
 		hssfWorkbook.close();
 		
+//		System.out.println(deps.size() + "\t" + items.size());
 		projectDeptRepository.save(deps);
-		projectItemRepository.save(items);		
+		projectItemRepository.save(items);
 	}
 	
 	/**
@@ -219,17 +222,12 @@ public class ProjectServiceImpl {
 			return;
 		}
 
-		int t = tem.indexOf(EXCEL_NO_VIEW_STR);//DEL字符处理1
-		StringBuilder nstr = new StringBuilder();
-		if (t > 0) {
-			nstr.append(tem.substring(0, t));
-			if (t + 1 < tem.length() - 1) {
-				nstr.append(tem.substring(t + 1));
-			}
-			item.setName(nstr.toString());
-		} else {
-			item.setName(tem);
+		tem = tem.replaceAll(EXCEL_NO_VIEW_STR, "");//DEL字符处理
+		tem = tem.replaceAll(EXCEL_NEWLINE_SIG, "");//
+		if(null != tem) {
+			tem = tem.trim();
 		}
+		item.setName(tem);
 		
 		p2 = p1;
 		StringBuilder xtsb = new StringBuilder();
@@ -242,6 +240,9 @@ public class ProjectServiceImpl {
 			} else {
 				tem = c2.substring(p2 + 2);
 			}
+
+			tem = tem.replaceAll(EXCEL_NO_VIEW_STR, "");//DEL字符处理
+			tem = tem.replaceAll(EXCEL_NEWLINE_SIG, "");//
 			p2 = p1;
 			if(null != tem) {
 				tem = tem.trim();
@@ -349,6 +350,7 @@ public class ProjectServiceImpl {
 	}
 	
 	public String getCellValue(HSSFCell cell) {
+		if(null == cell) return null;
 		if(HSSFCell.CELL_TYPE_STRING == cell.getCellType()) {
 			return cell.getStringCellValue();
 		} else if(HSSFCell.CELL_TYPE_BOOLEAN == cell.getCellType()) {
@@ -362,7 +364,12 @@ public class ProjectServiceImpl {
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		ProjectServiceImpl t = new ProjectServiceImpl();
-		t.readHssfBook(new BufferedInputStream(new FileInputStream("f:/test2.xls")), null);
+		t.readHssfBook(new BufferedInputStream(new FileInputStream("f:/陕建翠园锦绣9#楼一般土建工程2.xls")), null);
+		String a = "5、2:8灰土分层夯实，宽度>800（另列）";
+		for(int i =0 ;i < a.length(); i++) {
+			char c = a.charAt(i);
+			System.out.println(c + "\t" + (0 + c));
+		}
 //		t.readXLSX("f:/test.xls");
 	}
 }
