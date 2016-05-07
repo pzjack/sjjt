@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="now" value="now()" dbms="mysql,h2" />
+	<property name="now" value="current_timestamp" dbms="postgresql" />
+	<property name="now" value="sysdate" dbms="oracle" />
+
+	<!-- 监理单位日报表 -->
+	<changeSet id="20160424221900" author="zhen.pan">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="T_SUPERVISION_DAILY" />
+				<tableExists tableName="T_IMAGE_PROGRESS_FILE" />
+			</not>
+		</preConditions>
+		<createTable tableName="T_SUPERVISION_DAILY">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="PROJECT_ID" type="BIGINT" remarks="工程项目 "/>
+			<column name="PROJECT_GROUP_ID" type="BIGINT" remarks="项目组"  />
+			<column name="PROJECT_DEPT_GROUP_ID" type="BIGINT" remarks="分部分项目组" />
+			<column name="PROJECT_DEPART_ID" type="BIGINT" remarks="分部分项工程" />
+			<column name="CONSTRUCTION_UNIT_DAILY_ID" type="BIGINT" remarks="对应的施工单位日报"/>
+			<column name="SUPERVISION_TOTAL" type="INT" remarks="监理人员总数" />
+			<column name="EARTHWORK_SUPERVISION" type="INT" remarks="土建监理人员" />
+			<column name="ASSEMBLY" type="INT" remarks="安装监理人员" />
+			<column name="CONSTUCTION_TOTAL" type="INT" remarks="施工单位总人数" />
+			<column name="EARTHWORK_CONSTUCTION" type="INT" remarks="施工单位土建总人数" />
+			<column name="ASSEMBLY_CONSTUCTION" type="INT" remarks="施工单位安装总人数" />
+			<column name="EARTHWORK_MANAGER" type="INT" remarks="施工单位土建管理人员" />
+			<column name="ASSEMBLY_MANAGER" type="INT" remarks="施工单位安装管理人员" />
+			<column name="QUALITY" type="VARCHAR(200)" remarks="工程质量状况" />
+			<column name="SAFE_CIVILIZATION" type="VARCHAR(200)" remarks="安全文明施工状况" />
+			<column name="COMPLETE_DAILY" type="INT" remarks="是否完成当日计划进度" />
+			<column name="REASON" type="VARCHAR(60)" remarks="超前或滞后原因" />
+			<column name="PROBLEM" type="VARCHAR(1000)" remarks="施工中存在的问题" />
+			<column name="SUGGEST" type="VARCHAR(1000)" remarks="针对问题采取的措施及建议意见" />
+			<column name="BUILD_PROBLEM" type="VARCHAR(1200)" remarks="需建设单位解决的问题" />
+			<column name="SENIOR_SUPERVIS_ENGINEER" type="VARCHAR(30)" remarks="总监理师" />
+			<column name="REPORT_DATE" type="DATETIME" remarks="上报日期" />
+			<column name="REPORTER_ORG_ID" type="BIGINT" remarks="呈报单位" />
+			<column name="STATE" type="INT(6)" remarks="状态(10保存，50提交)" />
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
+		</createTable>
+		<createTable tableName="T_IMAGE_PROGRESS_FILE">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="SUPERVISIONDAILY_ID" type="BIGINT" remarks="监理日报对象 "/>
+			<column name="FILE_TYPE" type="INT" remarks="资源类型,image 10,TV 20,other 30"  />
+			<column name="PATH" type="BIGINT" remarks="VARCHAR(100)" />
+			<column name="LOCAL_NAME" type="VARCHAR(40)" remarks="文件本地存储的名称" />
+			<column name="FILE_NAME" type="VARCHAR(60)" remarks="文件名称" />
+			<column name="THUMBNAIL" type="BIT" remarks="是否存在缩略图" />
+			<column name="REPORT_DATE" type="DATE" remarks="上报日期" />
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
+		</createTable>
+	</changeSet>
+</databaseChangeLog>

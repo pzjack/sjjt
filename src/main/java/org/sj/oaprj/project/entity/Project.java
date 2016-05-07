@@ -18,7 +18,7 @@ import org.sj.oaprj.entity.ID;
 
 /**
  * 工程项目
- * @author zhen.pan
+ * @author Jack.Alexander
  *
  */
 @Entity(name="T_PROJECT")
@@ -26,29 +26,29 @@ import org.sj.oaprj.entity.ID;
 public class Project extends ID {
 	private static final long serialVersionUID = -9097263749859320776L;
 	@Column(name = "NAME")
-	private String name;
+	private String name;//工程项目名称
 	@Column(name = "PROJECT_NO")
-	private String projectno;
+	private String projectno;//工程项目编号
 	@Column(name = "DESC")
-	private String desc;
+	private String desc;//工程项目描述说明
 	@Column(name = "PRE_START_DATE")
-	private Date prestartdate;
+	private Date prestartdate;//计划启动日期
 	@Column(name = "PRE_END_DATE")
-	private Date preenddate;
+	private Date preenddate;//计划完工日期
 	@Column(name = "START_DATE")
-	private Date startdate;
+	private Date startdate;//实际启动日期
 	@Column(name = "END_DATE")
-	private Date enddate;
+	private Date enddate;//实际完工日期
 	@Column(name = "PRE_COST")
-	private BigDecimal precost;
+	private BigDecimal precost;//工程预算
 	@Column(name = "COST")
-	private BigDecimal cost;
+	private BigDecimal cost;//实际完成资金
 //	@Column(name = "DEP_ID")
 //	private Org department;
 	@Column(name = "DEP_ID")
-	private Long depId;
+	private Long depId;//部门ID
 	@Column(name = "STATE")
-	private Integer state;
+	private Integer state;//状态
 	
     @NotNull
     @OneToOne(fetch = FetchType.LAZY)

@@ -57,8 +57,5 @@ public class Menu extends ID {
 	public void setIsLeaf(Integer isLeaf) {
 		this.isLeaf = isLeaf;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
+ 
 }

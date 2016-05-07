@@ -41,6 +41,42 @@
 <!--[if lt IE 9]>
 
     <![endif]-->
+    <script type="text/javascript">
+    function loadData() {
+    	$.ajax({
+    		type : "POST",
+    		url :  "/role/getRoleList",
+    		dataType :  "json",
+  //  		data :  $("#form-inline").serialize(),
+    		success : function(data) {
+    			console.log(data);
+    			/* $('#dataList').datagrid('loadData', data.rows);
+    			var pager = $('#pagination');
+    			pager.pagination({
+    				pageNumber : pageIndex,
+    				total : data.total
+    			});
+    			$("input:checkbox").css("border", "none"); */
+
+    		},
+    		error : doError	});
+    }
+    
+    function doError(xhr, status, e) {
+    	var sessionStatus = xhr.getResponseHeader('sessionstatus');
+    	if (sessionStatus == 'timeout') {
+    		var top = getTopWinow();
+    		var msg = "由于您长时间没有操作, session已过期, 请重新登录!";
+    		$.messager.confirm("提示信息", msg, function(r) {
+    			if (r) {
+    				top.location.href = basePath + '/admin/login.do';
+    			}
+    		});
+    	} else {
+    		$.messager.alert('提示信息', message.SYSTEM_ERROR);
+    	}
+    }
+    </script>
 </head>
 <body style="padding:0px 0px 0px 5px;overflow:hidden;">
 		<div id="breadcrumb">
@@ -57,7 +93,7 @@
 		<div>
 		<div class="row content">
 			<h4 class="page-header" style="margin-top: 0;">按条件查询1</h4>
-			<form class="form-inline" role="form" action="/query" method="post" th:action="@{/query}">
+			<form class="form-inline" role="form" action="/role/getRoleList" method="post" th:action="@{/role/getRoleList}">
 				<div class="form-group">
 					<label class="sr-only" for="exampleInputEmail2">接收时间</label> <input
 						type="email" class="form-control" id="exampleInputEmail2"
@@ -68,7 +104,7 @@
 						type="email" class="form-control" id="exampleInputEmail2"
 						placeholder="状态" />
 				</div>
-				<button type="submit" class="btn btn-default">
+				<button type="submit" class="btn btn-default" onclick="loadData">
 					<span class="glyphicon glyphicon-search">查询</span>
 				</button>
 			</form>
@@ -185,4 +221,5 @@
 		</div>
 	</div>
 </body>
+>>>>>>> pz/master
 </html>

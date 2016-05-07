@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="now" value="now()" dbms="mysql,h2" />
+	<property name="now" value="current_timestamp" dbms="postgresql" />
+	<property name="now" value="sysdate" dbms="oracle" />
+
+	<!-- 建设单位日报表 -->
+	<changeSet id="20160422225100" author="zhen.pan">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="T_BUILDER_DAILY" />
+			</not>
+		</preConditions>
+		<createTable tableName="T_BUILDER_DAILY">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="PROJECT_ID" type="BIGINT" remarks="工程项目 "/>
+			<column name="PROJECT_GROUP_ID" type="BIGINT" remarks="项目组"  />
+			<column name="PROJECT_DEPT_GROUP_ID" type="BIGINT" remarks="分部分项目组" />
+			<column name="PROJECT_DEPART_ID" type="BIGINT" remarks="分部分项工程" />
+			<column name="SUPERVISION_DAILY_ID" type="BIGINT" remarks="对应的监理单位日报"/>
+			<column name="CONSTUCTION_TOTAL" type="INT" remarks="施工总人数" />
+			<column name="CONSTUCTION_IN" type="INT" remarks="施工新进人数" />
+			<column name="CONSTUCTION_OUT" type="INT" remarks="施工离去人数" />
+			<column name="MANAGER_TOTAL" type="INT" remarks="管理人员总数" />
+			<column name="MANAGER_IN" type="INT" remarks="管理新进人数" />
+			<column name="MANAGER_OUT" type="INT" remarks="管理离去人数" />
+			<column name="FIRST_LINE_TOTAL" type="INT" remarks="一线施工人员总数" />
+			<column name="FIRST_LINE_IN" type="INT" remarks="施工单位安装管理人员" />
+			<column name="FIRST_LINE_OUT" type="INT" remarks="施工单位安装管理人员" />
+			<column name="JOB_GROUP_NAME" type="VARCHAR(200)" remarks="分包队名称" />
+			<column name="JOB_GROUP_TOTAL" type="INT" remarks="分包队人员总数" />
+			<column name="JOB_GROUP_IN" type="INT" remarks="分包队新进人数" />
+			<column name="JOB_GROUP_OUT" type="INT" remarks="分包队离去人数" />
+			<column name="COMPLETE_DAILY" type="BIT" remarks="是否完成当日计划进度" />
+			<column name="DAILY_PROPORTION" type="DECIMAL(10,4)" remarks="完成当日计划进度比例" />
+			<column name="NEXT_DAY_PLAN" type="VARCHAR(200)" remarks="施工质量状况明天计划" />
+			<column name="QUALITY" type="VARCHAR(200)" remarks="施工质量状况" />
+			<column name="SAFE_CIVILIZATION" type="VARCHAR(200)" remarks="安全文明施工状况" />
+			<column name="PROBLEM" type="VARCHAR(1000)" remarks="施工中存在的问题" />
+			<column name="SUGGEST" type="VARCHAR(1000)" remarks="问题处理措施及建议意见" />
+			<column name="BUILD_PROBLEM" type="VARCHAR(1200)" remarks="需建设单位解决的问题" />
+			<column name="PROJECT_MANAGER" type="VARCHAR(30)" remarks="项目经理" />
+			<column name="REPORT_DATE" type="DATETIME" remarks="上报日期" />
+			<column name="REPORTER_ORG_ID" type="BIGINT" remarks="呈报单位" />
+			<column name="STATE" type="INT(6)" remarks="状态(10保存，50提交)" />
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
+		</createTable>
+	</changeSet>
+</databaseChangeLog>
