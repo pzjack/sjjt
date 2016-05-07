@@ -26,4 +26,3 @@ function showDialog(url) {
 		});
 		fatherBody.find("#backdropId").remove();
 	});
-}
