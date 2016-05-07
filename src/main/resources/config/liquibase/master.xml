@@ -3,9 +3,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <!-- <include file="classpath:config/liquibase/changelog/20160401164200_add_entity_Org.xml" relativeToChangelogFile="false"/>
+    <!-- 
     <include file="classpath:config/liquibase/changelog/20160401172600_add_entity_User.xml" relativeToChangelogFile="false"/>
  -->
+    <include file="classpath:config/liquibase/changelog/20160401164200_add_entity_Department.xml" relativeToChangelogFile="false"/>
  	<include file="classpath:config/liquibase/changelog/20160413092600_add_entity_Account.xml" relativeToChangelogFile="false"/>
  	<include file="classpath:config/liquibase/changelog/20160415084300_add_entity_Project.xml" relativeToChangelogFile="false"/>
  	<include file="classpath:config/liquibase/changelog/20160418224400_add_entity_ConstuctionUnitDaily.xml" relativeToChangelogFile="false"/>

@@ -1,8 +1,12 @@
 package org.sj.oaprj.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 @Entity(name="T_MENU")
 @Cacheable
@@ -13,13 +17,19 @@ public class Menu extends ID {
 	@Column(name = "URL")
 	private String url;
 	@Column(name = "PARENT_ID")
-	private Integer parentId;
+	private Long parentId;
 	@Column(name = "ICON")
 	private String icon;
 	@Column(name = "ORDER")
 	private Integer order;
 	@Column(name = "IS_LEAF")
 	private Integer isLeaf;
+	@Transient
+	private List<Menu> children;
+	
+	public Menu(){
+		children = new ArrayList<Menu>();
+	}
 	
 	public String getName() {
 		return name;
@@ -33,10 +43,10 @@ public class Menu extends ID {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public Integer getParentId() {
+	public Long getParentId() {
 		return parentId;
 	}
-	public void setParentId(Integer parentId) {
+	public void setParentId(Long parentId) {
 		this.parentId = parentId;
 	}
 	public String getIcon() {
@@ -58,4 +68,17 @@ public class Menu extends ID {
 		this.isLeaf = isLeaf;
 	}
  
+	public List<Menu> getChildren() {
+		return children;
+	}
+	public void setChildren(List<Menu> children) {
+		this.children = children;
+	}
+	
+	public boolean hasChildren() {
+		if (children != null && children.size() > 0) {
+			return true;
+		}
+		return false;
+	}
 }

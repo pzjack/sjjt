@@ -43,6 +43,7 @@
 			<column name="REPORT_DATE" type="DATETIME" remarks="上报日期" />
 			<column name="REPORTER_ORG_ID" type="BIGINT" remarks="呈报单位" />
 			<column name="STATE" type="INT(6)" remarks="状态(10保存，50提交)" />
+			<column name="DELETE_FLAG" type="INT(6)" remarks="删除标志(0:未删除，1：已删除)" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 		<createTable tableName="T_IMAGE_PROGRESS_FILE" remarks="形象进度附件表 ">
@@ -56,6 +57,7 @@
 			<column name="FILE_NAME" type="VARCHAR(60)" remarks="文件名称" />
 			<column name="THUMBNAIL" type="BIT" remarks="是否存在缩略图" />
 			<column name="REPORT_DATE" type="DATE" remarks="上报日期" />
+			<column name="DELETE_FLAG" type="INT(6)" remarks="删除标志(0:未删除，1：已删除)" />
 			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 	</changeSet>

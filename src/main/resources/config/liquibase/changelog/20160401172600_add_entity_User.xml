@@ -27,6 +27,7 @@
 			<column name="baiduid" type="VARCHAR(40)" />
 			<column name="account" type="VARCHAR(62)" />
 			<column name="org_id" type="BIGINT" />
+			<column name="delete_flag" type="INT(6)" />
 			<column name="createtime" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
 		
@@ -34,6 +35,7 @@
 			<column name="name">admin</column>
 			<column name="role">1</column>
 			<column name="account">admin</column>
+			<column name="delete_flag">0</column>
 			<column name="org_id">1</column>
 		</insert>
 	</changeSet>

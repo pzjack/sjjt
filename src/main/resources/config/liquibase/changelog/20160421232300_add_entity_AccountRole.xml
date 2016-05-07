@@ -16,12 +16,20 @@
 		</preConditions>
 
 		<createTable tableName="T_ACCOUNT_ROLE">
-			<column name="ACCOUNT_ID" type="BIGINT">
+			<column name="ID" type="BIGINT" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
-			<column name="ROLE_ID" type="BIGINT">
-				<constraints primaryKey="true" nullable="false" />
-			</column>
+			<column name="ACCOUNT_ID" type="BIGINT"/>
+			<column name="ROLE_ID" type="BIGINT" />
+			<column name="DELETE_FLAG" type="INT(6)" remarks="删除标志(0:未删除，1：已删除)" />
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
 		</createTable>
+		
+		<insert tableName="T_ACCOUNT_ROLE">
+			<column name="ID">1</column>
+			<column name="ACCOUNT_ID">1</column>
+			<column name="ROLE_ID">1</column>
+			<column name="DELETE_FLAG">0</column>
+		</insert>
 	</changeSet>
 </databaseChangeLog>
