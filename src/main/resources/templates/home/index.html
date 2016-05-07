@@ -27,12 +27,12 @@
 		</div>
 	</noscript>
 	<div data-options="region:'north',border:false"
-		style="overflow: hidden; height: 50px; background: url(/resources/images/top.jpg) #7f99be repeat-x center 50%; line-height: 20px; color: #fff; font-family: Verdana, 微软雅黑, 黑体">
+		style="overflow: hidden; height: 50px; background: url(/img/top.jpg) #7f99be repeat-x center 50%; line-height: 20px; color: #fff; font-family: Verdana, 微软雅黑, 黑体">
 		<span style="float: right; padding-right: 20px; margin-top: 10px;"
 			class="head">欢迎 <font style="color: #FFA700;" th:text="${#httpServletRequest.remoteUser}"></font>
 			<a href="javascript:void(0)" id="loginOut" onclick="$('#logoutform').submit()">安全退出</a></span> <span
 			style="padding-left: 10px; margin-top: 5px; font-size: 16px; float: left;"><img
-			src="/resources/images/logo.png" width="158px" height="45px" align="absmiddle" />
+			src="/img/logo.png" width="158px" height="45px" align="absmiddle" />
 			X系统</span><form id="logoutform" action="/logout" method="post" th:action="@{/logout}"></form>
 
 	</div>
