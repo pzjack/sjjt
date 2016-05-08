@@ -17,7 +17,7 @@ public class Department extends ID {
 	@Column(name = "DEPT_TYPE")
 	private int deptType;
 	@Column(name = "DELETE_FLAG")
-	private String deleteFlag;
+	private int deleteFlag;
 	@Column(name = "PARENT_ID")
 	private int parentId;
 	public String getDeptName() {
@@ -44,10 +44,10 @@ public class Department extends ID {
 	public void setDeptType(int deptType) {
 		this.deptType = deptType;
 	}
-	public String getDeleteFlag() {
+	public int getDeleteFlag() {
 		return deleteFlag;
 	}
-	public void setDeleteFlag(String deleteFlag) {
+	public void setDeleteFlag(int deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
 	public int getParentId() {

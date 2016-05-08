@@ -1,40 +1,41 @@
 var uploadDir = "/resources/upload/";
-var csrf="";
+var csrf = "";
 /**
  * 调节宽度
  */
 $(function() {
-	csrf=$(window.parent.document).find("input[name='_csrf']").val();
-//	$("div[class='datagrid-wrap panel-body panel-body-noheader']").css("width",
-//			"auto");
-//	// 去掉所有checkbox的边框
-//	$("input:checkbox").css("border", "none");
-//
-//	// 取消grid下边框
-//	$(".datagrid").find("div").first().css("border-bottom", "0px");
-//
-//	// 使IE浏览器下，回车可以换行
-//	$("textarea").focus(function() {
-//		$(this).css("white-space", "pre-wrap");
-//	})
-//	// 窗体大小改变时，重置grid的大小
-//
-//	$(window).resize(function() {
-//		alert(33)
-//		$('#dataList').datagrid('resize', {
-//			width : $(window).width() - 10,
-//			height : $(window).height() - 35
-//		});
-//	});
+	csrf = $(window.parent.document).find("input[name='_csrf']").val();
+	// $("div[class='datagrid-wrap panel-body
+	// panel-body-noheader']").css("width",
+	// "auto");
+	// // 去掉所有checkbox的边框
+	// $("input:checkbox").css("border", "none");
+	//
+	// // 取消grid下边框
+	// $(".datagrid").find("div").first().css("border-bottom", "0px");
+	//
+	// // 使IE浏览器下，回车可以换行
+	// $("textarea").focus(function() {
+	// $(this).css("white-space", "pre-wrap");
+	// })
+	// // 窗体大小改变时，重置grid的大小
+	//
+	// $(window).resize(function() {
+	// alert(33)
+	// $('#dataList').datagrid('resize', {
+	// width : $(window).width() - 10,
+	// height : $(window).height() - 35
+	// });
+	// });
 
-//	var toolbar = $("#toolbar");
-//	if (toolbar != undefined) {
-//		if ($.trim($(toolbar).html()) == "") {
-//			$("#dataList").datagrid({
-//				toolbar : ''
-//			});
-//		}
-//	}
+	// var toolbar = $("#toolbar");
+	// if (toolbar != undefined) {
+	// if ($.trim($(toolbar).html()) == "") {
+	// $("#dataList").datagrid({
+	// toolbar : ''
+	// });
+	// }
+	// }
 });
 /**
  * Grid初始化
@@ -80,6 +81,7 @@ function onBeforeSend() {
 
 /**
  * 查询成功
+ * 
  * @param data
  */
 function onSuccess(data) {
@@ -90,7 +92,23 @@ function onSuccess(data) {
 		total : data.total
 	});
 }
-
+/**
+ * 保存后提示信息
+ * 
+ * @param data
+ */
+function onSaveSuccess(data) {
+	if (data != null) {
+		if (data == "1") {
+			$.messager.alert("提示信息", "保存成功！", "info");
+			closeWindow();
+			reload();
+		} else {
+			$.messager.alert("提示信息", "保存失败！", "info");
+			$.messager.progress('close');
+		}
+	}
+}
 /**
  * 判断是否是由于session超时引起的，如果是，跳转到登陆页面
  * 
@@ -109,7 +127,8 @@ function onError(xhr, status, e) {
 			}
 		});
 	} else {
-		$.messager.alert('提示信息', message.SYSTEM_ERROR);
+		$.messager
+				.alert('提示信息', message.SYSTEM_ERROR + " status:" + xhr.status);
 	}
 }
 
@@ -130,14 +149,8 @@ function onComplete(event, xhr, settings) {
  * @param data
  */
 function afterDelete(data) {
-	if (data != null) {
-		if (data == "DELETE_SUCCESS") {
-			$.messager.alert('提示信息', message.DELETE_SUCCESS, "info");
-			reload();
-		} else {
-			$.messager.alert("提示信息", message.byId(data), "info");
-		}
-	}
+	$.messager.alert('提示信息', message.DELETE_SUCCESS, "info");
+	reload();
 }
 /**
  * 操作成功
@@ -498,26 +511,26 @@ function openWindow(title, href, width, height, windowId) {
 	windowId = windowId == undefined ? "myWindow" : windowId;
 	var window = $('#' + windowId);
 	window.remove();
-	var window = '<div id="' + windowId
+	var window = '<div id="'
+			+ windowId
 			+ '" class="easyui-window" closed="true"  data-options="modal:true"></div>';
 
 	$('body').append(window);
-	$('#' + windowId).window(
-			{
-				title : title,
-				width : width === undefined ? 600 : width,
-				height : height === undefined ? 400 : height,
-				content : href,
-				href : href,
-				modal : true,
-				minimizable : false,
-				maximizable : false,
-				shadow : false,
-				cache : false,
-				closed : false,
-				collapsible : false,
-				resizable : false,
-			});
+	$('#' + windowId).window({
+		title : title,
+		width : width === undefined ? 600 : width,
+		height : height === undefined ? 400 : height,
+		content : href,
+		href : href,
+		modal : true,
+		minimizable : false,
+		maximizable : false,
+		shadow : false,
+		cache : false,
+		closed : false,
+		collapsible : false,
+		resizable : false,
+	});
 }
 /**
  * 关闭弹出窗口
