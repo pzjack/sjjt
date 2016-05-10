@@ -26,11 +26,18 @@ public class Utils {
 		return value.toString().trim();
 	}
 
-	public static long toLong(Object value) {
+	public static Long toLong(Object value) {
+		if (value == null) {
+			return (long) 0;
+		}
+		return Long.parseLong(value.toString());
+	}
+
+	public static Integer toInteger(Object value) {
 		if (value == null) {
 			return 0;
 		}
-		return Long.parseLong(value.toString());
+		return Integer.parseInt(value.toString());
 	}
 
 	/**
