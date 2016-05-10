@@ -37,6 +37,7 @@ $(function() {
 	// }
 	// }
 });
+
 /**
  * Grid初始化
  */
@@ -166,6 +167,37 @@ function afterOperate(data) {
 			$.messager.alert("提示信息", message.byId(data), "info");
 		}
 	}
+}
+/**
+ * 初始化下拉列表数据
+ * 
+ * @param comboId
+ *            控件ID
+ * @param codeType
+ *            代码类型
+ * @param hiddenId
+ *            隐藏控件ID
+ */
+function comboInit(comboId, codeType) {
+	var count = 0;
+	var combobox = $("#" + comboId);
+	combobox.combobox({
+		url : '/codeData/findByCodeType?codeType=' + codeType,
+		method : 'get',
+		valueField : 'dataType',
+		textField : 'dataName',
+		panelHeight : 'auto',
+		onLoadSuccess : function(data) {
+			count = data.length;
+			// 设置下拉列表空白项高度
+			$(".combobox-item").height("16px");
+		},
+		onShowPanel : function() {
+			if (count > 8) {
+				$(this).combobox('panel').height(200);
+			}
+		}
+	});
 }
 /**
  * 省市区街道四级联动
@@ -510,17 +542,15 @@ Date.prototype.format = function(format) {
 function openWindow(title, href, width, height, windowId) {
 	windowId = windowId == undefined ? "myWindow" : windowId;
 	var window = $('#' + windowId);
-	window.remove();
-	var window = '<div id="'
-			+ windowId
-			+ '" class="easyui-window" closed="true"  data-options="modal:true"></div>';
+	/* window.remove(); */
+	var window = '<div id="' + windowId
+			+ '" class="easyui-window" closed="true"></div>';
 
 	$('body').append(window);
 	$('#' + windowId).window({
 		title : title,
 		width : width === undefined ? 600 : width,
 		height : height === undefined ? 400 : height,
-		content : href,
 		href : href,
 		modal : true,
 		minimizable : false,
@@ -530,7 +560,19 @@ function openWindow(title, href, width, height, windowId) {
 		closed : false,
 		collapsible : false,
 		resizable : false,
+		onLoad : function() {
+			onLoadSuccess();
+		},
+		onClose : function() {
+			setTimeout(function() {
+				$('#' + windowId).window('destroy');
+			}, 100);
+		}
 	});
+}
+
+function onLoadSuccess() {
+	initForm();
 }
 /**
  * 关闭弹出窗口

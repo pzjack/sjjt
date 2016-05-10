@@ -1,7 +1,7 @@
 function Message() {
 	this.PLS_SELECT_DELETE_DATA = "请选择要删除的数据！";
 	this.DELETE_DEPARTMENT_CONFIRM = "您确定要删除所选的部门信息吗？";
-	
+	this.DELETE_SUPPLIER_CONFIRM = "您确定要删除所选的供应商信息吗？";
 	
 	this.INSERT = "INSERT";
 	this.UPDATE = "UPDATE";
