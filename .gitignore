@@ -16,6 +16,7 @@ hs_err_pid*
 .metadata/**
 .mvn/**
 .settings/**
+.classpath
 Servers/**
 .mvn/wrapper/**
 .springBeans
