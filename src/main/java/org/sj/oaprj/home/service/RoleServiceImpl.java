@@ -1,11 +1,14 @@
 package org.sj.oaprj.home.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.sj.oaprj.core.Constants;
+import org.sj.oaprj.core.Utils;
 import org.sj.oaprj.entity.Role;
 import org.sj.oaprj.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +35,16 @@ public class RoleServiceImpl {
 	}
 
 	public Map<String, Object> findByFields(String roleName, Pageable pageable) {
-		return null;
+		Map<String, Object> result = new HashMap<String, Object>();
+		Page<Role> page = null;
+		if(Utils.isEmpty(roleName)) {
+			page = roleRepository.findByDeleteFlag(pageable, 0);
+		} else {
+			page = roleRepository.findByNameContainingAndDeleteFlag(pageable, roleName, 0);
+		}
+		result.put("total", page.getTotalElements());
+		result.put("content", page.getContent());
+		result.put("pageNumber", pageable.getPageNumber());
+		return result;
 	}
 }

@@ -1,8 +1,11 @@
 package org.sj.oaprj.home.mvc;
 
+import java.util.Map;
+
 import org.sj.oaprj.entity.Role;
 import org.sj.oaprj.home.service.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,11 +23,22 @@ public class RoleController {
 	@Autowired
 	private RoleServiceImpl roleServiceImpl;
 
-	@ApiOperation(value = "角色列表", notes = "角色列表<br/>@auther Jack.Alexander")
+	@ApiOperation(value = "角色列表页面", notes = "角色列表页面<br/>@auther Jack.Alexander")
 	@RequestMapping(value = "/listInit", method = RequestMethod.GET)
 	public String listInit() {
 		return "sys/roleList";
 	}
+	
+	@ApiOperation(value = "角色列表", notes = "角色列表<br/>@auther dzhifang")
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> list(String roleName, Integer pageIndex, Integer pageSize) {
+		Map<String, Object> result = roleServiceImpl.findByFields(roleName, buildPageRequest(pageIndex, pageSize));
+		return result;
+	}
+	
+	private PageRequest buildPageRequest(final int page, final int size) {
+        return new PageRequest(page - 1, size);
+    }
 
 	@ApiOperation(value = "角色新增画面", notes = "角色新增画面<br/>@auther Jack.Alexander")
 	@RequestMapping(value = "/formInit", method = RequestMethod.GET)
@@ -49,7 +63,7 @@ public class RoleController {
 		return modelAndView;
 	}
 
-	@ApiOperation(value = "角色信息删除", notes = "角色信息删除<br/>@auther dzhifang")
+	@ApiOperation(value = "角色信息删除", notes = "角色信息删除<br/>@auther Jack.Alexander")
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public @ResponseBody void delete(@RequestParam(value = "idArray[]") Long[] idArray) {
 		roleServiceImpl.delete(idArray);

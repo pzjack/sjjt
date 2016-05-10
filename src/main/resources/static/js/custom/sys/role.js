@@ -1,5 +1,5 @@
 /**
- * 供应商信息列表画面初始化
+ * 列表画面初始化
  */
 function supplierListInit() {
 	// 列表初始化
@@ -112,7 +112,7 @@ function closePopupWindow() {
 }
 
 /**
- * 批量删除供应商信息
+ * 批量删除信息
  */
 function deleteDatas() {
 	var id = "";
@@ -120,10 +120,10 @@ function deleteDatas() {
 		id += "" + $(this).attr("id") + ",";
 	});
 	if (id.length == 0) {
-		$.messager.alert('提示信息', message.PLS_SELECT_DELETE_DATA, "info");
+		$.messager.alert('提示信息', message.DELETE_INFORMATION_CONFIRM, "info");
 		return;
 	}
-	$.messager.confirm("提示信息", message.DELETE_SUPPLIER_CONFIRM, function(r) {
+	$.messager.confirm("提示信息", message.DELETE_MESSAGE_CONFIRM, function(r) {
 		if (r) {
 			var param = {
 				idArray : [ id.substring(0, id.length - 1) ]
@@ -148,12 +148,12 @@ function doDelete(param) {
 }
 
 /**
- * 删除供应商信息
+ * 删除信息
  * 
  * @param id
  */
 function deleteOneData(id) {
-	var msg = message.DELETE_SUPPLIER_CONFIRM;
+	var msg = message.DELETE_MESSAGE_CONFIRM;
 	$.messager.confirm("提示信息", msg, function(r) {
 		if (r) {
 			var param = {
@@ -165,7 +165,7 @@ function deleteOneData(id) {
 }
 
 /**
- * 保存供应商信息
+ * 保存信息
  */
 function saveForm() {
 	if (!$("#saveForm").form("validate")) {

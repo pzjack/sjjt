@@ -17,7 +17,7 @@ public class Role extends ID {
 	private static final long serialVersionUID = -490573508594772434L;
 	@Column(name = "NAME")
 	private String name;
-	@Column(name = "DESC")
+	@Column(name = "ROLE_DESC")
 	private String desc;
 	public String getName() {
 		return name;
