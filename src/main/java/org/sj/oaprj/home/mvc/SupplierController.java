@@ -44,7 +44,7 @@ public class SupplierController {
 
 	@ApiOperation(value = "供应商信息新增", notes = "供应商信息新增<br/>@auther dzhifang")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public @ResponseBody int save(Supplier entity) {
+	public @ResponseBody String save(Supplier entity) {
 		return supplierServiceImpl.save(entity);
 	}
 

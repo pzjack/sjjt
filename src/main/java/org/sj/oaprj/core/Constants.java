@@ -1,6 +1,19 @@
 package org.sj.oaprj.core;
 
 public class Constants {
+
+	public static final String SAVE_SUCCESS = "SAVE_SUCCESS";
+	public static final String SAVE_FAIL = "SAVE_FAIL";
+
+	public static final String DELETE_SUCCESS = "DELETE_SUCCESS";
+	public static final String DELETE_FAIL = "DELETE_FAIL";
+
+	public static final String CODE_TYPE_EXISTS = "CODE_TYPE_EXISTS";
+	public static final String DATA_TYPE_EXISTS = "DATA_TYPE_EXISTS";
+
+	public static final String PASSWORD_NOT_EQUALS="PASSWORD_NOT_EQUALS";
+	public static final String ACCOUNT_NOT_EXISTS = "ACCOUNT_NOT_EXISTS";
+	
 	/**
 	 * 未删除
 	 */

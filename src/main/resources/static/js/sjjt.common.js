@@ -100,13 +100,11 @@ function onSuccess(data) {
  */
 function onSaveSuccess(data) {
 	if (data != null) {
-		if (data == "1") {
-			$.messager.alert("提示信息", "保存成功！", "info");
+		$.messager.alert("提示信息", message.byId(data), "info");
+		if (data == "SAVE_SUCCESS") {
+			// 编辑完成，直接关闭
 			closeWindow();
 			reload();
-		} else {
-			$.messager.alert("提示信息", "保存失败！", "info");
-			$.messager.progress('close');
 		}
 	}
 }
@@ -539,7 +537,7 @@ Date.prototype.format = function(format) {
  * @param width
  * @param height
  */
-function openWindow(title, href, width, height, windowId) {
+function openWindow(title, href, width, height, windowId, func) {
 	windowId = windowId == undefined ? "myWindow" : windowId;
 	var window = $('#' + windowId);
 	/* window.remove(); */
@@ -561,7 +559,11 @@ function openWindow(title, href, width, height, windowId) {
 		collapsible : false,
 		resizable : false,
 		onLoad : function() {
-			onLoadSuccess();
+			if (func == undefined) {
+				initForm();
+			} else {
+				func();
+			}
 		},
 		onClose : function() {
 			setTimeout(function() {
@@ -571,9 +573,6 @@ function openWindow(title, href, width, height, windowId) {
 	});
 }
 
-function onLoadSuccess() {
-	initForm();
-}
 /**
  * 关闭弹出窗口
  */

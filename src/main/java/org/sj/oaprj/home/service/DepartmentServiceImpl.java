@@ -25,9 +25,9 @@ public class DepartmentServiceImpl {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public int save(Department entity) {
+	public String save(Department entity) {
 		Department department = departmentRepository.save(entity);
-		return department == null ? 0 : 1;
+		return Utils.isNull(department) ? Constants.SAVE_FAIL : Constants.SAVE_SUCCESS;
 	}
 
 	public Department findOne(Long id) {
