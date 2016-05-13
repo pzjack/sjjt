@@ -5,6 +5,7 @@ package org.sj.oaprj;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
@@ -108,9 +109,9 @@ public class HttpRestTool {
 	private void excutePostJSON(String url, String json, String authorization) throws IOException {
 		CloseableHttpClient httpclient = HttpClients.createDefault(); // 13800510543
       try {
-          HttpEntityWrapper en = new HttpEntityWrapper(new StringEntity(json, ContentType.create("application/json", "UTF-8")));
+//          HttpEntityWrapper en = new HttpEntityWrapper(new StringEntity(json, ContentType.create("application/json", "UTF-8")));
           HttpPost post = new HttpPost(url);
-          post.setEntity(en);
+//          post.setEntity(en);
           if(null != authorization)
         	  post.addHeader("Authorization", authorization);
           HttpResponse response = httpclient.execute(post);
@@ -130,6 +131,7 @@ public class HttpRestTool {
           if(null != authorization)
         	  get.addHeader("Authorization", authorization);
           HttpResponse response = httpclient.execute(get);
+          System.out.println(response.getStatusLine().getStatusCode());
           HttpEntity resEntity = response.getEntity();
           System.out.println(EntityUtils.toString(resEntity));
       } catch (IOException ex) {
@@ -246,11 +248,26 @@ public class HttpRestTool {
 		excuteGetUrl("http://localhost:8080/api/phone/v1/student/courseweek/get?weekId=2775", "bearer 15ed1977-7d58-45c4-bbe3-c7dd9b358f2a");
 	}
 	
+	public void mockWeixin() throws IOException {
+		String url = "https://qy.weixin.qq.com/cgi-bin/wxpush?msg_signature=5c45ff5e21c57e6ad56bac8758b79b1d9ac89fd3&timestamp=1409659589&nonce=263014780&echostr=P9nAzCzyDtyTWESHep1vC5X9xho%2FqYX3Zpb4yKa9SKld1DsH3Iyt3tP3zNdtp%2B4RPcs8TgAE7OaBO%2BFZXvnaqQ%3D%3D";
+//		System.out.println(URLDecoder.decode(url));
+		url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=wxdc22c8ef813f87e6&corpsecret=secrect";
+		excuteGetUrl(url, null);
+	}
+	
 	public void mockQueryResource() throws IOException {
 		String json = "{" + 
 				  "\"parent_id\": \"5704bb3395a146d403721cd7\"" +
 				  "}";
 		excutePostJSON("http://172.16.40.108:3000/app/back/auth/api/v1/queryResource", json, null);
+	}
+	
+	public void mockPostWinxin() throws IOException {
+//		String json = "{" + 
+//				  "\"parent_id\": \"5704bb3395a146d403721cd7\"" +
+//				  "}";
+		Map<String, String> params = new HashMap<String, String>();
+		excutePostForm("https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=wangxin", params, null);
 	}
 	
 
@@ -361,6 +378,8 @@ public class HttpRestTool {
 	 */
 	public static void main(String[] args) throws IOException {
 		HttpRestTool t = new HttpRestTool();
+		t.mockPostWinxin();
+//		t.mockWeixin();
 //		t.mockSendStompMSG();
 		
 //		t.mockFindStudent();

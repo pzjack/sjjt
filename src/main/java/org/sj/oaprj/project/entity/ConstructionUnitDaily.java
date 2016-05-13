@@ -30,16 +30,20 @@ public class ConstructionUnitDaily extends ID {
 	private Project project;//工程项目
 	@NotNull
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "UNITPROJECT_ID")
+	private UnitProject unitProject;//单位工程
+	@NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_GROUP_ID")
 	private ProjectGroup projectGroup;//项目组
 	@NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PROJECT_DEPT_GROUP_ID")
-	private UnitProjectGroup projectDeptGroup;//分部分项目组
-	@NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PROJECT_DEPART_ID")
-	private ProjectDepart projectDepart;//分部分项工程
+	private UnitProjectGroup projectDeptGroup;//单位工程项目组
+//	@NotNull
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "PROJECT_DEPART_ID")
+//	private ProjectDepart projectDepart;//分部分项工程
 	@Column(name = "PRJ_NO")
 	private Integer prjno;//序号
 	@NotNull
@@ -86,12 +90,18 @@ public class ConstructionUnitDaily extends ID {
 	public void setPrjno(Integer prjno) {
 		this.prjno = prjno;
 	}
-	public ProjectDepart getProjectDepart() {
-		return projectDepart;
+	public UnitProject getUnitProject() {
+		return unitProject;
 	}
-	public void setProjectDepart(ProjectDepart projectDepart) {
-		this.projectDepart = projectDepart;
+	public void setUnitProject(UnitProject unitProject) {
+		this.unitProject = unitProject;
 	}
+	//	public ProjectDepart getProjectDepart() {
+//		return projectDepart;
+//	}
+//	public void setProjectDepart(ProjectDepart projectDepart) {
+//		this.projectDepart = projectDepart;
+//	}
 	public ProjectItem getItem() {
 		return item;
 	}

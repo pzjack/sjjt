@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Force latest IE rendering engine or ChromeFrame if installed -->
+<!--[if IE]>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="U14Studio.com Product Prototype Template" />
+<meta name="author" content="service@u14studio.com" />
+<title>陕建集团办公项目物资管理系统</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"></link>
+<!-- easyui core CSS -->
+<link href="../../static/js/easyui/themes/gray/easyui.css" rel="stylesheet" media="screen" th:href="@{/js/easyui/themes/gray/easyui.css}" />
+<link href="../../static/js/easyui/themes/color.css" rel="stylesheet" media="screen" th:href="@{/js/easyui/themes/color.css}" />
+<link href="../../static/js/easyui/themes/icon.css" rel="stylesheet" media="screen" th:href="@{/js/easyui/themes/icon.css}" />
+<!-- Custom styles for this template -->
+<link href="../../static/css/common.css" rel="stylesheet" media="screen" th:href="@{/css/common.css}" />
+<script src="../../static/js/jquery-1.9.1.min.js" th:src="@{/js/jquery-1.9.1.min.js}"></script>
+<script src="../../static/js/easyui/jquery.easyui.min.js" th:src="@{/js/easyui/jquery.easyui.min.js}"></script>
+<script src="../../static/js/easyui/locale/easyui-lang-zh_CN.js" th:src="@{/js/easyui/locale/easyui-lang-zh_CN.js}"></script>
+<script src="../../static/js/sjjt.common.js" th:src="@{/js/sjjt.common.js}"></script>
+<script src="../../static/js/custom/project/daily/construction.js" th:src="@{/js/custom/project/daily/construction.js}"></script>
+</head>
+<body>
+	<div class="easyui-layout" data-options="fit:true">
+		<div class="" data-options="region:'center',border:false" style="padding: 5px;">
+			<form id="saveForm">
+				<table class="t1">
+					<tr>
+						<th>清单子目：</th>
+						<td><input id="popRoleName" name="name"
+							th:value="${role.name}"
+							class="easyui-validatebox textbox" data-options="required:true"
+							style="width: 300px;" maxlength="200"/></td>
+					</tr>
+					<tr>
+						<th>总量：</th>
+						<td><input id="popRoleName" name="name"
+							th:value="${role.name}"
+							class="easyui-validatebox textbox" data-options="required:true"
+							style="width: 200px;" maxlength="10"/></td>
+						
+					</tr>
+					<tr>
+						<th>单位：</th>
+						<td><input id="popRoleName" name="name"
+							th:value="${role.name}"
+							class="easyui-validatebox textbox" data-options="required:true"
+							style="width: 200px;" maxlength="10"/></td>
+					</tr>
+					<tr>
+						<th>完成%：</th>
+						<td><input id="popRoleName" name="name"
+							th:value="${role.name}"
+							class="easyui-validatebox textbox" data-options="required:true"
+							style="width: 200px;" maxlength="10"/></td>
+						
+					</tr>
+					<tr>
+						<th>计划完成：</th>
+						<td><input id="popRoleName" name="name"
+							th:value="${role.name}"
+							class="easyui-validatebox textbox" data-options="required:true"
+							style="width: 200px;" maxlength="10"/></td>
+					</tr>
+					<tr>
+						<th>实际完成：</th>
+						<td><input id="popRoleName" name="name"
+							th:value="${role.name}"
+							class="easyui-validatebox textbox" data-options="required:true"
+							style="width: 200px;" maxlength="10"/></td>
+					</tr>
+				</table>
+				<input type="hidden" id="popId" name="id" th:value="${role.id}"/>
+			</form>
+		</div>
+		<div data-options="region:'south',border:false" style="text-align: right; padding: 5px;">
+			<a href="javascript:void(0);" style="padding: 0px 10px;" 
+				id="btnClose" class="easyui-linkbutton c0"
+				data-options="iconCls:'icon-cancel'">关&nbsp;&nbsp;闭</a>&nbsp;&nbsp;<a
+				href="javascript:void(0);" style="padding: 0px 10px;" id="btnSave"
+				class="easyui-linkbutton c0" data-options="iconCls:'icon-ok'">保&nbsp;&nbsp;存</a>
+		</div> 
+	</div>
+</body>
+</html>
