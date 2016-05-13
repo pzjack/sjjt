@@ -26,9 +26,9 @@ public class SupplierServiceImpl {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public int save(Supplier entity) {
+	public String save(Supplier entity) {
 		Supplier supplier = supplierRepository.save(entity);
-		return supplier == null ? 0 : 1;
+		return Utils.isNull(supplier) ? Constants.SAVE_FAIL : Constants.SAVE_SUCCESS;
 	}
 
 	public Supplier findOne(Long id) {

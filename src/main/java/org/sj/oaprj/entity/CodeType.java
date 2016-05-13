@@ -11,17 +11,17 @@ public class CodeType extends ID {
 	@Column(name = "CODE_TYPE")
 	private Integer  codeType;
 	@Column(name = "TYPE_NAME")
-	private Integer typeName;
+	private String typeName;
 	public Integer getCodeType() {
 		return codeType;
 	}
 	public void setCodeType(Integer codeType) {
 		this.codeType = codeType;
 	}
-	public Integer getTypeName() {
+	public String getTypeName() {
 		return typeName;
 	}
-	public void setTypeName(Integer typeName) {
+	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
 	

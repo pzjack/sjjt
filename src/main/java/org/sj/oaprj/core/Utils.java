@@ -41,6 +41,16 @@ public class Utils {
 	}
 
 	/**
+	 * 判断对象是否为null
+	 * 
+	 * @param value
+	 * @return
+	 */
+	public static boolean isNull(Object value) {
+		return value == null;
+	}
+
+	/**
 	 * 
 	 * getStartIndex(计算每页的起始下标)
 	 * 

@@ -44,7 +44,7 @@ public class DepartmentController {
 
 	@ApiOperation(value = "部门信息新增", notes = "部门信息新增<br/>@auther dzhifang")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public @ResponseBody int save(Department entity) {
+	public @ResponseBody String save(Department entity) {
 		return deptartmentServiceImpl.save(entity);
 	}
 

@@ -27,3 +27,4 @@ mvnw.cmd
 *.log
 target/*
 /target/
+/bin/

@@ -2,14 +2,22 @@ function Message() {
 	this.PLS_SELECT_DELETE_DATA = "请选择要删除的数据！";
 	this.DELETE_DEPARTMENT_CONFIRM = "您确定要删除所选的部门信息吗？";
 	this.DELETE_SUPPLIER_CONFIRM = "您确定要删除所选的供应商信息吗？";
-	
+
 	this.INSERT = "INSERT";
 	this.UPDATE = "UPDATE";
 
 	this.SAVE_SUCCESS = "保存成功！";
-	this.SAVE_FAILED = "保存失败！";
+	this.SAVE_FAIL = "保存失败！";
 	this.DELETE_SUCCESS = "删除成功！";
-	this.DELETE_FAILED = "删除失败！";
+	this.DELETE_FAIL = "删除失败！";
+
+	this.CODE_TYPE_EXISTS = "分类编码已存在，请重新输入！";
+	this.PLS_SELECT_CODETYPE = "请先选择数据分类！";
+	this.DELETE_CODEDATA_CONFIRM = "您确定要删除所选的数据信息吗？";
+	this.DATA_TYPE_EXISTS = "编码已存在，请重新输入！";
+	this.PASSWORD_NOT_EQUALS = "确认密码与密码不一致！";
+	this.ACCOUNT_NOT_EXISTS = "当前账户不存在！";
+
 	this.COMMIT_SUCCESS = "提交成功！";
 	this.COMMIT_FAILED = "提交失败！";
 	this.OPERATE_SUCCESS = "操作成功！";
@@ -56,7 +64,6 @@ function Message() {
 	// 确认信息
 	this.EXIT_CONFIRM = "您确定要退出系统吗？";
 	this.BATCH_DELETE_CODE_CONFIRM = "您确定要删除勾选的码表信息吗？";
-
 
 	this.SUPPLIER_EXISTS = "供应商已存在，请重新输入！";
 	this.DELETE_EQUIPTYPE_CONFIRM = "您确定要删除所选的设备物资类别吗？";
