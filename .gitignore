@@ -23,6 +23,7 @@ Servers/**
 mvnw
 mvnw.cmd
 
+logs/**
 # project's specific
 *.log
 target/*
