@@ -1,6 +1,7 @@
 package org.sj.oaprj.home.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.sj.oaprj.core.Constants;
@@ -17,9 +18,9 @@ public class RoleServiceImpl {
 	@Autowired
 	private RoleRepository roleRepository;
 
-	public Integer save(Role entity) {
+	public String save(Role entity) {
 		Role role = roleRepository.save(entity);
-		return role == null ? 0 : 1;
+		return Utils.isNull(role) ? Constants.SAVE_FAIL : Constants.SAVE_SUCCESS;
 	}
 
 	public Role findOne(Long id) {
@@ -32,6 +33,14 @@ public class RoleServiceImpl {
 			entity.setDeleteFlag(Constants.DELETE_FLAG_1);
 			roleRepository.save(entity);
 		}
+	}
+	
+	public List<Role> findAllRole() {
+		return roleRepository.findByDeleteFlag(Constants.DELETE_FLAG_0);
+	}
+	
+	public List<Role> findRoleByIds(List<Long> roleIds) {
+		return roleRepository.findByIdIn(roleIds);
 	}
 
 	public Map<String, Object> findByFields(String roleName, Pageable pageable) {

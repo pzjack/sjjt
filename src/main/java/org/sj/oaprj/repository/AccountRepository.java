@@ -7,4 +7,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface AccountRepository extends PagingAndSortingRepository<Account, Long> {
 	List<Account> findByAccount(String account);
+	Long countByAccount(String account);
 }

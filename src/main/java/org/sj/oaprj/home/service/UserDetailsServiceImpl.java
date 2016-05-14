@@ -35,7 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if(null == account) {
 			throw new UsernameNotFoundException("It's not found any user.");
 		}
-		return new CustomUserDetails(username, account.getPassword(), account.getRole(), account.getName());
+		return new CustomUserDetails(username, account.getPassword(), null, account.getName());
 	}
 
 	private final static class CustomUserDetails implements UserDetails {

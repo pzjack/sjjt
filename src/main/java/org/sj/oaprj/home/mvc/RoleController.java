@@ -50,7 +50,7 @@ public class RoleController {
 
 	@ApiOperation(value = "角色信息新增", notes = "角色信息新增<br/>@auther Jack.Alexander")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public @ResponseBody int save(Role entity) {
+	public @ResponseBody String save(Role entity) {
 		return roleServiceImpl.save(entity);
 	}
 

@@ -41,6 +41,9 @@ public class DepartmentServiceImpl {
 			departmentRepository.save(entity);
 		}
 	}
+	public List<Department> findAll() {
+		return departmentRepository.findByDeleteFlag(Constants.DELETE_FLAG_0);
+	}
 
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> findByFields(Department department, Pageable pageable) {

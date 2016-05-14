@@ -1,7 +1,15 @@
 package org.sj.oaprj.entity;
 
+import java.util.List;
+
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity(name="T_ACCOUNT")
 @Cacheable
@@ -12,11 +20,16 @@ public class Account extends ID {
 	private String salt;
 	private String password;
 	private Integer state;
-
-//  @ManyToOne(fetch = FetchType.LAZY)
-//  @JoinColumn(name = "user_id")
-//	private User user;
-	private Integer role;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USER_ID")
+	private Employee user;
+	@ManyToMany(targetEntity=org.sj.oaprj.entity.Role.class, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@JoinTable(
+            name = "T_ACCOUNT_ROLE", 
+            joinColumns = @JoinColumn(name = "ACCOUNT_ID"), 
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
+    )
+	private List<Role> roles;
 	public String getAccount() {
 		return account;
 	}
@@ -47,16 +60,16 @@ public class Account extends ID {
 	public void setState(Integer state) {
 		this.state = state;
 	}
-//	public User getUser() {
-//		return user;
-//	}
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
-	public Integer getRole() {
-		return role;
+	public Employee getUser() {
+		return user;
 	}
-	public void setRole(Integer role) {
-		this.role = role;
+	public void setUser(Employee user) {
+		this.user = user;
+	}
+	public List<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 }

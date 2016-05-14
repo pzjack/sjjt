@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Force latest IE rendering engine or ChromeFrame if installed -->
+<!--[if IE]>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="U14Studio.com Product Prototype Template" />
+<meta name="author" content="service@u14studio.com" />
+<title>陕建集团办公项目物资管理系统</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"></link>
+<!-- easyui core CSS -->
+<link href="../../static/js/easyui/themes/gray/easyui.css" rel="stylesheet" media="screen" th:href="@{/js/easyui/themes/gray/easyui.css}" />
+<link href="../../static/js/easyui/themes/color.css" rel="stylesheet" media="screen" th:href="@{/js/easyui/themes/color.css}" />
+<link href="../../static/js/easyui/themes/icon.css" rel="stylesheet" media="screen" th:href="@{/js/easyui/themes/icon.css}" />
+<!-- Custom styles for this template -->
+<link href="../../static/css/common.css" rel="stylesheet" media="screen" th:href="@{/css/common.css}" />
+<script src="../../static/js/jquery-1.9.1.min.js" th:src="@{/js/jquery-1.9.1.min.js}"></script>
+<script src="../../static/js/easyui/jquery.easyui.min.js" th:src="@{/js/easyui/jquery.easyui.min.js}"></script>
+<script src="../../static/js/easyui/locale/easyui-lang-zh_CN.js" th:src="@{/js/easyui/locale/easyui-lang-zh_CN.js}"></script>
+<script src="../../static/js/sjjt.common.js" th:src="@{/js/sjjt.common.js}"></script>
+<script src="../../static/js/custom/sys/user.js" th:src="@{/js/custom/sys/user.js}"></script>
+</head>
+<body>
+	<div class="easyui-layout" data-options="fit:true">
+		<div class="" data-options="region:'center',border:false" style="padding: 5px;">
+			<form id="saveForm">
+				<table class="t1">
+					<tr>
+						<th>姓名：</th>
+						<td><input id="popUserName" name="name"
+							th:value="${user.name}"
+							class="easyui-validatebox textbox" data-options="required:true"
+							style="width: 200px;" maxlength="80"/></td>
+					</tr>
+					<tr>
+						<th>员工编号：</th>
+						<td><input id="popUserEmployeeNo" name="employeeNo"
+							th:value="${user.employeeNo}"
+							class="easyui-validatebox textbox"
+							style="width: 200px;" maxlength="20"/></td>
+					</tr>
+					<tr>
+						<th>手机：</th>
+						<td><input id="popUserPhone" name="phone" readonly="readonly"
+							th:value="${user.phone}"
+							class="easyui-validatebox textbox" data-options="required:true"
+							style="width: 200px;" maxlength="15"/></td>
+					</tr>
+					<tr>
+						<th>邮箱：</th>
+						<td><input id="popUserEmail" name="email"
+							th:value="${user.email}"
+							class="easyui-validatebox textbox"
+							style="width: 200px;" maxlength="60"/></td>
+					</tr>
+					<tr>
+						<th>职务：</th>
+						<td><input id="popUserPost" name="post"
+							th:value="${user.post}"
+							class="easyui-validatebox textbox"
+							style="width: 200px;" maxlength="30"/></td>
+					</tr>
+					<tr>
+						<th>部门：</th>
+						<td>
+							<select id="popUserDepartId" name="departId" th:field="*{user.departId}">
+							<option th:each="dep : ${user.deps}" th:value="${dep.id}" th:text="${dep.deptName}"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>备注：</th>
+						<td style="padding:6px">
+							<input id="popRoleDesc" name="remark" 
+							th:value="${user.remark}"
+							class="easyui-textbox" data-options="multiline:true"
+							style="width:300px;height:100px;" maxlength="100"/>
+						</td>
+					</tr>
+				</table>
+				<input type="hidden" id="popId" name="id" th:value="${user.id}"/>
+			</form>
+		</div>
+		<div data-options="region:'south',border:false" style="text-align: right; padding: 5px;">
+			<a href="javascript:void(0);" style="padding: 0px 10px;" 
+				id="btnClose" class="easyui-linkbutton c0"
+				data-options="iconCls:'icon-cancel'">关&nbsp;&nbsp;闭</a>&nbsp;&nbsp;<a
+				href="javascript:void(0);" style="padding: 0px 10px;" id="btnSave"
+				class="easyui-linkbutton c0" data-options="iconCls:'icon-ok'">保&nbsp;&nbsp;存</a>
+		</div> 
+	</div>
+</body>
+</html>
