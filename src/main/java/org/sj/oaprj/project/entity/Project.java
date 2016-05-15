@@ -29,8 +29,8 @@ public class Project extends ID {
 	private String name;//工程项目名称
 	@Column(name = "PROJECT_NO")
 	private String projectno;//工程项目编号
-	@Column(name = "DESC")
-	private String desc;//工程项目描述说明
+	@Column(name = "REMARK")
+	private String remark;//工程项目描述说明
 	@Column(name = "PRE_START_DATE")
 	private Date prestartdate;//计划启动日期
 	@Column(name = "PRE_END_DATE")
@@ -66,11 +66,11 @@ public class Project extends ID {
 	public void setProjectno(String projectno) {
 		this.projectno = projectno;
 	}
-	public String getDesc() {
-		return desc;
+	public String getRemark() {
+		return remark;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	public Date getPrestartdate() {
 		return prestartdate;
