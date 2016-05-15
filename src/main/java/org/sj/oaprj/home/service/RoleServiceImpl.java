@@ -65,10 +65,6 @@ public class RoleServiceImpl {
 		// 删除角色
 		roleRepository.delete(id);
 		// 删除角色授权
-//		String sql = " delete from T_ROLE_MENU where ROLE_ID=:id";
-//		Query query = entityManager.createNativeQuery(sql);
-//		query.setParameter("id", id);
-//		query.executeUpdate();
 		roleMenuRepository.deleteByRoleId(id);
 		// 删除用户角色
 		String userRoleSql = " delete from T_ACCOUNT_ROLE where ROLE_ID=:id";
@@ -120,10 +116,6 @@ public class RoleServiceImpl {
 	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT)
 	public String saveRoleAuth(Long roleId, Long[] menuIdArray) {
 		// 删除角色授权
-//		String sql = " delete from T_ROLE_MENU where ROLE_ID=:id";
-//		Query query = entityManager.createNativeQuery(sql);
-//		query.setParameter("id", roleId);
-//		query.executeUpdate();
 		roleMenuRepository.deleteByRoleId(roleId);
 		// 新增授权
 		for (Long menuId : menuIdArray) {

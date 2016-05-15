@@ -11,10 +11,11 @@ public interface RoleRepository extends PagingAndSortingRepository<Role, Long> {
 	Page<Role> findByNameContainingAndDeleteFlag(Pageable page, String name, Integer deleteFlag);
 	
 	Page<Role> findByDeleteFlag(Pageable page, Integer deleteFlag);
-	
+ 
 	List<Role> findByDeleteFlag(Integer deleteFlag);
 	
 	List<Role> findByIdIn(List<Long> ids);
 
 	List<Role> findByName(String name);
+ 
 }

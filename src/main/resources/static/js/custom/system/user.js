@@ -15,38 +15,24 @@ function initList() {
 	// 默认加载数据
 	findGridData();
 }
-function comboInitDep(comboId, departId) {
-	var count = 0;
-	var combobox = $("#" + comboId);
-	combobox.combobox({
-		url : '/department/combolist',
-		method : 'get',
-		valueField : 'id',
-		textField : 'name',
-		panelHeight : 'auto',
-		onLoadSuccess : function(data) {
-			count = data.length;
-			// 设置下拉列表空白项高度
-			$(".combobox-item").height("16px");
-		},
-		onShowPanel : function() {
-			if (count > 8) {
-				$(this).combobox('panel').height(200);
-			}
-		}
-	});
-}
+ 
 /**
  * 新增、编辑画面初始化
  */
 function initForm() {
-	comboInitDep("popUserDepartId", "");
-	// 查询
+	// 职务Combobox初始化
+	comboInit("popUserPost", 2);
+	// 初始化部门下拉列表
+	comboBoxInit("popUserDepartId", "/department/combolist", "id", "name");
+	// 初始化角色下拉列表
+	comboBoxInit("popUserRolestr", "/role/findAllRole", "id", "name");
+	// 关闭
 	$("#btnClose").bind("click", closePopupWindow);
 	// 清空表单数据
 	$("#btnSave").bind("click", saveForm);
 	$("#popUserPhone").bind("keyup", keydown);
 }
+
 function keydown() {
 	$("#popUserAccount").val($("#popUserPhone").val());
 }
@@ -119,7 +105,7 @@ function operateFormatter(value, row, index) {
  * 添加画面初始化
  */
 function openAddWindow() {
-	openWindow("新增信息", '/user/formInit', 480, 580);
+	openWindow("新增员工信息", '/user/formInit', 680, 410);
 }
 
 /**
@@ -129,7 +115,7 @@ function openAddWindow() {
  */
 function openEditWindow(id) {
 	var href = '/user/findOne?id=' + id;
-	openWindow("编辑信息", href, 480, 480);
+	openWindow("编辑员工信息", href, 680, 410);
 }
 
 /**

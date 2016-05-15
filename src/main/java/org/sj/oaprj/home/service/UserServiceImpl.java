@@ -124,6 +124,8 @@ public class UserServiceImpl {
 			d.setEmail(e.getEmail());
 			d.setPost(e.getPost());
 			d.setRemark(e.getRemark());
+			d.setRolestr("1,2");
+		 
 			if (null != e.getDepart()) {
 				d.setDepartId(e.getDepart().getId());
 			}
@@ -182,7 +184,6 @@ public class UserServiceImpl {
 		}
 		result.put("total", page.getTotalElements());
 		result.put("content", outList);
-		// result.put("content", page);
 		result.put("pageNumber", pageable.getPageNumber());
 		return result;
 	}

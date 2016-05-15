@@ -197,6 +197,29 @@ function comboInit(comboId, codeType) {
 		}
 	});
 }
+
+function comboBoxInit(comboId, url, vField, tField) {
+	var count = 0;
+	var combobox = $("#" + comboId);
+	combobox.combobox({
+		url : url,
+		method : 'get',
+		valueField : vField,
+		textField : tField,
+		panelHeight : 'auto',
+		onLoadSuccess : function(data) {
+			count = data.length;
+			// 设置下拉列表空白项高度
+			$(".combobox-item").height("16px");
+		},
+		onShowPanel : function() {
+			if (count > 8) {
+				$(this).combobox('panel').height(200);
+			}
+		}
+	});
+}
+
 /**
  * 省市区街道四级联动
  */
