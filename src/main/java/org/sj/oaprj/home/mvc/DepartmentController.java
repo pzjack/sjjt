@@ -1,7 +1,9 @@
 package org.sj.oaprj.home.mvc;
 
+import java.util.List;
 import java.util.Map;
 
+import org.sj.oaprj.domain.BaseComboBoxData;
 import org.sj.oaprj.entity.Department;
 import org.sj.oaprj.home.service.DepartmentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +63,11 @@ public class DepartmentController {
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public @ResponseBody void delete(@RequestParam(value = "idArray[]") Long[] idArray) {
 		deptartmentServiceImpl.delete(idArray);
+	}
+	
+	@ApiOperation(value = "部门信息下拉列表查询", notes = "部门信息下拉列表查询<br/>@auther zhen.pan")
+	@RequestMapping(value = "/combolist", method = RequestMethod.GET)
+	public @ResponseBody List<BaseComboBoxData> queryComboBoxData(String name) {
+		return deptartmentServiceImpl.findByComboboxData(name, new PageRequest(0, 10));//只返回前10条
 	}
 }

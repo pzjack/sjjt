@@ -12,11 +12,14 @@ import javax.persistence.Query;
 
 import org.sj.oaprj.core.Constants;
 import org.sj.oaprj.core.Utils;
+import org.sj.oaprj.domain.BaseComboBoxData;
 import org.sj.oaprj.entity.Department;
 import org.sj.oaprj.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class DepartmentServiceImpl {
@@ -105,5 +108,16 @@ public class DepartmentServiceImpl {
 		}
 		BigInteger obj = (BigInteger) query.getSingleResult();
 		return obj.longValue();
+	}
+	
+	@Transactional(readOnly = true)
+	public List<BaseComboBoxData> findByComboboxData(final String name, Pageable pageable) {
+		Page<BaseComboBoxData> page = null;
+		if(Utils.isEmpty(name)) {
+			page = departmentRepository.findComboBoxData(Constants.DELETE_FLAG_0, pageable);
+		} else {
+			page = departmentRepository.findComboBoxData(Constants.DELETE_FLAG_0, "%" + name + "%", pageable);
+		}
+		return page.getContent();
 	}
 }

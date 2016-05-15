@@ -15,10 +15,33 @@ function initList() {
 	// 默认加载数据
 	findGridData();
 }
+
+function comboInitDep(comboId, departmentId) {
+	var count = 0;
+	var combobox = $("#" + comboId);
+	combobox.combobox({
+		url : '/department/combolist',
+		method : 'get',
+		valueField : 'id',
+		textField : 'name',
+		panelHeight : 'auto',
+		onLoadSuccess : function(data) {
+			count = data.length;
+			// 设置下拉列表空白项高度
+			$(".combobox-item").height("16px");
+		},
+		onShowPanel : function() {
+			if (count > 8) {
+				$(this).combobox('panel').height(200);
+			}
+		}
+	});
+}
 /**
  * 新增、编辑画面初始化
  */
 function initForm() {
+	comboInitDep("popDepartmentId", "");
 	// 查询
 	$("#btnClose").bind("click", closePopupWindow);
 	// 清空表单数据
