@@ -15,4 +15,6 @@ public interface RoleRepository extends PagingAndSortingRepository<Role, Long> {
 	List<Role> findByDeleteFlag(Integer deleteFlag);
 	
 	List<Role> findByIdIn(List<Long> ids);
+
+	List<Role> findByName(String name);
 }

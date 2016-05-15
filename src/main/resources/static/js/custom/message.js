@@ -17,6 +17,9 @@ function Message() {
 	this.DATA_TYPE_EXISTS = "编码已存在，请重新输入！";
 	this.PASSWORD_NOT_EQUALS = "确认密码与密码不一致！";
 	this.ACCOUNT_NOT_EXISTS = "当前账户不存在！";
+	this.PLS_SELECT_ROLE = "请先选择要授权的角色！";
+	this.PLS_SELECT_EDIT_DATA = "请选择要修改的数据！";
+	this.ROLE_NAME_EXISTS = "角色名称已存在，请重新输入！";
 
 	this.COMMIT_SUCCESS = "提交成功！";
 	this.COMMIT_FAILED = "提交失败！";
@@ -38,7 +41,6 @@ function Message() {
 	this.DELETE_USER_CONFIRM = "您确定要删除所选的用户信息吗？";
 	this.BATCH_DELETE_ROLE_CONFIRM = "您确定要删除勾选的角色信息吗？";
 	this.DELETE_ROLE_CONFIRM = "您确定要删除所选的角色信息吗？";
-	this.PLS_SELECT_ROLE = "请选择角色！";
 	this.PLS_SELECT_MENU = "请选择菜单！";
 	this.BATCH_INSERT_ROLE_MENU = "您确定要为所选角色分配菜单吗？";
 	this.BATCH_DELETE_NOTICE_CONFIRM = "您确定要删除所选择的公告信息吗？";
