@@ -21,4 +21,6 @@
  	<include file="classpath:config/liquibase/changelog/20160509222400_add_entity_CodeType.xml" relativeToChangelogFile="false"/>
  	<include file="classpath:config/liquibase/changelog/20160510221300_modify_entity_Role.xml" relativeToChangelogFile="false"/>
  	<include file="classpath:config/liquibase/changelog/20160511231700_modify_entity_ConstructionUnitDaily.xml" relativeToChangelogFile="false"/>
+ 	<include file="classpath:config/liquibase/changelog/20160401172600_add_entity_Employee.xml" relativeToChangelogFile="false"/>
+ 	<include file="classpath:config/liquibase/changelog/20160515112600_modify_entity_Project.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

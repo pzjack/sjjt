@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.sj.oaprj.entity.Account;
+import org.sj.oaprj.entity.Role;
 import org.sj.oaprj.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,11 +16,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author zhen.pan
  *
  */
+@Transactional(readOnly=true)
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
@@ -35,23 +38,32 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if(null == account) {
 			throw new UsernameNotFoundException("It's not found any user.");
 		}
-		return new CustomUserDetails(username, account.getPassword(), account.getRole(), account.getName());
+		Long userId = (null == account.getUser()?null:account.getUser().getId());
+		return new CustomUserDetails(username, account.getPassword(), userId, account.getName(), account.getRoles());
 	}
 
-	private final static class CustomUserDetails implements UserDetails {
+	final static class CustomUserDetails implements UserDetails {
 		private static final long serialVersionUID = 8683102959103260527L;
 		private String username;
 		private String password;
-		private String role;
-		@SuppressWarnings("unused")
-		private Integer roleid;
+		private Long userId;
 		private String name;
-		private CustomUserDetails(String username, String password, Integer roleId, String name) {
+		private String[] roleNames;
+		private Long[] roleIds;
+		private CustomUserDetails(String username, String password, Long userId, String name, List<Role> roles) {
 			this.username = username;
 			this.password = password;
-			this.roleid = roleId;
-//			this.role = Contants.ROLES.get(this.roleid);
+			this.userId = userId;
 			this.name = name;
+			if(null != roles) {
+				roleNames = new String[roles.size()];
+				roleIds = new Long[roles.size()];
+				for(int i = 0; i < roleNames.length; i++) {
+					Role r = roles.get(i);
+					roleNames[i] = "ROLE_" + r.getName();
+					roleIds[i] = r.getId();
+				}
+			}
 		}
 
 		@Override
@@ -59,18 +71,21 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			if("admin".equals(username)) {
 				return AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN");
 			} 
-//			else {
-//				switch(roleid) {
-//				case 0: return AuthorityUtils.createAuthorityList(Contants.ROLE_USER);
-//				case 10: return AuthorityUtils.createAuthorityList(Contants.ROLE_MEMBER);
-//				case 20: return AuthorityUtils.createAuthorityList(Contants.ROLE_LEADER);
-//				case 30: return AuthorityUtils.createAuthorityList(Contants.ROLE_CONTROLLER);
-//				default:
-//					return AuthorityUtils.createAuthorityList(Contants.ROLE_USER);
-//				}
-//			}
+			else {
+				if(null != roleNames) {
+					return AuthorityUtils.createAuthorityList(roleNames);
+				}
+			}
 			
 			return AuthorityUtils.createAuthorityList();
+		}
+		
+		public String[] getRoleNames() {
+			return roleNames;
+		}
+		
+		public Long[] getRoleIds() {
+			return roleIds;
 		}
 		
 		@Override
@@ -95,8 +110,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			sb.append(super.toString()).append(": ");
 			sb.append("Username: ").append(this.username).append("; ");
 			sb.append("Password: [PROTECTED]; ");
-			sb.append("role: ").append(this.role).append("; ");
+			sb.append("userId: ").append(this.userId).append("; ");
 			sb.append("name: ").append(this.name).append("; ");
+			sb.append("roleIds: ").append(this.roleIds).append("; ");
+			sb.append("roleNames: ").append(this.roleNames).append("; ");
 			sb.append("Enabled: ").append(this.isEnabled()).append("; ");
 			sb.append("AccountNonExpired: ").append(this.isAccountNonExpired()).append("; ");
 			sb.append("credentialsNonExpired: ").append(this.isCredentialsNonExpired())

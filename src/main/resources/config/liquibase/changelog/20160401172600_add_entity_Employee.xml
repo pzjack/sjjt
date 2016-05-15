@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="now" value="now()" dbms="mysql,h2" />
+	<property name="now" value="current_timestamp" dbms="postgresql" />
+	<property name="now" value="sysdate" dbms="oracle" />
+
+	<!-- 用户表，员工 -->
+	<changeSet id="20160401172600" author="zhen.pan">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="T_EMPLOYEE" />
+			</not>
+		</preConditions>
+		<createTable tableName="T_EMPLOYEE">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="ACCOUNT_ID" type="BIGINT" remarks="账号" />
+			<column name="NAME" type="VARCHAR(60)" remarks="姓名" />
+			<column name="EMPLOYEE_NO" type="VARCHAR(20)" remarks="员工编号" />
+			<column name="PHONE" type="VARCHAR(20)" remarks="电话" />
+			<column name="EMAIL" type="VARCHAR(60)" remarks="邮箱" />
+			<column name="POST" type="VARCHAR(40)" remarks="职位、职务" />
+			<column name="ID_NUMBER" type="VARCHAR(30)" remarks="证件号码" />
+			<column name="REMARK" type="VARCHAR(120)" remarks="备注说明" />
+			<column name="USER_TYPE" type="INT(6)" remarks="用户类型:0 陕建,10监理,30施工单位" />
+			<column name="BAIDU_ID" type="VARCHAR(30)" remarks="百度ID" />
+			<column name="DEPART_ID" type="BIGINT" remarks="部门" />
+			<column name="SUPPLIER_ID" type="BIGINT" remarks="供应商" />
+			<column name="DELETE_FLAG" type="INT(6)" />
+			<column name="CREATETIME" type="DATETIME" defaultValueDate="${now}" />
+		</createTable>
+		<renameColumn tableName="T_ACCOUNT" oldColumnName="role"
+    				  newColumnName="USER_ID" columnDataType="BIGINT"/>
+		
+	</changeSet>
+</databaseChangeLog>

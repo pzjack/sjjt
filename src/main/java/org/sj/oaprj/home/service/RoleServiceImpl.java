@@ -54,6 +54,10 @@ public class RoleServiceImpl {
 				return Constants.ROLE_NAME_EXISTS;
 			}
 		}
+
+//		Role role = roleRepository.save(entity);
+//		return Utils.isNull(role) ? Constants.SAVE_FAIL : Constants.SAVE_SUCCESS;
+
 	}
 
 	public Role findOne(Long id) {
@@ -75,6 +79,14 @@ public class RoleServiceImpl {
 		userRoleQuery.setParameter("id", id);
 		userRoleQuery.executeUpdate();
 		return Constants.DELETE_SUCCESS;
+	}
+	
+	public List<Role> findAllRole() {
+		return roleRepository.findByDeleteFlag(Constants.DELETE_FLAG_0);
+	}
+	
+	public List<Role> findRoleByIds(List<Long> roleIds) {
+		return roleRepository.findByIdIn(roleIds);
 	}
 
 	public Map<String, Object> findByFields(String roleName, Pageable pageable) {

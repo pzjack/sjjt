@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="now" value="now()" dbms="mysql,h2" />
+	<property name="now" value="current_timestamp" dbms="postgresql" />
+	<property name="now" value="sysdate" dbms="oracle" />
+
+	<!-- 项目相关所有表的备注字段名称的修改 -->
+	<changeSet id="20160515112600" author="zhen.pan">
+		<renameColumn tableName="T_PROJECT" oldColumnName="DESC"
+    				  newColumnName="REMARK" columnDataType="VARCHAR(300)"/>
+		<renameColumn tableName="T_INDIVIDUAL_PROJECT" oldColumnName="DESC"
+    				  newColumnName="REMARK" columnDataType="VARCHAR(300)"/>
+		<renameColumn tableName="T_UNIT_PROJECT" oldColumnName="DESC"
+    				  newColumnName="REMARK" columnDataType="VARCHAR(300)"/>
+		<renameColumn tableName="T_PROJECT_GROUP" oldColumnName="DESC"
+    				  newColumnName="REMARK" columnDataType="VARCHAR(300)"/>
+	</changeSet>
+</databaseChangeLog>

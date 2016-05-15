@@ -30,8 +30,8 @@ public class IndividualProject extends ID {
 	private String name;//单项工程名称（9#楼）
 	@Column(name = "COMPLETE_NAME")
 	private String completeName;//单项工程完整名称（翠园锦绣9#楼）
-	@Column(name = "DESC")
-	private String desc;//描述说明
+	@Column(name = "REMARK")
+	private String remark;//描述说明
 	@Column(name = "STATE")
 	private Integer state;//状态
 	public Project getProject() {
@@ -52,11 +52,11 @@ public class IndividualProject extends ID {
 	public void setCompleteName(String completeName) {
 		this.completeName = completeName;
 	}
-	public String getDesc() {
-		return desc;
+	public String getRemark() {
+		return remark;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	public Integer getState() {
 		return state;
