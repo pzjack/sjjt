@@ -43,7 +43,11 @@ public class UserController {
 	}
 	
 	private PageRequest buildPageRequest(final int page, final int size) {
-        return new PageRequest(page - 1, size);
+		int pageIndex = page - 1;
+		if(pageIndex < 0) {
+			pageIndex = 0;
+		}
+        return new PageRequest(pageIndex, size);
     }
 
 	@ApiOperation(value = "用户新增画面", notes = "用户新增画面<br/>@auther Jack.Alexander")
