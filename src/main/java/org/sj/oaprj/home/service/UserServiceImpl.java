@@ -11,6 +11,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.sj.oaprj.core.Constants;
+import org.sj.oaprj.core.UserType;
 import org.sj.oaprj.core.Utils;
 import org.sj.oaprj.domain.UserListDomain;
 import org.sj.oaprj.domain.UserUpdateDomain;
@@ -155,7 +156,8 @@ public class UserServiceImpl {
 				if (!Utils.isEmpty(phone)) {
 					list.add(builder.like(root.get("phone"), "%" + phone + "%"));
 				}
-				list.add(builder.equal(root.get("deleteFlag"), new Integer(0)));
+				list.add(builder.equal(root.get("userType"), UserType.EMPLOYEE.getIntState()));
+				list.add(builder.equal(root.get("deleteFlag"), new Integer(Constants.DELETE_FLAG_0)));
 				Predicate[] p = new Predicate[list.size()];
 				return builder.and(list.toArray(p));
 			}
