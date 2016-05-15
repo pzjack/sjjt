@@ -21,7 +21,7 @@
 <script src="../../static/js/easyui/jquery.easyui.min.js" th:src="@{/js/easyui/jquery.easyui.min.js}"></script>
 <script src="../../static/js/easyui/locale/easyui-lang-zh_CN.js" th:src="@{/js/easyui/locale/easyui-lang-zh_CN.js}"></script>
 <script src="../../static/js/sjjt.common.js" th:src="@{/js/sjjt.common.js}"></script>
-<script src="../../static/js/custom/sys/user.js" th:src="@{/js/custom/sys/user.js}"></script>
+<script src="../../static/js/custom/system/user.js" th:src="@{/js/custom/system/user.js}"></script>
 </head>
 <body>
 	<div class="easyui-layout" data-options="fit:true">
@@ -44,7 +44,7 @@
 					</tr>
 					<tr>
 						<th>手机：</th>
-						<td><input id="popUserPhone" name="phone" readonly="readonly"
+						<td><input id="popUserPhone" name="phone"
 							th:value="${user.phone}"
 							class="easyui-validatebox textbox" data-options="required:true"
 							style="width: 200px;" maxlength="15"/></td>
@@ -66,8 +66,31 @@
 					<tr>
 						<th>部门：</th>
 						<td>
-							<select id="popUserDepartId" name="departId" th:field="*{user.departId}">
-							<option th:each="dep : ${user.deps}" th:value="${dep.id}" th:text="${dep.deptName}"></option>
+							<input id="popUserDepartId" name="departId"
+							th:value="${user.departId}"
+							class="easyui-combobox" data-options="required:true"
+							style="width: 200px;" maxlength="22"/>
+						</td>
+					</tr>
+					<tr>
+						<th>账号：</th>
+						<td><input id="popUserAccount" name="account" readonly="readonly"
+							th:value="${user.account}"
+							class="easyui-validatebox textbox" data-options="required:true"
+							style="width: 200px;" maxlength="80"/></td>
+					</tr>
+					<tr>
+						<th>密码：</th>
+						<td><input id="popUserPwd" name="pwd"
+							th:value="${user.pwd}" type="password"
+							class="easyui-validatebox textbox" data-options="required:true"
+							style="width: 200px;" maxlength="20"/></td>
+					</tr>
+					<tr>
+						<th>角色：</th>
+						<td>
+							<select id="popUserRolestr" name="rolestr" multiple="multiple" size="3">
+							<option th:each="role : ${user.roles}" th:value="${role.id}" th:text="${role.name}"></option>
 							</select>
 						</td>
 					</tr>

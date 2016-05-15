@@ -19,7 +19,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @Controller
-@RequestMapping(value = "/sys/user")
+@RequestMapping(value = "/user")
 @Api(value = "用户管理API", description = "用户管理<br>@author Jack.Alexander")
 public class UserController {
 	@Autowired
@@ -32,7 +32,7 @@ public class UserController {
 	@ApiOperation(value = "用户列表页面", notes = "用户列表页面<br/>@auther Jack.Alexander")
 	@RequestMapping(value = "/listInit", method = RequestMethod.GET)
 	public String listInit() {
-		return "sys/userList";
+		return "system/userList";
 	}
 	
 	@ApiOperation(value = "用户列表", notes = "用户列表<br/>@auther Jack.Alexander")
@@ -49,7 +49,7 @@ public class UserController {
 	@ApiOperation(value = "用户新增画面", notes = "用户新增画面<br/>@auther Jack.Alexander")
 	@RequestMapping(value = "/formInit", method = RequestMethod.GET)
 	public ModelAndView formInit() {
-		ModelAndView modelAndView = new ModelAndView("sys/userForm");
+		ModelAndView modelAndView = new ModelAndView("system/userForm");
 		UserUpdateDomain user = new UserUpdateDomain();
 		user.setRoles(roleServiceImpl.findAllRole());
 		user.setDeps(departmentServiceImpl.findAll());
@@ -69,7 +69,7 @@ public class UserController {
 	@RequestMapping(value = "/findOne", method = RequestMethod.GET)
 	public ModelAndView findOne(Long id) {
 		UserUpdateDomain user = userServiceImpl.findUpdate(id);
-		ModelAndView modelAndView = new ModelAndView("sys/userUpdateForm");
+		ModelAndView modelAndView = new ModelAndView("system/userUpdateForm");
 //		user.setRoles(roleServiceImpl.findAllRole());
 		user.setDeps(departmentServiceImpl.findAll());
 		modelAndView.addObject("user", user);

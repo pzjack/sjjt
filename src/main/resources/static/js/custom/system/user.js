@@ -15,10 +15,32 @@ function initList() {
 	// 默认加载数据
 	findGridData();
 }
+function comboInitDep(comboId, departId) {
+	var count = 0;
+	var combobox = $("#" + comboId);
+	combobox.combobox({
+		url : '/department/combolist',
+		method : 'get',
+		valueField : 'id',
+		textField : 'name',
+		panelHeight : 'auto',
+		onLoadSuccess : function(data) {
+			count = data.length;
+			// 设置下拉列表空白项高度
+			$(".combobox-item").height("16px");
+		},
+		onShowPanel : function() {
+			if (count > 8) {
+				$(this).combobox('panel').height(200);
+			}
+		}
+	});
+}
 /**
  * 新增、编辑画面初始化
  */
 function initForm() {
+	comboInitDep("popUserDepartId", "");
 	// 查询
 	$("#btnClose").bind("click", closePopupWindow);
 	// 清空表单数据
@@ -37,7 +59,7 @@ function keydown() {
 function loadData(pageIndex, pageSize) {
 	$.ajax({
 		type : "POST",
-		url : '/sys/user/list?pageIndex=' + pageIndex + '&pageSize=' + pageSize
+		url : '/user/list?pageIndex=' + pageIndex + '&pageSize=' + pageSize
 				+ '&_csrf=' + csrf,
 		data : $("#queryForm").serialize(),
 		beforeSend : onBeforeSend,
@@ -55,7 +77,7 @@ function loadData(pageIndex, pageSize) {
 function reloadData(pageIndex, pageSize) {
 	$.ajax({
 		type : "POST",
-		url : '/sys/user/list?pageIndex=' + pageIndex + '&pageSize=' + pageSize
+		url : '/user/list?pageIndex=' + pageIndex + '&pageSize=' + pageSize
 				+ '&_csrf=' + csrf,
 		data : $("#queryForm").serialize(),
 		success : onSuccess,
@@ -97,7 +119,7 @@ function operateFormatter(value, row, index) {
  * 添加画面初始化
  */
 function openAddWindow() {
-	openWindow("新增信息", '/sys/user/formInit', 480, 580);
+	openWindow("新增信息", '/user/formInit', 480, 580);
 }
 
 /**
@@ -106,7 +128,7 @@ function openAddWindow() {
  * @param supplierId
  */
 function openEditWindow(id) {
-	var href = '/sys/user/findOne?id=' + id;
+	var href = '/user/findOne?id=' + id;
 	openWindow("编辑信息", href, 480, 480);
 }
 
@@ -144,7 +166,7 @@ function deleteDatas() {
 function doDelete(param) {
 	$.ajax({
 		type : "POST",
-		url : '/sys/user/delete?_csrf=' + csrf,
+		url : '/user/delete?_csrf=' + csrf,
 		data : param,
 		success : afterDelete,
 		error : onError,
@@ -179,7 +201,7 @@ function saveForm() {
 	}
 	$.ajax({
 		type : "POST",
-		url : '/sys/user/save?_csrf=' + csrf,
+		url : '/user/save?_csrf=' + csrf,
 		data : $("#saveForm").serialize(),
 		success : onSaveSuccess,
 		error : onError,

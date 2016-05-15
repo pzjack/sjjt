@@ -2,7 +2,6 @@ package org.sj.oaprj.project.mvc;
 
 import java.util.Map;
 
-import org.sj.oaprj.home.service.DepartmentServiceImpl;
 import org.sj.oaprj.project.domain.ProjectGroupUpdateDomain;
 import org.sj.oaprj.project.service.ProjectGroupServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,6 @@ import io.swagger.annotations.ApiOperation;
 public class ProjectGroupController {
 	@Autowired
 	private ProjectGroupServiceImpl projectGroupServiceImpl;
-	@Autowired
-	private DepartmentServiceImpl departmentServiceImpl;
 
 	@ApiOperation(value = "项目组列表页面", notes = "项目组列表页面<br/>@auther Jack.Alexander")
 	@RequestMapping(value = "/listInit", method = RequestMethod.GET)
@@ -48,8 +45,6 @@ public class ProjectGroupController {
 	public ModelAndView formInit() {
 		ModelAndView modelAndView = new ModelAndView("projects/projectgroup/ProjectGroupForm");
 		ProjectGroupUpdateDomain pg = new ProjectGroupUpdateDomain();
-		pg.setDeps(departmentServiceImpl.findAll());
-		//部门和角色，可以修改成点击下拉的时候动态获取
 		modelAndView.addObject("projectgroup", pg);
 		return modelAndView;
 	}

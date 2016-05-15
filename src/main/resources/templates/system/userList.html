@@ -26,10 +26,10 @@
 <script src="../../static/js/easyui/locale/easyui-lang-zh_CN.js" th:src="@{/js/easyui/locale/easyui-lang-zh_CN.js}"></script>
 <script src="../../static/js/sjjt.common.js" th:src="@{/js/sjjt.common.js}"></script>
 <script src="../../static/js/custom/message.js" th:src="@{/js/custom/message.js}"></script>
-<script src="../../static/js/custom/sys/role.js" th:src="@{/js/custom/sys/role.js}"></script>
+<script src="../../static/js/custom/system/user.js" th:src="@{/js/custom/system/user.js}"></script>
 <script type="text/javascript">
 	$(function() {
-		supplierListInit();
+		initList();
 	});
 </script>
 </head>
@@ -40,8 +40,14 @@
 			<form id="queryForm">
 				<table class="t1">
 					<tr>
-						<th>角色名称：</th>
-						<td><input id="roleName" name="roleName"
+						<th>姓名：</th>
+						<td><input id="userName" name="userName"
+							class="easyui-textbox" style="width: 150px;" /></td>
+						<th>员工编号：</th>
+						<td><input id="employeeNo" name="employeeNo"
+							class="easyui-textbox" style="width: 150px;" /></td>
+						<th>电话号码：</th>
+						<td><input id="userPhone" name="userPhone"
 							class="easyui-textbox" style="width: 150px;" /></td>
 					</tr>
 				</table>
@@ -68,10 +74,14 @@
 				<thead>
 					<tr>
 						<th data-options="field:'id',width:'5%',checkbox:true"></th>
-						<th data-options="field:'name',width:'35%'">角色名称</th>
-						<th data-options="field:'desc',width:'45%'">备注</th>
+						<th data-options="field:'name',width:'10%'">姓名</th>
+						<th data-options="field:'employeeNo',width:'15%'">编号</th>
+						<th data-options="field:'phone',width:'15%'">电话</th>
+						<th data-options="field:'post',width:'15%'">职务</th>
+						<th data-options="field:'departName',width:'15%'">部门</th>
+						<th data-options="field:'remark',width:'15%'">备注</th>
 						<th
-							data-options="field:'operate',width:'15%',align:'center',formatter:operateFormatter">操作</th>
+							data-options="field:'operate',width:'10%',align:'center',formatter:operateFormatter">操作</th>
 					</tr>
 				</thead>
 			</table>

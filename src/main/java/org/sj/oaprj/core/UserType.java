@@ -19,7 +19,7 @@ public enum UserType {
 	
 	UserType(Integer usertype) {
 		switch(usertype) {
-		case 1:
+		case 0:
 			this.intState = usertype;
 			this.strName = "employee";
 			break;
