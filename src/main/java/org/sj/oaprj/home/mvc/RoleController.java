@@ -134,4 +134,10 @@ public class RoleController {
 	public @ResponseBody String saveRoleAuth(Long roleId, @RequestParam(value = "idArray[]") Long[] idArray) {
 		return roleServiceImpl.saveRoleAuth(roleId, idArray);
 	}
+	
+	@ApiOperation(value = "查询所有角色", notes = "查询所有角色<br/>@auther dzhifang")
+	@RequestMapping(value = "/findAllRole", method = RequestMethod.GET)
+	public @ResponseBody List<Role> findAllRole() {
+		return roleServiceImpl.findAllRole();
+	}
 }

@@ -27,80 +27,71 @@
 	<div class="easyui-layout" data-options="fit:true">
 		<div class="" data-options="region:'center',border:false" style="padding: 5px;">
 			<form id="saveForm">
-				<table class="t1">
+				<table class="t1" th:with="condition=${user.id==null}">
 					<tr>
 						<th>姓名：</th>
-						<td><input id="popUserName" name="name"
-							th:value="${user.name}"
+						<td><input id="popUserName" name="name"	th:value="${user.name}"
 							class="easyui-validatebox textbox" data-options="required:true"
 							style="width: 200px;" maxlength="80"/></td>
-					</tr>
-					<tr>
 						<th>员工编号：</th>
-						<td><input id="popUserEmployeeNo" name="employeeNo"
-							th:value="${user.employeeNo}"
+						<td><input id="popUserEmployeeNo" name="employeeNo"	th:value="${user.employeeNo}"
 							class="easyui-validatebox textbox"
 							style="width: 200px;" maxlength="20"/></td>
 					</tr>
+ 
 					<tr>
-						<th>手机：</th>
-						<td><input id="popUserPhone" name="phone"
-							th:value="${user.phone}"
+						<th>手机号码：</th>
+						<td><input id="popUserPhone" name="phone" th:value="${user.phone}"
 							class="easyui-validatebox textbox" data-options="required:true"
 							style="width: 200px;" maxlength="15"/></td>
-					</tr>
-					<tr>
 						<th>邮箱：</th>
-						<td><input id="popUserEmail" name="email"
-							th:value="${user.email}"
+						<td><input id="popUserEmail" name="email" th:value="${user.email}"
 							class="easyui-validatebox textbox"
 							style="width: 200px;" maxlength="60"/></td>
 					</tr>
 					<tr>
 						<th>职务：</th>
-						<td><input id="popUserPost" name="post"
-							th:value="${user.post}"
-							class="easyui-validatebox textbox"
+						<td><input id="popUserPost" name="post"	th:value="${user.post}"
+							class="easyui-combobox"
 							style="width: 200px;" maxlength="30"/></td>
-					</tr>
-					<tr>
 						<th>部门：</th>
 						<td>
-							<input id="popUserDepartId" name="departId"
-							th:value="${user.departId}"
+							<input id="popUserDepartId" name="departId"	th:value="${user.departId}"
 							class="easyui-combobox" data-options="required:true"
 							style="width: 200px;" maxlength="22"/>
 						</td>
 					</tr>
-					<tr>
+ 
+					<tr th:if="${condition}">
 						<th>账号：</th>
-						<td><input id="popUserAccount" name="account" readonly="readonly"
-							th:value="${user.account}"
-							class="easyui-validatebox textbox" data-options="required:true"
+						<td><input id="popUserAccount" name="account" th:value="${user.account}"
+							class="easyui-validatebox textbox" data-options="required:true,readonly:true"
 							style="width: 200px;" maxlength="80"/></td>
-					</tr>
-					<tr>
 						<th>密码：</th>
-						<td><input id="popUserPwd" name="pwd"
-							th:value="${user.pwd}" type="password"
+						<td><input id="popUserPwd" name="pwd" th:value="${user.pwd}" type="password"
 							class="easyui-validatebox textbox" data-options="required:true"
 							style="width: 200px;" maxlength="20"/></td>
 					</tr>
+					<tr th:unless="${condition}"> 
+						<th>账号：</th>
+						<td colspan="3"><input id="popUserAccount" name="account" th:value="${user.account}"
+							class="easyui-validatebox textbox" data-options="required:true,readonly:true"
+							style="width: 200px;" maxlength="80"/></td>
+					</tr>
 					<tr>
 						<th>角色：</th>
-						<td>
-							<select id="popUserRolestr" name="rolestr" multiple="multiple" size="3">
-							<option th:each="role : ${user.roles}" th:value="${role.id}" th:text="${role.name}"></option>
-							</select>
+						<td colspan="3" style="padding:6px">
+							<input class="easyui-combobox" id="popUserRolestr" name="rolestr" th:value="${user.rolestr}"
+								data-options="multiple:true,multiline:true,required:true" style="width:530px;height:50px;"/>
 						</td>
 					</tr>
 					<tr>
 						<th>备注：</th>
-						<td style="padding:6px">
+						<td  colspan="3" style="padding:6px">
 							<input id="popRoleDesc" name="remark" 
 							th:value="${user.remark}"
 							class="easyui-textbox" data-options="multiline:true"
-							style="width:300px;height:100px;" maxlength="100"/>
+							style="width:530px;height:100px;" maxlength="100"/>
 						</td>
 					</tr>
 				</table>
