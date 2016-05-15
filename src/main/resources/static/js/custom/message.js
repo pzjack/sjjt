@@ -20,6 +20,7 @@ function Message() {
 	this.PLS_SELECT_ROLE = "请先选择要授权的角色！";
 	this.PLS_SELECT_EDIT_DATA = "请选择要修改的数据！";
 	this.ROLE_NAME_EXISTS = "角色名称已存在，请重新输入！";
+	this.DELETE_DATA_CONFIRM = "您确定要删除所选的数据吗？";
 
 	this.COMMIT_SUCCESS = "提交成功！";
 	this.COMMIT_FAILED = "提交失败！";

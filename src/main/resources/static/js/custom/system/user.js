@@ -134,10 +134,10 @@ function deleteDatas() {
 		id += "" + $(this).attr("id") + ",";
 	});
 	if (id.length == 0) {
-		$.messager.alert('提示信息', message.DELETE_INFORMATION_CONFIRM, "info");
+		$.messager.alert('提示信息', message.PLS_SELECT_DELETE_DATA, "info");
 		return;
 	}
-	$.messager.confirm("提示信息", message.DELETE_MESSAGE_CONFIRM, function(r) {
+	$.messager.confirm("提示信息", message.DELETE_DATA_CONFIRM, function(r) {
 		if (r) {
 			var param = {
 				idArray : [ id.substring(0, id.length - 1) ]
