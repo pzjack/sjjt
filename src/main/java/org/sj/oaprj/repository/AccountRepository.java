@@ -11,4 +11,6 @@ public interface AccountRepository extends PagingAndSortingRepository<Account, L
 	Long countByAccount(String account);
 	@Modifying
 	Integer deleteByUser_IdIn(Long[] userIds);
+	
+	List<Account> findByUser_Id(Long userId);
 }

@@ -35,6 +35,8 @@ public class UserServiceImpl {
 	private UserRepository userRepository;
 	@Autowired
 	private AccountRepository accountRepository;
+//	@Autowired
+//	private AccountRoleRepository accountRoleRepository;
 	@Autowired
 	private DepartmentServiceImpl departmentServiceImpl;
 	@Autowired
@@ -89,6 +91,33 @@ public class UserServiceImpl {
 			}
 		} else {
 			Employee user = userRepository.findOne(domain.getId());
+			String rolestr = domain.getRolestr();
+			if(null != rolestr) {
+				if(rolestr.startsWith(",")) {
+					rolestr = rolestr.substring(1);
+				}
+				if(rolestr.endsWith(",")) {
+					rolestr = rolestr.substring(0, rolestr.length() - 1);
+				}
+				String[] rs = rolestr.split(",");
+				List<Long> roleIds = new ArrayList<Long>();
+				for(String r : rs) {
+					if(!Utils.isEmpty(r)) {
+						roleIds.add(new Long(r));
+					}
+				}
+				List<Account> accs = accountRepository.findByUser_Id(user.getId());
+				if(accs.size() > 0) {
+					Account acc = accs.get(0);
+
+					List<Role> roles = roleServiceImpl.findRoleByIds(roleIds);
+					acc.setRoles(roles);
+//					accountRoleRepository.deleteByAccountId(acc.getId());
+					
+					accountRepository.save(acc);
+					
+				}
+			}
 			if(null != user) {
 				if(null == user.getDepart()) {
 					if(null != domain.getDepartId()) {
@@ -102,6 +131,8 @@ public class UserServiceImpl {
 				user.setRemark(domain.getRemark());
 				user.setEmployeeNo(domain.getEmployeeNo());
 				emp = save(user);
+				
+
 			}
 		}
 		return Utils.isNull(emp) ? Constants.SAVE_FAIL : Constants.SAVE_SUCCESS;
@@ -124,10 +155,24 @@ public class UserServiceImpl {
 			d.setEmail(e.getEmail());
 			d.setPost(e.getPost());
 			d.setRemark(e.getRemark());
-			d.setRolestr("1,2");
+//			d.setRolestr("1,2");
 		 
 			if (null != e.getDepart()) {
 				d.setDepartId(e.getDepart().getId());
+			}
+			List<Account> accs = accountRepository.findByUser_Id(e.getId());
+			StringBuilder rsb = new StringBuilder();
+			if(accs.size() > 0) {
+				Account acc = accs.get(0);
+				for(int i = 0; i < acc.getRoles().size(); i++) {
+					Role r = acc.getRoles().get(i);
+					rsb.append(r.getId());
+					if(i < acc.getRoles().size() - 1) {
+						rsb.append(",");
+					}
+				}
+				d.setRolestr(rsb.toString());
+				d.setAccount(acc.getAccount());
 			}
 		}
 		return d;
