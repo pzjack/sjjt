@@ -21,7 +21,7 @@
 <script src="../../static/js/easyui/jquery.easyui.min.js" th:src="@{/js/easyui/jquery.easyui.min.js}"></script>
 <script src="../../static/js/easyui/locale/easyui-lang-zh_CN.js" th:src="@{/js/easyui/locale/easyui-lang-zh_CN.js}"></script>
 <script src="../../static/js/sjjt.common.js" th:src="@{/js/sjjt.common.js}"></script>
-<script src="../../static/js/custom/sys/role.js" th:src="@{/js/custom/sys/role.js}"></script>
+<script src="../../static/js/custom/system/user.js" th:src="@{/js/custom/system/user.js}"></script>
 </head>
 <body>
 	<div class="easyui-layout" data-options="fit:true">
@@ -29,24 +29,60 @@
 			<form id="saveForm">
 				<table class="t1">
 					<tr>
-						<th>角色名称：</th>
-						<td><input id="popRoleName" name="name"
-							th:value="${role.name}"
+						<th>姓名：</th>
+						<td><input id="popUserName" name="name"
+							th:value="${user.name}"
 							class="easyui-validatebox textbox" data-options="required:true"
 							style="width: 200px;" maxlength="80"/></td>
-						
+					</tr>
+					<tr>
+						<th>员工编号：</th>
+						<td><input id="popUserEmployeeNo" name="employeeNo"
+							th:value="${user.employeeNo}"
+							class="easyui-validatebox textbox"
+							style="width: 200px;" maxlength="20"/></td>
+					</tr>
+					<tr>
+						<th>手机：</th>
+						<td><input id="popUserPhone" name="phone" readonly="readonly"
+							th:value="${user.phone}"
+							class="easyui-validatebox textbox" data-options="required:true"
+							style="width: 200px;" maxlength="15"/></td>
+					</tr>
+					<tr>
+						<th>邮箱：</th>
+						<td><input id="popUserEmail" name="email"
+							th:value="${user.email}"
+							class="easyui-validatebox textbox"
+							style="width: 200px;" maxlength="60"/></td>
+					</tr>
+					<tr>
+						<th>职务：</th>
+						<td><input id="popUserPost" name="post"
+							th:value="${user.post}"
+							class="easyui-validatebox textbox"
+							style="width: 200px;" maxlength="30"/></td>
+					</tr>
+					<tr>
+						<th>部门：</th>
+						<td>
+							<input id="popUserDepartId" name="departId"
+							th:value="${user.departId}"
+							class="easyui-combobox" data-options="required:true"
+							style="width: 200px;" maxlength="22"/>
+						</td>
 					</tr>
 					<tr>
 						<th>备注：</th>
 						<td style="padding:6px">
-							<input id="popRoleDesc" name="desc" 
-							th:value="${role.desc}"
+							<input id="popRoleDesc" name="remark" 
+							th:value="${user.remark}"
 							class="easyui-textbox" data-options="multiline:true"
-							style="width:300px;height:100px;" maxlength="300"/>
+							style="width:300px;height:100px;" maxlength="100"/>
 						</td>
 					</tr>
 				</table>
-				<input type="hidden" id="popId" name="id" th:value="${role.id}"/>
+				<input type="hidden" id="popId" name="id" th:value="${user.id}"/>
 			</form>
 		</div>
 		<div data-options="region:'south',border:false" style="text-align: right; padding: 5px;">

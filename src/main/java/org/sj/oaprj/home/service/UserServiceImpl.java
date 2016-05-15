@@ -137,6 +137,7 @@ public class UserServiceImpl {
 			entity.setDeleteFlag(Constants.DELETE_FLAG_1);
 			userRepository.save(entity);
 		}
+		accountRepository.deleteByUser_IdIn(idArray);
 	}
 
 	@Transactional(readOnly = true)

@@ -23,7 +23,7 @@ public class Account extends ID {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID")
 	private Employee user;
-	@ManyToMany(targetEntity=org.sj.oaprj.entity.Role.class, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToMany(targetEntity=org.sj.oaprj.entity.Role.class, fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinTable(
             name = "T_ACCOUNT_ROLE", 
             joinColumns = @JoinColumn(name = "ACCOUNT_ID"), 
