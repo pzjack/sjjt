@@ -17,7 +17,7 @@ public class AccountServiceImpl {
 
 	public String updatePwd(RespAccount respAccount) {
 		if (!respAccount.getPassword().equals(respAccount.getConfirmPassword())) {
-			return "";
+			return Constants.PASSWORD_NOT_EQUALS;
 		}
 		List<Account> accountList = accountRepository.findByAccount(respAccount.getAccount());
 		if (!Utils.isNull(accountList) && accountList.size() > 0) {

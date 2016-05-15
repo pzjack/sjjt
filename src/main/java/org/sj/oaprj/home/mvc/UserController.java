@@ -69,7 +69,7 @@ public class UserController {
 	@RequestMapping(value = "/findOne", method = RequestMethod.GET)
 	public ModelAndView findOne(Long id) {
 		UserUpdateDomain user = userServiceImpl.findUpdate(id);
-		ModelAndView modelAndView = new ModelAndView("system/userUpdateForm");
+		ModelAndView modelAndView = new ModelAndView("system/userForm");
 //		user.setRoles(roleServiceImpl.findAllRole());
 		user.setDeps(departmentServiceImpl.findAll());
 		modelAndView.addObject("user", user);
