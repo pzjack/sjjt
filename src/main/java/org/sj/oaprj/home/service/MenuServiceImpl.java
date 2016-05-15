@@ -16,16 +16,18 @@ public class MenuServiceImpl {
 	private MenuRepository menuRepository;
 	@Autowired
 	private RoleMenuRepository roleMenuRepository;
+
 	/**
 	 * 查询所有菜单
+	 * 
 	 * @return
 	 */
 	public List<Menu> findMenuAll() {
 		List<Menu> menuList = menuRepository.findAll();
 		return menuList;
 	}
-	
-	public Menu findMenuByRoleId(Long roleId){
+
+	public Menu findMenuByRoleId(Long roleId) {
 		List<Menu> tempMenuList = new ArrayList<Menu>();
 		// 查询菜单列表
 		List<Menu> menuList = menuRepository.findAll();
@@ -49,6 +51,7 @@ public class MenuServiceImpl {
 		}
 		return CreateTreeNodes(menuList);
 	}
+
 	/**
 	 * 获得父节点菜单信息
 	 * 
@@ -56,8 +59,7 @@ public class MenuServiceImpl {
 	 * @param menuList
 	 * @param authedMenuList
 	 */
-	private void getParentMenu(Menu menu, List<Menu> menuList,
-			List<Menu> authedMenuList) {
+	private void getParentMenu(Menu menu, List<Menu> menuList, List<Menu> authedMenuList) {
 		if (!authedMenuList.contains(menu)) {
 			authedMenuList.add(menu);
 		}
@@ -98,8 +100,7 @@ public class MenuServiceImpl {
 	 * @param menusList
 	 * @param nodeRootId
 	 */
-	private void FillChildren(Menu node, List<Menu> menusList,
-			Long nodeRootId) {
+	private void FillChildren(Menu node, List<Menu> menusList, Long nodeRootId) {
 		for (Menu item : menusList) {
 			if (item.getParentId() == node.getId()) {
 				node.getChildren().add(item);
@@ -107,5 +108,15 @@ public class MenuServiceImpl {
 			}
 		}
 	}
-	
+
+	/**
+	 * 根据角色ID查询授权菜单
+	 * @param roleId
+	 * @return
+	 */
+	 public List<RoleMenu> findByRoleId(Long roleId) {
+		// 查询角色菜单列表
+		List<RoleMenu> roleMenuList = roleMenuRepository.findByRoleId(roleId);
+		return roleMenuList;
+	}
 }

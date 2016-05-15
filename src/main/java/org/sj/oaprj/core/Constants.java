@@ -14,6 +14,7 @@ public class Constants {
 	public static final String PASSWORD_NOT_EQUALS="PASSWORD_NOT_EQUALS";
 	public static final String ACCOUNT_NOT_EXISTS = "ACCOUNT_NOT_EXISTS";
 	
+	public static final String ROLE_NAME_EXISTS="ROLE_NAME_EXISTS";
 	/**
 	 * 未删除
 	 */

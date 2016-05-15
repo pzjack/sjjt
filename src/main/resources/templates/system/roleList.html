@@ -25,70 +25,40 @@
 <script src="../../static/js/easyui/extend.validate.js" th:src="@{/js/easyui/extend.validate.js}"></script>
 <script src="../../static/js/sjjt.common.js" th:src="@{/js/sjjt.common.js}"></script>
 <script src="../../static/js/custom/message.js" th:src="@{/js/custom/message.js}"></script>
-<script src="../../static/js/custom/system/codeData.js" th:src="@{/js/custom/system/codeData.js}"></script>
+<script src="../../static/js/custom/system/role.js" th:src="@{/js/custom/system/role.js}"></script>
 <script type="text/javascript">
 	$(function() {
-		codeDataListInit();
+		roleListInit();
 	});
 </script>
 </head>
 <body style="padding:1px;">
 	<div class="easyui-layout" data-options="fit:true">
-
 		<div data-options="region:'west',split:true" title="" style="width: 210px;">
-			<div class="easyui-panel" style="margin: 5px; width: 180px;" data-options="border:false">
+			<div class="easyui-panel" style="margin: 5px; width: 200px;" data-options="border:false">
 				<table>
 					<tr>
-						<td><a href="javascript:void(0);" id="btnAddType"
+						<td><a href="javascript:void(0);" id="btnAdd"
 							class="easyui-linkbutton btn-separator" data-options="iconCls:'icon-add',plain:'true'">新增</a></td>
 						<td>
 							<div class="datagrid-btn-separator"></div>
 						</td>
-						<td><a href="javascript:void(0);" id="btnEditType"
+						<td><a href="javascript:void(0);" id="btnEdit"
 							class="easyui-linkbutton btn-separator" data-options="iconCls:'icon-edit',plain:'true'">编辑</a></td>
+						<td>
+							<div class="datagrid-btn-separator"></div>
+						</td>
+						<td><a href="javascript:void(0);" id="btnDelete"
+							class="easyui-linkbutton btn-separator" data-options="iconCls:'icon-remove',plain:'true'">删除</a></td>
 					</tr>
 				</table>
 			</div>
+			<input type="hidden" id="csrf"/>
 			<ul id="treeUl" class="easyui-tree" data-options="checkbox:false,border:true" ></ul>
 		</div>
 
-		<div data-options="region:'center',title:'代码信息'">
-			<div class="easyui-layout" data-options="fit:true">
-				<div class="minWidth" data-options="region:'center',border:false">
-				<form id="queryForm"><input type="hidden" id="codeType" name="codeType"/> </form>
-					<table id="dataList" class="easyui-datagrid"
-						data-options="rownumbers:true,singleSelect:false,toolbar:'#toolbar',fit:true,border:false">
-						<thead>
-							<tr>
-								<th data-options="field:'id',width:'5%',checkbox:true"></th>
-								<th data-options="field:'dataType',width:'30%'">编码</th>
-								<th data-options="field:'dataName',width:'50%'">名称</th>
-								<th data-options="field:'operate',width:'15%',align:'center',formatter:operateFormatter">操作</th>
-							</tr>
-						</thead>
-					</table>
-					<div id="toolbar">
-						<table>
-							<tr>
-								<td><a href="javascript:void(0);" id="btnAdd"
-									class="easyui-linkbutton btn-separator" data-options="iconCls:'icon-add',plain:'true'">新增</a></td>
-								<td>
-									<div class="datagrid-btn-separator"></div>
-								</td>
-								<td><a href="javascript:void(0);" id="btnDeletes"
-									class="easyui-linkbutton btn-separator" data-options="iconCls:'icon-remove',plain:'true'">删除</a></td>
-							</tr>
-						</table>
-					</div>
-				</div>
-				<div class="minWidth" data-options="region:'south',border:false"
-					style="height: 33px;">
-					<div class="easyui-panel"
-						style="background-color: rgb(244, 244, 244); width: 100%;">
-						<div class="easyui-pagination" id="pagination"></div>
-					</div>
-				</div>
-			</div>
+		<div data-options="region:'center',title:'菜单列表'" style="overflow:hidden">
+			<iframe id="menuFrame" width="100%" height="100%" frameborder="0" scrolling="auto" ></iframe>
 		</div>
 	</div>
 </body>
