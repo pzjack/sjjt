@@ -54,10 +54,6 @@ public class RoleServiceImpl {
 				return Constants.ROLE_NAME_EXISTS;
 			}
 		}
-
-//		Role role = roleRepository.save(entity);
-//		return Utils.isNull(role) ? Constants.SAVE_FAIL : Constants.SAVE_SUCCESS;
-
 	}
 
 	public Role findOne(Long id) {

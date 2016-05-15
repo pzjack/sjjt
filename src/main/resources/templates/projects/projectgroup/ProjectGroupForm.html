@@ -38,9 +38,13 @@
 					<tr>
 						<th>所属部门：</th>
 						<td>
-							<select id="popDepartmentId" name="departmentId" th:field="*{projectgroup.departmentId}">
+							<!-- <select id="popDepartmentId" name="departmentId" th:field="*{projectgroup.departmentId}">
 							<option th:each="dep : ${projectgroup.deps}" th:value="${dep.id}" th:text="${dep.deptName}"></option>
-							</select>
+							</select> -->
+							<input id="popDepartmentId" name="departmentId"
+							th:value="${projectgroup.departmentId}"
+							class="easyui-combobox" data-options="required:true"
+							style="width: 200px;" maxlength="22"/>
 						</td>
 					</tr>
 					<tr>
