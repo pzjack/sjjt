@@ -1,5 +1,7 @@
 package org.sj.oaprj.core;
 
+import java.util.Collection;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -8,8 +10,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
 
 /**
  * Utility class for Spring Security.
@@ -31,6 +31,27 @@ public final class SecurityUtils {
         UserDetails springSecurityUser = null;
         String userName = null;
         if (authentication != null) {
+        /*
+         * 获取用户的角色ID列表、角色名称列表、用户姓名、用户ID信息，可以参考下边注释掉的这部分代码
+         * 	SecurityUserDetail securityUser = null;
+        	if(authentication.getPrincipal() instanceof SecurityUserDetail) {
+        		securityUser = (SecurityUserDetail)authentication.getPrincipal();
+        		StringBuilder sb = new StringBuilder();
+        		if(null != securityUser.getRoleIds()) {
+        			Long[] ids = securityUser.getRoleIds();
+        			for(Long id : ids) {
+        				sb.append(id).append(",");
+        			}
+        		}
+        		StringBuilder sb2 = new StringBuilder();
+        		if(null != securityUser.getRoleNames()) {
+        			String[] names = securityUser.getRoleNames();
+        			for(String name : names) {
+        				sb2.append(name).append(",");
+        			}
+        		}
+        		System.out.println(sb.toString() + "\t" + securityUser.getUserId() + "\t" + sb2.toString());
+        	}*/
             if (authentication.getPrincipal() instanceof UserDetails) {
                 springSecurityUser = (UserDetails) authentication.getPrincipal();
                 userName = springSecurityUser.getUsername();
@@ -50,11 +71,11 @@ public final class SecurityUtils {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Collection<? extends GrantedAuthority> authorities = securityContext.getAuthentication().getAuthorities();
         if (authorities != null) {
-            for (GrantedAuthority authority : authorities) {
+//            for (GrantedAuthority authority : authorities) {
 //                if (authority.getAuthority().equals(AuthoritiesConstants.ANONYMOUS)) {
 //                    return false;
 //                }
-            }
+//            }
         }
         return true;
     }
