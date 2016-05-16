@@ -11,9 +11,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import org.sj.oaprj.entity.Department;
 import org.sj.oaprj.entity.ID;
 
 /**
@@ -43,10 +45,10 @@ public class Project extends ID {
 	private BigDecimal precost;//工程预算
 	@Column(name = "COST")
 	private BigDecimal cost;//实际完成资金
-//	@Column(name = "DEP_ID")
-//	private Org department;
-	@Column(name = "DEP_ID")
-	private Long depId;//部门ID
+	@NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DEP_ID")
+	private Department department;//所属部门
 	@Column(name = "STATE")
 	private Integer state;//状态
 	
@@ -114,11 +116,11 @@ public class Project extends ID {
 	public void setProjectgroup(ProjectGroup projectgroup) {
 		this.projectgroup = projectgroup;
 	}
-	public Long getDepId() {
-		return depId;
+	public Department getDepartment() {
+		return department;
 	}
-	public void setDepId(Long depId) {
-		this.depId = depId;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 	public Integer getState() {
 		return state;

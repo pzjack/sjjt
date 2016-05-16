@@ -30,11 +30,11 @@ public class ProjectGroupServiceImpl {
 		ProjectGroup projectgroup = null;
 		if(null == domain.getId()) {
 			projectgroup = new ProjectGroup();
-			projectgroup.setName(domain.getName());
-			projectgroup.setRemark(domain.getRemark());
 		} else {
 			projectgroup = findOne(domain.getId());
 		}
+		projectgroup.setName(domain.getName());
+		projectgroup.setRemark(domain.getRemark());
 		if(null != domain.getDepartmentId()) {
 			projectgroup.setDepartment(departmentServiceImpl.findOne(domain.getDepartmentId()));
 		}
@@ -58,7 +58,7 @@ public class ProjectGroupServiceImpl {
 				d.setDepartmentId(projectgroup.getDepartment().getId());
 			}
 		}
-		d.setDeps(departmentServiceImpl.findAll());
+//		d.setDeps(departmentServiceImpl.findAll());
 		return d;
 	}
 

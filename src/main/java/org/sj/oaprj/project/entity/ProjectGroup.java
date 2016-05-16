@@ -30,7 +30,7 @@ public class ProjectGroup extends ID {
 	@NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DEP_ID")
-	private Department department;//部门
+	private Department department;//所属部门
 	public String getName() {
 		return name;
 	}

@@ -3,8 +3,6 @@ package org.sj.oaprj.home.mvc;
 import java.util.Map;
 
 import org.sj.oaprj.domain.UserUpdateDomain;
-import org.sj.oaprj.home.service.DepartmentServiceImpl;
-import org.sj.oaprj.home.service.RoleServiceImpl;
 import org.sj.oaprj.home.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -24,10 +22,6 @@ import io.swagger.annotations.ApiOperation;
 public class UserController {
 	@Autowired
 	private UserServiceImpl userServiceImpl;
-	@Autowired
-	private DepartmentServiceImpl departmentServiceImpl;
-	@Autowired
-	private RoleServiceImpl roleServiceImpl;
 
 	@ApiOperation(value = "用户列表页面", notes = "用户列表页面<br/>@auther Jack.Alexander")
 	@RequestMapping(value = "/listInit", method = RequestMethod.GET)
@@ -55,10 +49,7 @@ public class UserController {
 	public ModelAndView formInit() {
 		ModelAndView modelAndView = new ModelAndView("system/userForm");
 		UserUpdateDomain user = new UserUpdateDomain();
-		user.setRoles(roleServiceImpl.findAllRole());
-		user.setDeps(departmentServiceImpl.findAll());
 		user.setPwd("66668888");
-		//部门和角色，可以修改成点击下拉的时候动态获取
 		modelAndView.addObject("user", user);
 		return modelAndView;
 	}
@@ -74,8 +65,6 @@ public class UserController {
 	public ModelAndView findOne(Long id) {
 		UserUpdateDomain user = userServiceImpl.findUpdate(id);
 		ModelAndView modelAndView = new ModelAndView("system/userForm");
-//		user.setRoles(roleServiceImpl.findAllRole());
-		user.setDeps(departmentServiceImpl.findAll());
 		modelAndView.addObject("user", user);
 		return modelAndView;
 	}

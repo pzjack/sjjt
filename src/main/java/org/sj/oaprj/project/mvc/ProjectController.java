@@ -4,15 +4,20 @@
 package org.sj.oaprj.project.mvc;
 
 import java.io.IOException;
+import java.util.Map;
 
+import org.sj.oaprj.project.domain.ProjectUpdateDomain;
 import org.sj.oaprj.project.service.ProjectServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,7 +28,7 @@ import io.swagger.annotations.ApiParam;
  *
  */
 @Controller
-@RequestMapping(value = "/api/v1/project")
+@RequestMapping(value = "/projects/mng")
 @Api(value = "工程项目管理API", description = "工程项目管理<br>@author Jack.Alexander")
 public class ProjectController {
 
@@ -41,11 +46,11 @@ public class ProjectController {
 			Long unitprojectId) {
 		
 		try {
-			projectServiceImpl.importExcel(file.getInputStream(), projectId, unitprojectId);
+			projectServiceImpl.importProjectItemExcel(file.getInputStream(), projectId, unitprojectId);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "projects/uploadProjectDepart";
+		return "projects/project/uploadProjectDepart";
 	}
 	@RequestMapping(value = "/console", method = RequestMethod.GET)
 	@ApiOperation(httpMethod = "GET", value = "控制台输出清单子项的所有名称", response = Void.class, notes = "控制台输出清单子项的所有名称<br>@author Jack.Alexander")
@@ -55,6 +60,53 @@ public class ProjectController {
 	
 	@RequestMapping(value = "/viewupload", method = RequestMethod.GET)
 	public String uploadView() {
-		return "projects/uploadProjectDepart";
+		return "projects/project/uploadProjectDepart";
+	}
+	
+	@ApiOperation(value = "项目组列表页面", notes = "项目组列表页面<br/>@auther Jack.Alexander")
+	@RequestMapping(value = "/listInit", method = RequestMethod.GET)
+	public String listInit() {
+		return "projects/project/projectList";
+	}
+	
+	@ApiOperation(value = "项目组列表", notes = "项目组列表<br/>@auther Jack.Alexander")
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> list(String name,  Integer pageIndex, Integer pageSize) {
+		Map<String, Object> result = projectServiceImpl.findByFields(name, buildPageRequest(pageIndex, pageSize));
+		return result;
+	}
+	
+	private PageRequest buildPageRequest(final int page, final int size) {
+        return new PageRequest(page - 1, size);
+    }
+
+	@ApiOperation(value = "项目组新增画面", notes = "项目组新增画面<br/>@auther Jack.Alexander")
+	@RequestMapping(value = "/formInit", method = RequestMethod.GET)
+	public ModelAndView formInit() {
+		ModelAndView modelAndView = new ModelAndView("projects/project/projectForm");
+		ProjectUpdateDomain pd = new ProjectUpdateDomain();
+		modelAndView.addObject("project", pd);
+		return modelAndView;
+	}
+
+	@ApiOperation(value = "项目组信息新增", notes = "项目组信息新增<br/>@auther Jack.Alexander")
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public @ResponseBody String save(ProjectUpdateDomain domain) {
+		return projectServiceImpl.save(domain);
+	}
+
+	@ApiOperation(value = "查询单个项目组信息", notes = "查询单个项目组信息<br/>@auther Jack.Alexander")
+	@RequestMapping(value = "/findOne", method = RequestMethod.GET)
+	public ModelAndView findOne(Long id) {
+		ProjectUpdateDomain pd = projectServiceImpl.findUpdate(id);
+		ModelAndView modelAndView = new ModelAndView("projects/project/projectForm");
+		modelAndView.addObject("project", pd);
+		return modelAndView;
+	}
+
+	@ApiOperation(value = "项目组信息删除", notes = "项目组信息删除<br/>@auther Jack.Alexander")
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public @ResponseBody void delete(@RequestParam(value = "idArray[]") Long[] idArray) {
+		projectServiceImpl.delete(idArray);
 	}
 }
