@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>陕建集团办公项目物资管理系统</title>
+<!-- Force latest IE rendering engine or ChromeFrame if installed -->
+<!--[if IE]>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description"
+	content="U14Studio.com Product Prototype Template" />
+<meta name="author" content="service@u14studio.com" />
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+<title>陕建集团办公项目物资管理系统</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"></link>
+<!-- easyui core CSS -->
+<link href="../../static/js/easyui/themes/gray/easyui.css" rel="stylesheet" media="screen" th:href="@{/js/easyui/themes/gray/easyui.css}" />
+<link href="../../static/js/easyui/themes/color.css" rel="stylesheet" media="screen" th:href="@{/js/easyui/themes/color.css}" />
+<link href="../../static/js/easyui/themes/icon.css" rel="stylesheet" media="screen" th:href="@{/js/easyui/themes/icon.css}" />
+<!-- Custom styles for this template -->
+<link href="../../static/css/common.css" rel="stylesheet" media="screen" th:href="@{/css/common.css}" />
+<script src="../../static/js/jquery-1.9.1.min.js" th:src="@{/js/jquery-1.9.1.min.js}"></script>
+<script src="../../static/js/easyui/jquery.easyui.min.js" th:src="@{/js/easyui/jquery.easyui.min.js}"></script>
+<script src="../../static/js/easyui/locale/easyui-lang-zh_CN.js" th:src="@{/js/easyui/locale/easyui-lang-zh_CN.js}"></script>
+<script src="../../static/js/sjjt.common.js" th:src="@{/js/sjjt.common.js}"></script>
+<script src="../../static/js/custom/message.js" th:src="@{/js/custom/message.js}"></script>
+<script src="../../static/js/custom/project/projectgroupuser/projectgroupuser.js" th:src="@{/js/custom/project/projectgroupuser/projectgroupuser.js}"></script>
+<script type="text/javascript">
+	$(function() {
+		initList();
+	});
+</script>
+</head>
+<body>
+	<div class="easyui-layout" data-options="fit:true">
+		<!-- <div class="minWidth" style="padding: 5px;"
+			data-options="region:'north',border:false">
+			<form id="queryForm">
+				<table class="t1">
+					<tr>
+						<th>项目组名称：</th>
+						<td><input id="projectGroupName" name="name" class="easyui-combogrid" style="width: 250px;" 
+							data-options="icons: [{iconCls:'icon-clear',handler: function(e){combogridClear('projectGroupName');}}]"/>
+							</td>
+					</tr>
+				</table>
+				<table style="width: 100%">
+					<tr>
+						<td><div align="right" class="search_btn_div">
+								<a id="btnSearch" href="javascript:void(0);"
+									class="easyui-linkbutton c0"
+									data-options="iconCls:'icon-search'"
+									style="padding-right: 5px;">查&nbsp;&nbsp;询</a> <a id="btnClear"
+									href="javascript:void(0);"
+									style="margin-left: 5px; margin-right: 5px; padding-right: 5px;"
+									class="easyui-linkbutton c0"
+									data-options="iconCls:'icon-clear'">清&nbsp;&nbsp;空</a>
+							</div></td>
+					</tr>
+				</table>
+			</form>
+		</div> -->
+		<div class="minWidth" style="padding: 1px 5px 0px 5px;"
+			data-options="region:'center',border:false">
+			<table id="dataList" class="easyui-datagrid"
+				data-options="rownumbers:true,singleSelect:false,toolbar:'#toolbar',fit:true">
+				<thead>
+					<tr>
+						<th data-options="field:'id',width:'5%',checkbox:true"></th>
+						<th data-options="field:'name',width:'20%'">员工姓名</th>
+						<th data-options="field:'departmentName',width:'25%'">所属部门</th>
+						<th data-options="field:'remark',width:'40%'">角色</th>
+						<th
+							data-options="field:'operate',width:'10%',align:'center'">操作</th>
+					</tr>
+				</thead>
+			</table>
+			<div id="toolbar">
+				<table>
+					<tr>
+						<td>项目组名称：</td>
+						<td><input id="projectGroupNameAdd" name="projectGroupNameAdd" value='12' text="11" class="easyui-combogrid" style="width: 200px;" 
+							data-options="icons: [{iconCls:'icon-clear',handler: function(e){combogridClear('projectGroupNameAdd');}}]"/>
+						</td>
+						<td style="padding-left:5px;">员工姓名：</td>
+						<td><input id="employeeAdd" name="employeeAdd" class="easyui-combogrid" style="width: 100px;" 
+							data-options="icons: [{iconCls:'icon-clear',handler: function(e){combogridClear('employeeAdd');}}]"/>
+						</td>
+						<td style="padding-left:5px;">角色：</td>
+						<td>
+							<input class="easyui-combobox" id="employeeRole" name="rolestr" style="width:100px;"/>
+						</td>
+						<td><a href="javascript:void(0);" id="btnAdd"
+							class="easyui-linkbutton btn-separator"
+							data-options="iconCls:'icon-add'">新增</a></td>
+						<td><a href="javascript:void(0);" id="btnDelete"
+							class="easyui-linkbutton btn-separator"
+							data-options="iconCls:'icon-remove'">删除</a></td>
+						<td><a href="javascript:void(0);" id="btnDelete"
+							class="easyui-linkbutton btn-separator"
+							data-options="iconCls:'icon-edit'">修改</a></td>
+						<td><a href="javascript:void(0);" id="btnDelete"
+							class="easyui-linkbutton btn-separator"
+							data-options="iconCls:'icon-search'">查询</a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div class="minWidth" data-options="region:'south',border:false"
+			style="height: 33px; padding: 0px 5px;">
+			<div class="easyui-panel" data-options="fit:true"
+				style="background-color: rgb(244, 244, 244); width: 100%;">
+				<div class="easyui-pagination" id="pagination"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

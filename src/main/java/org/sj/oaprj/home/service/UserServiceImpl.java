@@ -228,7 +228,7 @@ public class UserServiceImpl {
 			outList.add(d);
 		}
 		result.put("total", page.getTotalElements());
-		result.put("content", outList);
+		result.put("rows", outList);
 		result.put("pageNumber", pageable.getPageNumber());
 		return result;
 	}

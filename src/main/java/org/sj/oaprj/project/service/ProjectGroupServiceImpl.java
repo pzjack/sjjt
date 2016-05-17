@@ -80,7 +80,7 @@ public class ProjectGroupServiceImpl {
 			page = projectGroupRepository.findAll(pageable, name, Constants.DELETE_FLAG_0);
 		}
 		result.put("total", page.getTotalElements());
-		result.put("content", page.getContent());
+		result.put("rows", page.getContent());
 		result.put("pageNumber", pageable.getPageNumber());
 		return result;
 	}

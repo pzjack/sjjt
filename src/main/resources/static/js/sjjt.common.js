@@ -86,7 +86,7 @@ function onBeforeSend() {
  * @param data
  */
 function onSuccess(data) {
-	$('#dataList').datagrid('loadData', data.content);
+	$('#dataList').datagrid('loadData', data.rows);
 	var pager = $('#pagination');
 	pager.pagination({
 		pageNumber : data.pageNumber,
@@ -743,426 +743,7 @@ function monthbox(id) {
 		}// 配置formatter，只返回年月
 	});
 }
-/**
- * 设置combogrid的分页信息
- * 
- * @param grid
- */
-function combogridPager(grid) {
-	var pager = grid.combogrid("grid").datagrid('getPager');
-	$(pager).pagination({
-		showPageList : false,
-		displayMsg : '共{total}条记录'
-	});
-}
-/**
- * 初始化教师下拉列表
- * 
- * @param comboId
- *            控件ID
- * @param mult
- *            是否可多选
- * @param width
- *            控件宽度
- */
-function combogridUser(comboId, mult, width) {
 
-	var tb = "<div class='datagrid-toolbar' style='width: 100%; height: 30px; display:none;' id='toolbar_"
-			+ comboId
-			+ "' ><table><tr><th style='padding:0 5px;'>账号:</th><td><input class='easyui-textbox' onkeyup='syncValue(this,\"comboUserCode_"
-			+ comboId
-			+ "\" )'></td><th  style='padding:0 5px;'>姓名:</th><td><input class='easyui-textbox' onkeyup='syncValue(this,\"comboUserName_"
-			+ comboId
-			+ "\" )' /></td><td><a href='javascript:void(0)' class='easyui-linkbutton c0' onclick=\"findUser('"
-			+ comboId
-			+ "')\" style=\"padding:0 3px;height:22px;\">查询</a></td></tr></table></div>";
-
-	var tbb = $(tb);
-	var grid = $('#' + comboId);
-	grid.combogrid({
-		panelWidth : width,
-		panelHeight : 217,
-		pagination : true,
-		editable : false,
-		idField : 'userId',
-		textField : 'userName',
-		rownumbers : true,
-		multiple : mult,
-		toolbar : tbb,
-		pagination : true,
-		pageSize : 10,
-		pageList : [ 10 ],
-		method : 'post',
-		url : basePath + '/comm/getUserList.do',
-		columns : [ [ {
-			field : 'loginId',
-			title : '账号',
-			width : '80'
-		}, {
-			field : 'userName',
-			title : '姓名',
-			width : '70'
-		}, {
-			field : 'userType',
-			title : '用户类型',
-			width : '70',
-			align : 'center',
-			formatter : function(value, row, index) {
-				if (isNull(value) == "001") {
-					return "教师";
-				} else {
-					return "学生";
-				}
-			}
-		}, {
-			field : 'telephone',
-			title : '电话号码',
-			width : '90'
-		}, {
-			field : 'email',
-			title : '邮箱',
-			width : '90'
-		} ] ],
-		onLoadSuccess : function() {
-			combogridPager(grid);
-			var text = $("#comboUserText_" + comboId).val();
-			if ($.trim(text) != "") {
-				grid.combogrid('setText', text);
-				$("#comboUserText_" + comboId).val("");
-			}
-		}
-	});
-}
-/**
- * 重新加载combogrid的数据
- * 
- * @param comboId
- */
-function findUser(comboId) {
-	var code = "comboUserCode_" + comboId;
-	var name = "comboUserName_" + comboId;
-	$('#' + comboId).combogrid("grid").datagrid("reload", {
-		'loginId' : $('#' + code).val(),
-		'userName' : $('#' + name).val()
-	});
-}
-
-/**
- * 初始化教师下拉列表
- * 
- * @param comboId
- *            控件ID
- * @param mult
- *            是否可多选
- * @param width
- *            控件宽度
- */
-function combogridTeacher(comboId, mult, width) {
-
-	var tb = "<div class='datagrid-toolbar' style='width: 100%; height: 30px; display:none;' id='toolbar_"
-			+ comboId
-			+ "' ><table><tr><th style='padding:0 5px;'>账号:</th><td><input class='easyui-textbox' onkeyup='syncValue(this,\"comboTeacherCode_"
-			+ comboId
-			+ "\" )'></td><th  style='padding:0 5px;'>姓名:</th><td><input class='easyui-textbox' onkeyup='syncValue(this,\"comboTeacherName_"
-			+ comboId
-			+ "\" )' /></td><td><a href='javascript:void(0)' class='easyui-linkbutton c0' onclick=\"findTeacher('"
-			+ comboId
-			+ "')\" style=\"padding:0 3px;height:22px;\">查询</a></td></tr></table></div>";
-
-	var tbb = $(tb);
-	var grid = $('#' + comboId);
-	grid.combogrid({
-		panelWidth : width,
-		panelHeight : 217,
-		pagination : true,
-		editable : false,
-		idField : 'userId',
-		textField : 'userName',
-		rownumbers : true,
-		multiple : mult,
-		toolbar : tbb,
-		pagination : true,
-		pageSize : 10,
-		pageList : [ 10 ],
-		method : 'post',
-		url : basePath + '/comm/getTeacherList.do',
-		columns : [ [ {
-			field : 'loginId',
-			title : '账号',
-			width : '100'
-		}, {
-			field : 'userName',
-			title : '姓名',
-			width : '100'
-		}, {
-			field : 'telephone',
-			title : '电话号码',
-			width : '100'
-		}, {
-			field : 'orgName',
-			title : '所属实验室',
-			width : '100'
-		} ] ],
-		onLoadSuccess : function() {
-			combogridPager(grid);
-			var text = $("#comboTeacherText_" + comboId).val();
-			if ($.trim(text) != "") {
-				grid.combogrid('setText', text);
-				$("#comboTeacherText_" + comboId).val("");
-			}
-		}
-	});
-}
-/**
- * 重新加载combogrid的数据
- * 
- * @param comboId
- */
-function findTeacher(comboId) {
-	var code = "comboTeacherCode_" + comboId;
-	var name = "comboTeacherName_" + comboId;
-	$('#' + comboId).combogrid("grid").datagrid("reload", {
-		'loginId' : $('#' + code).val(),
-		'userName' : $('#' + name).val()
-	});
-}
-
-/**
- * 初始化供应商下拉列表
- * 
- * @param comboId
- *            控件ID
- * @param mult
- *            是否可多选
- * @param width
- *            控件宽度
- */
-function combogridSupplier(comboId, mult, width) {
-
-	var tb = "<div class='datagrid-toolbar' style='width: 100%; height: 30px; display:none;' id='toolbar_"
-			+ comboId
-			+ "' ><table><tr><th style='padding:0 5px;'>供应商:</th><td><input class='easyui-textbox' onkeyup='syncValue(this,\"comboSupplierCode_"
-			+ comboId
-			+ "\" )'></td><th  style='padding:0 5px;'>负责人:</th><td><input class='easyui-textbox' onkeyup='syncValue(this,\"comboSupplierName_"
-			+ comboId
-			+ "\" )' /></td><td><a href='javascript:void(0)' class='easyui-linkbutton c0' onclick=\"findSupplier('"
-			+ comboId
-			+ "')\" style=\"padding:0 3px;height:22px;\">查询</a></td></tr></table></div>";
-
-	var tbb = $(tb);
-	var grid = $('#' + comboId);
-	grid.combogrid({
-		panelWidth : width,
-		panelHeight : 217,
-		pagination : true,
-		editable : false,
-		idField : 'id',
-		textField : 'name',
-		rownumbers : true,
-		multiple : mult,
-		toolbar : tbb,
-		pagination : true,
-		pageSize : 10,
-		pageList : [ 10 ],
-		method : 'post',
-		url : basePath + '/comm/getSupplierList.do',
-		columns : [ [ {
-			field : 'name',
-			title : '供应商',
-			width : '100'
-		}, {
-			field : 'principal',
-			title : '负责人',
-			width : '100'
-		}, {
-			field : 'contact',
-			title : '联系人',
-			width : '100'
-		}, {
-			field : 'contactPhone',
-			title : '联系电话',
-			width : '100'
-		} ] ],
-		onLoadSuccess : function() {
-			combogridPager(grid);
-			var text = $("#comboSupplierText_" + comboId).val();
-			if ($.trim(text) != "") {
-				grid.combogrid('setText', text);
-				$("#comboSupplierText_" + comboId).val("");
-			}
-		}
-	});
-}
-/**
- * 重新加载combogrid的数据
- * 
- * @param comboId
- */
-function findSupplier(comboId) {
-	var code = "comboSupplierCode_" + comboId;
-	var name = "comboSupplierName_" + comboId;
-	$('#' + comboId).combogrid("grid").datagrid("reload", {
-		'name' : $('#' + code).val(),
-		'principal' : $('#' + name).val()
-	});
-}
-
-function combogridEquipment(comboId, mult, width, type) {
-	var tb = "<div class='datagrid-toolbar' style='width: 100%; height: 30px; display:none;' id='toolbar_"
-			+ comboId
-			+ "' ><table><tr><th style='padding:0 5px;'>设备名称:</th><td><input class='easyui-textbox' onkeyup='syncValue(this,\"comboEquipmentName_"
-			+ comboId
-			+ "\" )'></td><td><a href='javascript:void(0)' class='easyui-linkbutton c0' onclick=\"findEquipment('"
-			+ comboId
-			+ "')\" style=\"padding:0 3px;height:22px;\">查询</a></td></tr></table></div>";
-	var tbb = $(tb);
-	var grid = $('#' + comboId);
-	grid.combogrid({
-		panelWidth : width,
-		panelHeight : 217,
-		pagination : true,
-		editable : false,
-		idField : 'id',
-		textField : 'name',
-		rownumbers : true,
-		multiple : mult,
-		toolbar : tbb,
-		pagination : true,
-		pageSize : 10,
-		pageList : [ 10 ],
-		method : 'post',
-		url : basePath + '/comm/getEquipmentList.do?borrowable=' + type,
-		columns : [ [ {
-			field : 'name',
-			title : '设备名称',
-			width : '115'
-		}, {
-			field : 'equpTypeName',
-			title : '设备分类',
-			width : '70'
-		}, {
-			field : 'brand',
-			title : '品牌',
-			width : '70'
-		}, {
-			field : 'type',
-			title : '型号',
-			width : '70'
-		}, {
-			field : 'measureName',
-			title : '单位',
-			width : '60'
-		}, {
-			field : 'typeName',
-			title : '设备类型',
-			align : 'center',
-			width : '70'
-		} ] ],
-		onLoadSuccess : function() {
-			combogridPager(grid);
-			var text = $("#comboEquipmentText_" + comboId).val();
-			if ($.trim(text) != "") {
-				grid.combogrid('setText', text);
-				$("#comboEquipmentText_" + comboId).val("");
-			}
-		}
-	});
-}
-/**
- * 重新加载combogrid的数据
- * 
- * @param comboId
- */
-function findEquipment(comboId) {
-	var name = "comboEquipmentName_" + comboId;
-	$('#' + comboId).combogrid("grid").datagrid("reload", {
-		'name' : $('#' + name).val()
-	});
-}
-/**
- * 查询设备购入信息
- * 
- * @param comboId
- * @param mult
- * @param width
- * @param type
- */
-function combogridEquipRecord(comboId, mult, width, type, orgIds) {
-	var tb = "<div class='datagrid-toolbar' style='width: 100%; height: 30px; display:none;' id='toolbar_"
-			+ comboId
-			+ "' ><table><tr><th style='padding:0 5px;'>设备名称:</th><td><input class='easyui-textbox' onkeyup='syncValue(this,\"comboEquipmentName_"
-			+ comboId
-			+ "\" )'></td><td><a href='javascript:void(0)' class='easyui-linkbutton c0' onclick=\"findEquipRecord('"
-			+ comboId
-			+ "')\" style=\"padding:0 3px;height:22px;\">查询</a></td></tr></table></div>";
-	var tbb = $(tb);
-	var grid = $('#' + comboId);
-	grid.combogrid({
-		panelWidth : width,
-		panelHeight : 217,
-		pagination : true,
-		editable : false,
-		idField : 'equipId',
-		textField : 'equipName',
-		rownumbers : true,
-		multiple : mult,
-		toolbar : tbb,
-		pagination : true,
-		pageSize : 10,
-		pageList : [ 10 ],
-		method : 'post',
-		url : basePath + '/comm/getEquipRecordList.do?borrowable=' + type
-				+ '&orgIds=' + orgIds,
-		columns : [ [ {
-			field : 'equipName',
-			title : '设备名称',
-			width : '100'
-		}, {
-			field : 'equpTypeName',
-			title : '设备分类',
-			width : '60'
-		}, {
-			field : 'brand',
-			title : '品牌',
-			width : '70'
-		}, {
-			field : 'type',
-			title : '型号',
-			width : '70'
-		}, {
-			field : 'orgName',
-			title : '所属实验室',
-			width : '85'
-		}, {
-			field : 'typeName',
-			title : '设备类型',
-			align : 'center',
-			width : '70'
-		} ] ],
-		onLoadSuccess : function() {
-			combogridPager(grid);
-			var text = $("#comboEquipmentText_" + comboId).val();
-			if ($.trim(text) != "") {
-				grid.combogrid('setText', text);
-				$("#comboEquipmentText_" + comboId).val("");
-			}
-		},
-		onClickRow : function(index, row) {
-			$("#comboEquipmentOrg_" + comboId).val(row.orgId);
-		}
-	});
-}
-/**
- * 重新加载combogrid的数据
- * 
- * @param comboId
- */
-function findEquipRecord(comboId) {
-	var name = "comboEquipmentName_" + comboId;
-	$('#' + comboId).combogrid("grid").datagrid("reload", {
-		'name' : $('#' + name).val()
-	});
-}
 /**
  * 重置代码表下拉列表
  * 
@@ -1179,17 +760,132 @@ function resetCXSelect(id) {
  * 
  * @param id
  */
-function combogridClear(id, measureId) {
+function combogridClear(id) {
 	$("#" + id).textbox('setValue', '');
 	$("#" + id).combogrid('grid').datagrid('clearSelections');
-	if (measureId != undefined) {
-		$("#" + measureId).val("");
+}
+
+function combogridPager(grid) {
+	var pager = grid.combogrid("grid").datagrid('getPager');
+	$(pager).pagination({
+		showPageList : false,
+		displayMsg : '共{total}条记录'
+	});
+	//文本赋值
+	var text = $(grid).attr("text");
+	if (text != undefined && $.trim(text) != "") {
+		grid.combogrid('setText', text);
 	}
 }
+
+function projectComboGrid(comboId, mult, panelWidth) {
+	var tb = "<div class='datagrid-toolbar' id='toolbar_"
+			+ comboId
+			+ "' ><table><tr><td style='padding:0 5px;'>项目组名称:</td><td><input class='easyui-textbox' style='height:18px;' id='grpName_"
+			+ comboId
+			+ "'></td>"
+			+ "<td><a class='easyui-linkbutton c0 l-btn l-btn-small' href='javascript:void(0);' onclick='findProjectGroup(\""
+			+ comboId
+			+ "\")'><span class='l-btn-left l-btn-icon-left'><span class='l-btn-text'>查&nbsp;&nbsp;询</span><span class='l-btn-icon icon-search'>&nbsp;</span></span></a></td></tr></table></div>"
+	var tbb = $(tb);
+	var grid = $('#' + comboId);
+	grid.combogrid({
+		panelWidth : panelWidth,
+		panelHeight : 217,
+		pagination : true,
+		editable : false,
+		idField : 'id',
+		textField : 'name',
+		rownumbers : true,
+		multiple : mult,
+		toolbar : tbb,
+		pagination : true,
+		pageSize : 10,
+		pageList : [ 10 ],
+		method : 'post',
+		url : '/common/projectgroup/list?_csrf=' + csrf,
+		columns : [ [ {
+			field : 'name',
+			title : '项目组名称',
+			width : '250'
+		}, {
+			field : 'departmentName',
+			title : '所属部门',
+			width : '200'
+		} ] ],
+		onLoadSuccess : function() {
+			combogridPager(grid);
+		}
+	});
+}
 /**
- * 打开菜单选择画面
+ * 重新加载combogrid的数据
+ * 
+ * @param comboId
  */
-function openMenuWindow() {
-	var href = basePath + '/admin/menuListInit.do';
-	parent.openWindow("菜单列表", href, 480, 359);
+function findProjectGroup(comboId) {
+	$('#' + comboId).combogrid("grid").datagrid("reload", {
+		'name' : $('#grpName_' + comboId).val()
+	});
+}
+/**
+ * 查询员工信息
+ * 
+ * @param comboId
+ * @param mult
+ * @param panelWidth
+ */
+function employeeComboGrid(comboId, mult, panelWidth) {
+	var tb = "<div class='datagrid-toolbar' id='toolbar_"
+			+ comboId
+			+ "' ><table><tr><td style='padding:0 5px;'>员工姓名:</td><td><input class='easyui-textbox' style='height:18px;' id='empName_"
+			+ comboId
+			+ "'></td>"
+			+ "<td><a class='easyui-linkbutton c0 l-btn l-btn-small' href='javascript:void(0);' onclick='findEmployee(\""
+			+ comboId
+			+ "\")'><span class='l-btn-left l-btn-icon-left'><span class='l-btn-text'>查&nbsp;&nbsp;询</span><span class='l-btn-icon icon-search'>&nbsp;</span></span></a></td></tr></table></div>"
+	var tbb = $(tb);
+	var grid = $('#' + comboId);
+	grid.combogrid({
+		panelWidth : panelWidth,
+		panelHeight : 217,
+		pagination : true,
+		editable : false,
+		idField : 'id',
+		textField : 'name',
+		rownumbers : true,
+		multiple : mult,
+		toolbar : tbb,
+		pagination : true,
+		pageSize : 10,
+		pageList : [ 10 ],
+		method : 'post',
+		url : '/common/employee/list?_csrf=' + csrf,
+		columns : [ [ {
+			field : 'accountId',
+			title : '账号',
+			width : '100'
+		}, {
+			field : 'name',
+			title : '员工姓名',
+			width : '250'
+		}, {
+			field : 'phone',
+			title : '电话号码',
+			width : '100'
+		} ] ],
+		onLoadSuccess : function() {
+			combogridPager(grid);
+		}
+	});
+}
+/**
+ * 重新加载combogrid的数据
+ * 
+ * @param comboId
+ */
+function findEmployee(comboId) {
+	$('#' + comboId).combogrid("grid").datagrid("reload", {
+		'name' : $('#empName_' + comboId).val()
+	});
 }
