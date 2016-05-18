@@ -87,7 +87,7 @@ public class SupplierServiceImpl {
 		}
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("total", total);
-		result.put("content", content);
+		result.put("rows", content);
 		result.put("pageNumber", pageable.getPageNumber());
 		return result;
 	}
