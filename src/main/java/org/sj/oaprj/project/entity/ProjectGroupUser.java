@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.sj.oaprj.entity.Employee;
 import org.sj.oaprj.entity.ID;
 
 /**
@@ -27,10 +28,14 @@ public class ProjectGroupUser extends ID {
     @JoinColumn(name = "PROJECT_GROUP_ID")
 	private ProjectGroup projectgroup;//工程项目组
 	
+//	@NotNull
+//	@ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "PROJECT_ID")
+//	private Project project;//工程项目
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PROJECT_ID")
-	private Project project;//工程项目
+    @JoinColumn(name = "USER_ID")
+	private Employee user;
 
 	@Column(name = "NAME")
 	private String name;//名称
@@ -49,12 +54,20 @@ public class ProjectGroupUser extends ID {
 		this.projectgroup = projectgroup;
 	}
 
-	public Project getProject() {
-		return project;
+//	public Project getProject() {
+//		return project;
+//	}
+//
+//	public void setProject(Project project) {
+//		this.project = project;
+//	}
+
+	public Employee getUser() {
+		return user;
 	}
 
-	public void setProject(Project project) {
-		this.project = project;
+	public void setUser(Employee user) {
+		this.user = user;
 	}
 
 	public String getName() {

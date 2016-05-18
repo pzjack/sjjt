@@ -35,33 +35,6 @@
 </head>
 <body>
 	<div class="easyui-layout" data-options="fit:true">
-		<!-- <div class="minWidth" style="padding: 5px;"
-			data-options="region:'north',border:false">
-			<form id="queryForm">
-				<table class="t1">
-					<tr>
-						<th>项目组名称：</th>
-						<td><input id="projectGroupName" name="name" class="easyui-combogrid" style="width: 250px;" 
-							data-options="icons: [{iconCls:'icon-clear',handler: function(e){combogridClear('projectGroupName');}}]"/>
-							</td>
-					</tr>
-				</table>
-				<table style="width: 100%">
-					<tr>
-						<td><div align="right" class="search_btn_div">
-								<a id="btnSearch" href="javascript:void(0);"
-									class="easyui-linkbutton c0"
-									data-options="iconCls:'icon-search'"
-									style="padding-right: 5px;">查&nbsp;&nbsp;询</a> <a id="btnClear"
-									href="javascript:void(0);"
-									style="margin-left: 5px; margin-right: 5px; padding-right: 5px;"
-									class="easyui-linkbutton c0"
-									data-options="iconCls:'icon-clear'">清&nbsp;&nbsp;空</a>
-							</div></td>
-					</tr>
-				</table>
-			</form>
-		</div> -->
 		<div class="minWidth" style="padding: 1px 5px 0px 5px;"
 			data-options="region:'center',border:false">
 			<table id="dataList" class="easyui-datagrid"
@@ -69,9 +42,10 @@
 				<thead>
 					<tr>
 						<th data-options="field:'id',width:'5%',checkbox:true"></th>
-						<th data-options="field:'name',width:'20%'">员工姓名</th>
-						<th data-options="field:'departmentName',width:'25%'">所属部门</th>
-						<th data-options="field:'remark',width:'40%'">角色</th>
+						<th data-options="field:'name',width:'20%'">姓名</th>
+						<th data-options="field:'projectgroupName',width:'25%'">项目组</th>
+						<th data-options="field:'role',width:'20%'">角色</th>
+						<th data-options="field:'post',width:'20%'">职位</th>
 						<th
 							data-options="field:'operate',width:'10%',align:'center'">操作</th>
 					</tr>
@@ -81,16 +55,16 @@
 				<table>
 					<tr>
 						<td>项目组名称：</td>
-						<td><input id="projectGroupNameAdd" name="projectGroupNameAdd" value='12' text="11" class="easyui-combogrid" style="width: 200px;" 
-							data-options="icons: [{iconCls:'icon-clear',handler: function(e){combogridClear('projectGroupNameAdd');}}]"/>
+						<td><input id="projectgroupName" name="projectgroupName" class="easyui-combogrid" style="width: 200px;" 
+							data-options="icons: [{iconCls:'icon-clear',handler: function(e){combogridClear('projectgroupName');}}]"/>
 						</td>
 						<td style="padding-left:5px;">员工姓名：</td>
-						<td><input id="employeeAdd" name="employeeAdd" class="easyui-combogrid" style="width: 100px;" 
-							data-options="icons: [{iconCls:'icon-clear',handler: function(e){combogridClear('employeeAdd');}}]"/>
+						<td><input id="name" name="name" class="easyui-combogrid" style="width: 100px;" 
+							data-options="icons: [{iconCls:'icon-clear',handler: function(e){combogridClear('name');}}]"/>
 						</td>
 						<td style="padding-left:5px;">角色：</td>
 						<td>
-							<input class="easyui-combobox" id="employeeRole" name="rolestr" style="width:100px;"/>
+							<input class="easyui-combobox" id="role" name="role" style="width:100px;"/>
 						</td>
 						<td><a href="javascript:void(0);" id="btnAdd"
 							class="easyui-linkbutton btn-separator"
