@@ -2,8 +2,8 @@
  * 列表画面初始化
  */
 function initList() {
-	projectComboGrid("projectgroupName", false, 500);
-	employeeComboGrid("name", false, 500);
+	projectComboGrid("projectgroupId", false, 500);
+	employeeComboGrid("userId", false, 500);
 	// 初始化角色下拉列表
 	comboBoxInit("role", "/role/findAllRole", "id", "name");
 	
@@ -12,28 +12,42 @@ function initList() {
 	dataGridInit();
 	// 查询
 	$("#btnSearch").bind("click", findGridData);
-	// 清空表单数据
-	$("#btnClear").bind("click", queryFormReset);
 	// 添加信息
-	$("#btnAdd").bind("click", openAddWindow);
+	$("#btnAdd").bind("click", saveForm);
 	// 批量删除信息
 	$("#btnDelete").bind("click", deleteDatas);
 	// 默认加载数据
 	findGridData();
 }
 
+
 /**
- * 新增、编辑画面初始化
+ * 清空查询区域
  */
-function initForm() {
-	projectComboGrid("projectgroupName", false, 500);
-	employeeComboGrid("name", false, 500);
-	// 初始化角色下拉列表
-	comboBoxInit("role", "/role/findAllRole", "id", "name");
-	// 查询
-	$("#btnClose").bind("click", closePopupWindow);
-	// 清空表单数据
-	$("#btnSave").bind("click", saveForm);
+function queryFormReset() {
+	$("#projectgroupId").textbox('setValue', '');
+	$("#userId").textbox('setValue', '');
+	$("#role").textbox('setValue', '');
+	$("#post").textbox('setValue', '');
+}
+
+
+/**
+ * 保存信息
+ */
+function saveForm() {
+	if (!$("#saveForm").form("validate")) {
+		return;
+	}
+	$.ajax({
+		type : "POST",
+		url : '/projects/prjgrpuser/save?_csrf=' + csrf,
+		data : $("#saveForm").serialize(),
+		success : onSaveSuccess,
+		error : onError,
+		beforeSend : onBeforeSend,
+		complete : onComplete
+	});
 }
 /**
  * 加载数据
@@ -71,43 +85,6 @@ function reloadData(pageIndex, pageSize) {
 }
 
 /**
- * 清空查询区域
- */
-function queryFormReset() {
-	$("#userName").textbox('setValue', '');
-	$("#employeeNo").textbox('setValue', '');
-	$("#userPhone").textbox('setValue', '');
-}
-
-/**
- * 格式化操作列
- * 
- * @param value
- * @param row
- * @param index
- * @returns {String}
- */
-function operateFormatter(value, row, index) {
-	var result = "";
-	result += "<a href='javascript:void(0);' onclick='openEditWindow(\""
-			+ row.id + "\")'>编辑</a>&nbsp;&nbsp;";
-	result += "<a href='javascript:void(0);' onclick='deleteOneData(\""
-			+ row.id + "\")'>删除</a>&nbsp;&nbsp;";
-	if (result == "") {
-		$("#dataList").datagrid('hideColumn', 'operate');
-	}
-
-	return result;
-}
-
-/**
- * 添加画面初始化
- */
-function openAddWindow() {
-	openWindow("新增项目组用户信息", '/projects/prjgrpuser/formInit', 520, 385);
-}
-
-/**
  * 打开编辑画面
  * 
  * @param supplierId
@@ -115,13 +92,6 @@ function openAddWindow() {
 function openEditWindow(id) {
 	var href = '/projects/prjgrpuser/findOne?id=' + id;
 	openWindow("编辑项目组用户信息", href, 520, 385);
-}
-
-/**
- * 关闭弹出窗口
- */
-function closePopupWindow() {
-	closeWindow();
 }
 
 /**
@@ -149,15 +119,16 @@ function deleteDatas() {
  * 执行删除操作
  */
 function doDelete(param) {
-	$.ajax({
-		type : "POST",
-		url : '/projects/prjgrpuser/delete?_csrf=' + csrf,
-		data : param,
-		success : afterDelete,
-		error : onError,
-		beforeSend : onBeforeSend,
-		complete : onComplete
-	});
+	alert(param)
+//	$.ajax({
+//		type : "POST",
+//		url : '/projects/prjgrpuser/delete?_csrf=' + csrf,
+//		data : param,
+//		success : afterDelete,
+//		error : onError,
+//		beforeSend : onBeforeSend,
+//		complete : onComplete
+//	});
 }
 
 /**
@@ -166,6 +137,7 @@ function doDelete(param) {
  * @param id
  */
 function deleteOneData(id) {
+	alert(id);
 	var msg = message.DELETE_MESSAGE_CONFIRM;
 	$.messager.confirm("提示信息", msg, function(r) {
 		if (r) {
@@ -174,23 +146,5 @@ function deleteOneData(id) {
 			};
 			doDelete(param);
 		}
-	});
-}
-
-/**
- * 保存信息
- */
-function saveForm() {
-	if (!$("#saveForm").form("validate")) {
-		return;
-	}
-	$.ajax({
-		type : "POST",
-		url : '/projects/prjgrpuser/save?_csrf=' + csrf,
-		data : $("#saveForm").serialize(),
-		success : onSaveSuccess,
-		error : onError,
-		beforeSend : onBeforeSend,
-		complete : onComplete
 	});
 }

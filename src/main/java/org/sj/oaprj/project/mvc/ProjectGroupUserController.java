@@ -36,8 +36,12 @@ public class ProjectGroupUserController {
 		return result;
 	}
 	
-	private PageRequest buildPageRequest(final int page, final int size) {
-        return new PageRequest(page - 1, size);
+	private PageRequest buildPageRequest(int page, int size) {
+		page = page -1;
+		if(page < 0) {
+			page = 0;
+		}
+        return new PageRequest(page, size);
     }
 
 	@ApiOperation(value = "项目组成员新增画面", notes = "项目组成员新增画面<br/>@auther Jack.Alexander")
