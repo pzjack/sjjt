@@ -104,7 +104,7 @@ function operateFormatter(value, row, index) {
  * 添加画面初始化
  */
 function openAddWindow() {
-	openWindow("新增项目组用户信息", '/projects/prjgrpuser/formInit', 470, 285);
+	openWindow("新增项目组用户信息", '/projects/prjgrpuser/formInit', 520, 385);
 }
 
 /**
@@ -114,7 +114,7 @@ function openAddWindow() {
  */
 function openEditWindow(id) {
 	var href = '/projects/prjgrpuser/findOne?id=' + id;
-	openWindow("编辑项目组用户信息", href, 470, 285);
+	openWindow("编辑项目组用户信息", href, 520, 385);
 }
 
 /**
