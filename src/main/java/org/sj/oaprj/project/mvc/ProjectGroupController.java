@@ -32,7 +32,7 @@ public class ProjectGroupController {
 	@ApiOperation(value = "项目组列表", notes = "项目组列表<br/>@auther Jack.Alexander")
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> list(String name,  Integer pageIndex, Integer pageSize) {
-		Map<String, Object> result = projectGroupServiceImpl.findByFields(name, buildPageRequest(pageIndex, pageSize));
+		Map<String, Object> result = projectGroupServiceImpl.findByFields("%" + name + "%", buildPageRequest(pageIndex, pageSize));
 		return result;
 	}
 	

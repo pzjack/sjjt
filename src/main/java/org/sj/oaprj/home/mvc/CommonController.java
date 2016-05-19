@@ -2,6 +2,7 @@ package org.sj.oaprj.home.mvc;
 
 import java.util.Map;
 
+import org.sj.oaprj.core.Utils;
 import org.sj.oaprj.home.service.UserServiceImpl;
 import org.sj.oaprj.project.service.ProjectGroupServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class CommonController {
 	@ApiOperation(value = "项目组列表", notes = "项目组列表<br/>@auther dzfang")
 	@RequestMapping(value = "/projectgroup/list", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> list(String name, int page, int rows) {
+		if(!Utils.isEmpty(name)) {
+			name = "%" + name + "%";
+		}
 		Map<String, Object> result = projectGroupServiceImpl.findByFields(name, buildPageRequest(page, rows));
 		return result;
 	}

@@ -2,12 +2,8 @@
  * 列表画面初始化
  */
 function initList() {
-//	projectComboGrid("projectGroupName", false, 500);
-	
 	projectComboGrid("projectgroupName", false, 500);
-	
 	employeeComboGrid("name", false, 500);
-	
 	// 初始化角色下拉列表
 	comboBoxInit("role", "/role/findAllRole", "id", "name");
 	
@@ -31,9 +27,7 @@ function initList() {
  */
 function initForm() {
 	projectComboGrid("projectgroupName", false, 500);
-	
 	employeeComboGrid("name", false, 500);
-	
 	// 初始化角色下拉列表
 	comboBoxInit("role", "/role/findAllRole", "id", "name");
 	// 查询
