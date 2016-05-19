@@ -26,7 +26,7 @@ public class ProjectGroupUserController {
 	@ApiOperation(value = "项目组成员列表页面", notes = "项目组成员列表页面<br/>@auther dzfang")
 	@RequestMapping(value = "/listInit", method = RequestMethod.GET)
 	public String listInit() {
-		return "projects/projectgroupuser/projectGroupUserList";
+		return "projects/projectgroupuser/ProjectGroupUserList";
 	} 
 	
 	@ApiOperation(value = "项目组成员列表", notes = "项目组成员列表<br/>@auther Jack.Alexander")
@@ -44,14 +44,14 @@ public class ProjectGroupUserController {
         return new PageRequest(page, size);
     }
 
-	@ApiOperation(value = "项目组成员新增画面", notes = "项目组成员新增画面<br/>@auther Jack.Alexander")
-	@RequestMapping(value = "/formInit", method = RequestMethod.GET)
-	public ModelAndView formInit() {
-		ModelAndView modelAndView = new ModelAndView("projects/projectgroupuser/projectGroupUserForm");
-		ProjectGroupUserUpdateDomain pg = new ProjectGroupUserUpdateDomain();
-		modelAndView.addObject("projectgroupuser", pg);
-		return modelAndView;
-	}
+//	@ApiOperation(value = "项目组成员新增画面", notes = "项目组成员新增画面<br/>@auther Jack.Alexander")
+//	@RequestMapping(value = "/formInit", method = RequestMethod.GET)
+//	public ModelAndView formInit() {
+//		ModelAndView modelAndView = new ModelAndView("projects/projectgroupuser/projectGroupUserForm");
+//		ProjectGroupUserUpdateDomain pg = new ProjectGroupUserUpdateDomain();
+//		modelAndView.addObject("projectgroupuser", pg);
+//		return modelAndView;
+//	}
 
 	@ApiOperation(value = "项目组成员信息新增", notes = "项目组成员信息新增<br/>@auther Jack.Alexander")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
